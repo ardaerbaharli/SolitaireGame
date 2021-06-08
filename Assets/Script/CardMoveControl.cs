@@ -7,6 +7,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 {
     public bool isMoving;
     public bool isChangingPostiion;
+    public bool isFacingUp;
     public GameObject playcardsPanel;
     public GameObject acesPanel;
     private void Start()
@@ -128,6 +129,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                             lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                             lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
+                            lastChildOfTheOriginParent.GetComponent<CardMoveControl>().isFacingUp = true;
                         }
 
                         originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent);  // set the spacing for the panel layout
@@ -176,6 +178,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                 var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                                 lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                                 lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
+                                lastChildOfTheOriginParent.GetComponent<CardMoveControl>().isFacingUp = true;
                             }
                             originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent); // set the spacing for the panel layout
                         }

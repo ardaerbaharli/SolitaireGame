@@ -63,6 +63,7 @@
     <Compile Include="Assets\Script\Settings.cs" />
     <Compile Include="Assets\Script\GameUI.cs" />
     <Compile Include="Assets\Script\Move.cs" />
+    <Compile Include="Assets\Script\Step.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
