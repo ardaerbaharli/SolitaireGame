@@ -48,6 +48,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         if (isChangingPostiion && !isMoving)
         {
+            bool didItMove = false;
             var originParent = gameObject.transform.parent;
             if (collision.CompareTag("PlaceholderPanel")) // target
             {
@@ -80,6 +81,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 {
                     if (canMove)
                     {
+                        didItMove = true;
                         gameObject.transform.SetParent(updatedParent);
                         updatedParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(updatedParent); ; // set the spacing for the panel layout
                     }
@@ -97,6 +99,8 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 {
                     if (canMove)
                     {
+                        didItMove = true;
+
                         int holdingIndex = gameObject.transform.GetSiblingIndex();
                         int lastChildIndex = gameObject.transform.parent.childCount - 1;
                         int cardCount = lastChildIndex - holdingIndex + 1;
@@ -151,6 +155,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
                     if (canMove)
                     {
+                        didItMove = true;
                         gameObject.transform.SetParent(updatedParent); // change the parent of the card
 
                         if (originParent.CompareTag("PlaycardsPanelChildren"))
@@ -176,6 +181,11 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
             }
 
+            if (didItMove)
+            {
+                GameControl.moveCount++;
+                GameControl.score += 1000 / GameControl.moveCount * 2;
+            }
             isChangingPostiion = false;
             LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
         }
