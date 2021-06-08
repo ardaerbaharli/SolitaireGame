@@ -57,11 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\CardMoveControl.cs" />
-    <Compile Include="Assets\Script\CardPositionControl.cs" />
     <Compile Include="Assets\Script\SceneLoader.cs" />
     <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\GameControl.cs" />
     <Compile Include="Assets\Script\Settings.cs" />
+    <Compile Include="Assets\Script\GameUI.cs" />
+    <Compile Include="Assets\Script\Move.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

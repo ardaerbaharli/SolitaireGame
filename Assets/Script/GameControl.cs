@@ -14,40 +14,25 @@ public class GameControl : MonoBehaviour
     private List<Card> UnshuffledDeck = new List<Card>();
     private List<Card> Ground = new List<Card>();
     private List<List<Card>> Playground = new List<List<Card>>();
+    private static List<Move> Moves = new List<Move>();
+
     private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
     private const string EMPTY_DECK_SPRTIE_NAME = "Blue Back of a card";
+
     private int remainingRefreshes;
 
     public static int moveCount;
-    public static int score;
 
-    private int initialMoveCount;
-    private int initialScore;
+
     private void Start()
     {
         moveCount = 0;
-        score = 0;
-        initialScore = score;
-        initialMoveCount = moveCount;
         remainingRefreshes = Settings.deckRefreshCount;
         UnshuffledDeck = CreateADeck();
         DealPlayCards();
         DealDeck();
     }
-    private void Update()
-    {
-        if (moveCount != initialMoveCount)
-        {
-            initialMoveCount = moveCount;
-            // show in the ui
-        }
 
-        if (score != initialScore)
-        {
-            score = initialScore;
-            // show in the ui
-        }
-    }
 
     private List<Card> CreateADeck()
     {
@@ -134,6 +119,7 @@ public class GameControl : MonoBehaviour
     }
     private void DealFromDeck()
     {
+        moveCount++;
         int cardsToDeal = Settings.drawingCardCount;
         for (int i = 0; i < cardsToDeal; i++)
         {
@@ -149,6 +135,12 @@ public class GameControl : MonoBehaviour
             topCard.GetComponent<CardMoveControl>().enabled = true;
             topCard.GetComponent<Button>().enabled = false;
 
+            Move move = new Move();
+            move.Origin = deckObj.transform;
+            move.Card = topCard.gameObject;
+            move.Target = groundObj.transform;
+            AddMove(move);
+
             if (groundObj.transform.childCount > 3)
             {
                 for (int k = 0; k < groundObj.transform.childCount - 3; k++)
@@ -161,27 +153,55 @@ public class GameControl : MonoBehaviour
 
     public void RefreshDeck()
     {
-        if (remainingRefreshes > 0)
+        if (deckObj.transform.childCount == 0)
         {
-            remainingRefreshes--;
-            int k = groundObj.transform.childCount;
-            for (int i = 0; i < k; i++)
+            if (remainingRefreshes > 0)
             {
-                var bottomCard = groundObj.transform.GetChild(0);
-                bottomCard.gameObject.SetActive(true);
-                var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
-                Ground.Remove(cardInList);
-                Deck.Add(cardInList);
+                remainingRefreshes--;
+                int k = groundObj.transform.childCount;
+                for (int i = 0; i < k; i++)
+                {
+                    var bottomCard = groundObj.transform.GetChild(0);
+                    bottomCard.gameObject.SetActive(true);
+                    var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
+                    Ground.Remove(cardInList);
+                    Deck.Add(cardInList);
 
-                bottomCard.transform.SetParent(deckObj.transform);
-                bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
-                bottomCard.GetComponent<CardMoveControl>().enabled = false;
-                bottomCard.GetComponent<Button>().enabled = true;
+                    bottomCard.transform.SetParent(deckObj.transform);
+                    bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+                    bottomCard.GetComponent<CardMoveControl>().enabled = false;
+                    bottomCard.GetComponent<Button>().enabled = true;
+                }
+            }
+            else if (remainingRefreshes == 0)
+            {
+                deckObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(EMPTY_DECK_SPRTIE_NAME);
             }
         }
-        else if (remainingRefreshes == 0)
+    }
+    public static void AddMove(Move move)
+    {
+        Moves.Add(move);
+    }
+    public void Undo()
+    {
+        var move = Moves.Last();
+        if (move != null)
         {
-            deckObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(EMPTY_DECK_SPRTIE_NAME);
+            var card = move.Card;
+            var origin = move.Origin;
+            var target = move.Target;
+
+            var newTarget = origin;
+
+            card.transform.SetParent(newTarget);
+
+            origin.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(origin); // set the spacing for the panel layout
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(target); // set the spacing for the panel layout
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>()); // refresh layout
+
+            Moves.Remove(move);
         }
     }
 }

@@ -17,8 +17,11 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
 
         // FOR TESTING 
-        Settings.drawingCardCount = 1;
-        Settings.deckRefreshCount = 999;
+        if (Settings.drawingCardCount == 0)
+        {
+            Settings.drawingCardCount = 1;
+            Settings.deckRefreshCount = 999;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -49,123 +52,130 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if (isChangingPostiion && !isMoving)
         {
             bool didItMove = false;
+            bool canMove = false;
+            int panelIndex = Int32.Parse(collision.name);
             var originParent = gameObject.transform.parent;
-            if (collision.CompareTag("PlaceholderPanel")) // target
+
+            var originCardName = gameObject.name;
+            char originCardSuit = originCardName[0];
+            int originCardValue = int.Parse(originCardName.Substring(1, originCardName.Length - 1));
+
+            if (collision.CompareTag("PlaceholderPanel")) // = ground cards = target
             {
-                int panelIndex = Int32.Parse(collision.name);
-                var updatedParent = playcardsPanel.transform.GetChild(panelIndex); // next parent       
+                var targetParent = playcardsPanel.transform.GetChild(panelIndex);
 
-                bool canMove = false;
-
-                var cardName = gameObject.name;
-                char cardSuit = cardName[0];
-                int cardValue = int.Parse(cardName.Substring(1, cardName.Length - 1));
-                if (updatedParent.childCount > 0)
+                if (targetParent.childCount > 0)
                 {
-                    var targetCard = updatedParent.GetChild(updatedParent.childCount - 1);
+                    var targetCard = targetParent.GetChild(targetParent.childCount - 1);
                     var targetCardName = targetCard.name;
                     char targetCardSuit = targetCardName[0];
-                    int targetValue = int.Parse(targetCardName.Substring(1, targetCardName.Length - 1));
+                    int targetCardValue = int.Parse(targetCardName.Substring(1, targetCardName.Length - 1));
 
-                    if (targetValue - cardValue == 1 && IsPlaygroudCardSuitTrue(targetCardSuit, cardSuit))
+                    if (targetCardValue - originCardValue == 1 && IsPlaygroudCardSuitTrue(targetCardSuit, originCardSuit))
                         canMove = true;
                 }
-                else if (updatedParent.childCount == 0)
+                else if (targetParent.childCount == 0) // if the playground panel is empty
                 {
-                    // if the panel is empty, then only K => 13 can go there
-                    if (cardValue == 13)
+                    // then only K => 13 can go there
+                    if (originCardValue == 13)
                         canMove = true;
                 }
-
-                if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
+                if (canMove)
                 {
-                    if (canMove)
+                    if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
                     {
                         didItMove = true;
-                        gameObject.transform.SetParent(updatedParent);
-                        updatedParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(updatedParent); ; // set the spacing for the panel layout
-                    }
+                        gameObject.transform.SetParent(targetParent);
+                        targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent); ; // set the spacing for the panel layout
 
-                    if (originParent.CompareTag("Ground"))
-                    {
-                        if (originParent.transform.childCount > 2)
+                        Move move = new Move();
+                        move.Origin = originParent;
+                        move.Card = gameObject;
+                        move.Target = targetParent;
+                        GameControl.AddMove(move);
+
+                        if (originParent.CompareTag("Ground"))
                         {
-                            int index = originParent.transform.childCount - 1 - 2;
-                            originParent.transform.GetChild(index).gameObject.SetActive(true);
+                            if (originParent.transform.childCount > 2)
+                            {
+                                int index = originParent.transform.childCount - 1 - 2;
+                                originParent.transform.GetChild(index).gameObject.SetActive(true);
+                            }
                         }
                     }
-                }
-                else if (originParent.CompareTag("PlaycardsPanelChildren"))
-                {
-                    if (canMove)
+                    else if (originParent.CompareTag("PlaycardsPanelChildren"))
                     {
                         didItMove = true;
 
                         int holdingIndex = gameObject.transform.GetSiblingIndex();
                         int lastChildIndex = gameObject.transform.parent.childCount - 1;
                         int cardCount = lastChildIndex - holdingIndex + 1;
-                        var parent = gameObject.transform.parent;
                         for (int i = 0; i < cardCount; i++)
                         {
-                            parent.GetChild(holdingIndex).SetParent(updatedParent);
+                            var card = originParent.GetChild(holdingIndex);
+                            card.SetParent(targetParent);
+
+                            Move move = new Move();
+                            move.Origin = originParent;
+                            move.Card = card.gameObject;
+                            move.Target = targetParent;
+                            GameControl.AddMove(move); 
                         }
 
                         if (originParent.childCount > 0)
                         {
                             // change the image and enable the cardmovecontrol script
-                            var lastChildOfTheOlderParent = originParent.GetChild(originParent.childCount - 1);
-                            lastChildOfTheOlderParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOlderParent.name);
-                            lastChildOfTheOlderParent.GetComponent<CardMoveControl>().enabled = true;
+                            var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
+                            lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
+                            lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
                         }
 
                         originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent);  // set the spacing for the panel layout
-                                                                                                                    //     updatedParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(updatedParent); ; // set the spacing for the panel layout
+                        targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent);  // set the spacing for the panel layout
                     }
                 }
             }
-            else if (collision.CompareTag("AcePlaceholderPanel")) // target
+            else if (collision.CompareTag("AcePlaceholderPanel")) // = target
             {
                 if (originParent.CompareTag("Ground") || originParent.CompareTag("PlaycardsPanelChildren"))
                 {
-                    int panelIndex = Int32.Parse(collision.name);
-                    var updatedParent = acesPanel.transform.GetChild(panelIndex); // next parent       
+                    var targetParent = acesPanel.transform.GetChild(panelIndex); // next parent                    
 
-                    bool canMove = false;
-
-                    var cardName = gameObject.name;
-                    char cardSuit = cardName[0];
-
-                    int cardValue = int.Parse(cardName.Substring(1, cardName.Length - 1));
-                    if (updatedParent.childCount > 0)
+                    if (targetParent.childCount > 0)
                     {
-                        var targetCard = updatedParent.GetChild(updatedParent.childCount - 1);
+                        var targetCard = targetParent.GetChild(targetParent.childCount - 1);
                         var targetCardName = targetCard.name;
                         char targetCardSuit = targetCardName[0];
-
                         int targetValue = int.Parse(targetCardName.Substring(1, targetCardName.Length - 1));
-                        if (cardValue - targetValue == 1 && targetCardSuit == cardSuit)
+
+                        if (originCardValue - targetValue == 1 && targetCardSuit == originCardSuit)
                             canMove = true;
                     }
-                    else if (updatedParent.childCount == 0)
+                    else if (targetParent.childCount == 0) // if the ace panel is empty
                     {
-                        // if the ace panel is empty, then only A => 1 can go there
-                        if (cardValue == 1)
+                        if (originCardValue == 1) // then only A => 1 can go there
                             canMove = true;
                     }
 
                     if (canMove)
                     {
                         didItMove = true;
-                        gameObject.transform.SetParent(updatedParent); // change the parent of the card
+                        gameObject.transform.SetParent(targetParent); // change the parent of the card
+
+                        Move move = new Move();
+                        move.Origin = originParent;
+                        move.Card = gameObject;
+                        move.Target = targetParent;
+                        GameControl.AddMove(move);
 
                         if (originParent.CompareTag("PlaycardsPanelChildren"))
                         {
                             if (originParent.childCount > 0)
                             {
                                 // change the image and enable the cardmovecontrol script
-                                var lastChildOfTheOlderParent = originParent.GetChild(originParent.childCount - 1);
-                                lastChildOfTheOlderParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOlderParent.name);
-                                lastChildOfTheOlderParent.GetComponent<CardMoveControl>().enabled = true;
+                                var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
+                                lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
+                                lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
                             }
                             originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent); // set the spacing for the panel layout
                         }
@@ -182,10 +192,8 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
             }
 
             if (didItMove)
-            {
                 GameControl.moveCount++;
-                GameControl.score += 1000 / GameControl.moveCount * 2;
-            }
+
             isChangingPostiion = false;
             LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
         }
@@ -206,7 +214,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
             return false;
     }
 
-    private float CalculateSpacing(Transform transform)
+    public static float CalculateSpacing(Transform transform)
     {
         float spacing = -1030f + (transform.childCount * 90f);
         if (spacing > -200f)
