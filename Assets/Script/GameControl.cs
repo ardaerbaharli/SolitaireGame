@@ -18,35 +18,12 @@ public class GameControl : MonoBehaviour
     private const string EMPTY_DECK_SPRTIE_NAME = "Blue Back of a card";
     private int remainingRefreshes;
 
-    public static int moveCount;
-    public static int score;
-
-    private int initialMoveCount;
-    private int initialScore;
     private void Start()
     {
-        moveCount = 0;
-        score = 0;
-        initialScore = score;
-        initialMoveCount = moveCount;
         remainingRefreshes = Settings.deckRefreshCount;
         UnshuffledDeck = CreateADeck();
         DealPlayCards();
         DealDeck();
-    }
-    private void Update()
-    {
-        if (moveCount != initialMoveCount)
-        {
-            initialMoveCount = moveCount;
-            // show in the ui
-        }
-
-        if (score != initialScore)
-        {
-            score = initialScore;
-            // show in the ui
-        }
     }
 
     private List<Card> CreateADeck()
