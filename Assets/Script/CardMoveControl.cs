@@ -15,6 +15,10 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
         isChangingPostiion = false;
         playcardsPanel = GameObject.FindGameObjectWithTag("PlaycardsPanel");
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
+
+        // FOR TESTING 
+        Settings.drawingCardCount = 1;
+        Settings.deckRefreshCount = 999;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -74,11 +78,19 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
                 if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
                 {
-
                     if (canMove)
                     {
                         gameObject.transform.SetParent(updatedParent);
                         updatedParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(updatedParent); ; // set the spacing for the panel layout
+                    }
+
+                    if (originParent.CompareTag("Ground"))
+                    {
+                        if (originParent.transform.childCount > 2)
+                        {
+                            int index = originParent.transform.childCount - 1 - 2;
+                            originParent.transform.GetChild(index).gameObject.SetActive(true);
+                        }
                     }
                 }
                 else if (originParent.CompareTag("PlaycardsPanelChildren"))
@@ -151,6 +163,14 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                 lastChildOfTheOlderParent.GetComponent<CardMoveControl>().enabled = true;
                             }
                             originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent); // set the spacing for the panel layout
+                        }
+                        else if (originParent.CompareTag("Ground")) // 6  => 1 2 (3 4 5 )
+                        {
+                            if (originParent.transform.childCount > 2)
+                            {
+                                int index = originParent.transform.childCount - 1 - 2;
+                                originParent.transform.GetChild(index).gameObject.SetActive(true);
+                            }
                         }
                     }
                 }

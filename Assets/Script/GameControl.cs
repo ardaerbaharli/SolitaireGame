@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,12 @@ public class GameControl : MonoBehaviour
     private List<Card> Ground = new List<Card>();
     private List<List<Card>> Playground = new List<List<Card>>();
     private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
+    private const string EMPTY_DECK_SPRTIE_NAME = "Blue Back of a card";
+    private int remainingRefreshes;
 
     private void Start()
     {
+        remainingRefreshes = Settings.deckRefreshCount;
         UnshuffledDeck = CreateADeck();
         DealPlayCards();
         DealDeck();
@@ -90,7 +94,8 @@ public class GameControl : MonoBehaviour
     }
     private void DealDeck()
     {
-        for (int i = 0; i < UnshuffledDeck.Count; i++)
+        int count = UnshuffledDeck.Count;
+        for (int i = 0; i < count; i++)
         {
             var card = Draw();
             Deck.Add(card);
@@ -106,7 +111,7 @@ public class GameControl : MonoBehaviour
     }
     private void DealFromDeck()
     {
-        int cardsToDeal = 1;
+        int cardsToDeal = Settings.drawingCardCount;
         for (int i = 0; i < cardsToDeal; i++)
         {
             int lastCardInDeckIndex = deckObj.transform.childCount - 1;
@@ -120,24 +125,40 @@ public class GameControl : MonoBehaviour
             topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
             topCard.GetComponent<CardMoveControl>().enabled = true;
             topCard.GetComponent<Button>().enabled = false;
+
+            if (groundObj.transform.childCount > 3)
+            {
+                for (int k = 0; k < groundObj.transform.childCount - 3; k++)
+                {
+                    groundObj.transform.GetChild(k).gameObject.SetActive(false);
+                }
+            }
         }
     }
 
     public void RefreshDeck()
     {
-        int k = groundObj.transform.childCount;
-        for (int i = 0; i < k; i++)
+        if (remainingRefreshes > 0)
         {
-            var bottomCard = groundObj.transform.GetChild(0);
+            remainingRefreshes--;
+            int k = groundObj.transform.childCount;
+            for (int i = 0; i < k; i++)
+            {
+                var bottomCard = groundObj.transform.GetChild(0);
+                bottomCard.gameObject.SetActive(true);
+                var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
+                Ground.Remove(cardInList);
+                Deck.Add(cardInList);
 
-            var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
-            Ground.Remove(cardInList);
-            Deck.Add(cardInList);
-
-            bottomCard.transform.SetParent(deckObj.transform);
-            bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
-            bottomCard.GetComponent<CardMoveControl>().enabled = false;
-            bottomCard.GetComponent<Button>().enabled = true;
+                bottomCard.transform.SetParent(deckObj.transform);
+                bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+                bottomCard.GetComponent<CardMoveControl>().enabled = false;
+                bottomCard.GetComponent<Button>().enabled = true;
+            }
+        }
+        else if (remainingRefreshes == 0)
+        {
+            deckObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(EMPTY_DECK_SPRTIE_NAME);
         }
     }
 }
