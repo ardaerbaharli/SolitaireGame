@@ -10,14 +10,16 @@ public class GameControl : MonoBehaviour
     [SerializeField] GameObject groundObj;
 
     private List<Card> Deck = new List<Card>();
+    private List<Card> UnshuffledDeck = new List<Card>();
+    private List<Card> Ground = new List<Card>();
     private List<List<Card>> Playground = new List<List<Card>>();
     private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
 
     private void Start()
     {
-        Deck = CreateADeck();
+        UnshuffledDeck = CreateADeck();
         DealPlayCards();
-        DealGroundDeck();
+        DealDeck();
     }
 
     private List<Card> CreateADeck()
@@ -54,12 +56,11 @@ public class GameControl : MonoBehaviour
     }
     private Card Draw()
     {
-        int cardID = Random.Range(0, Deck.Count);
-        var card = Deck[cardID];
-        Deck.Remove(card);
+        int cardID = Random.Range(0, UnshuffledDeck.Count);
+        var card = UnshuffledDeck[cardID];
+        UnshuffledDeck.Remove(card);
         return card;
     }
-
     private void DealPlayCards()
     {
         for (int column = 1; column < 8; column++)
@@ -69,6 +70,7 @@ public class GameControl : MonoBehaviour
             {
                 var columnIndex = column - 1;
                 var card = Draw();
+
                 Playground[columnIndex].Add(card);
                 var cardObj = Instantiate(cardPrefab) as GameObject;
                 cardObj.transform.SetParent(playcardsObj.transform.GetChild(columnIndex).transform);
@@ -86,11 +88,12 @@ public class GameControl : MonoBehaviour
             }
         }
     }
-    private void DealGroundDeck()
+    private void DealDeck()
     {
-        for (int i = 0; i < Deck.Count; i++)
+        for (int i = 0; i < UnshuffledDeck.Count; i++)
         {
             var card = Draw();
+            Deck.Add(card);
             var cardObj = Instantiate(cardPrefab) as GameObject;
             cardObj.transform.SetParent(deckObj.transform);
             cardObj.transform.position = deckObj.transform.position;
@@ -101,7 +104,6 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
         }
     }
-
     private void DealFromDeck()
     {
         int cardsToDeal = 1;
@@ -109,10 +111,33 @@ public class GameControl : MonoBehaviour
         {
             int lastCardInDeckIndex = deckObj.transform.childCount - 1;
             var topCard = deckObj.transform.GetChild(lastCardInDeckIndex);
+
+            var cardInList = Deck.Find(x => x.ImageName == topCard.name);
+            Deck.Remove(cardInList);
+            Ground.Add(cardInList);
+
             topCard.transform.SetParent(groundObj.transform);
             topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
             topCard.GetComponent<CardMoveControl>().enabled = true;
             topCard.GetComponent<Button>().enabled = false;
+        }
+    }
+
+    public void RefreshDeck()
+    {
+        int k = groundObj.transform.childCount;
+        for (int i = 0; i < k; i++)
+        {
+            var bottomCard = groundObj.transform.GetChild(0);
+
+            var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
+            Ground.Remove(cardInList);
+            Deck.Add(cardInList);
+
+            bottomCard.transform.SetParent(deckObj.transform);
+            bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+            bottomCard.GetComponent<CardMoveControl>().enabled = false;
+            bottomCard.GetComponent<Button>().enabled = true;
         }
     }
 }
