@@ -8,14 +8,19 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public bool isMoving;
     public bool isChangingPostiion;
     public bool isFacingUp;
+    public bool isDeckCard;
+    public bool isPlayable;
+
     public GameObject playcardsPanel;
     public GameObject acesPanel;
+    public GameObject groundObj;
     private void Start()
     {
         isMoving = false;
         isChangingPostiion = false;
         playcardsPanel = GameObject.FindGameObjectWithTag("PlaycardsPanel");
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
+        groundObj = GameObject.FindGameObjectWithTag("Ground");
 
         // FOR TESTING 
         if (Settings.drawingCardCount == 0)
@@ -61,7 +66,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
             char originCardSuit = originCardName[0];
             int originCardValue = int.Parse(originCardName.Substring(1, originCardName.Length - 1));
 
-            if (collision.CompareTag("PlaceholderPanel")) // = ground cards = target
+            if (collision.CompareTag("PlaceholderPanel")) // = playground cards = target
             {
                 var targetParent = playcardsPanel.transform.GetChild(panelIndex);
 
@@ -87,6 +92,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     {
                         didItMove = true;
                         gameObject.transform.SetParent(targetParent);
+
                         targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent); ; // set the spacing for the panel layout
 
                         Move move = new Move();
@@ -97,6 +103,16 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
                         if (originParent.CompareTag("Ground"))
                         {
+                            gameObject.transform.GetComponent<CardMoveControl>().isDeckCard = false;
+
+                            int groundCardCount = originParent.childCount;
+                            // var groundObj = originParent;
+                            for (int i = 0; i < groundCardCount; i++)
+                            {
+                                var topCard = groundObj.transform.GetChild(i);
+                                groundObj.transform.GetChild(i).GetComponent<CardMoveControl>().isPlayable = true;
+                            }
+
                             if (originParent.transform.childCount > 2)
                             {
                                 int index = originParent.transform.childCount - 1 - 2;
@@ -120,7 +136,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             move.Origin = originParent;
                             move.Card = card.gameObject;
                             move.Target = targetParent;
-                            GameControl.AddMove(move); 
+                            GameControl.AddMove(move);
                         }
 
                         if (originParent.childCount > 0)
@@ -184,6 +200,12 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                         }
                         else if (originParent.CompareTag("Ground")) // 6  => 1 2 (3 4 5 )
                         {
+                            int groundCardCount = originParent.childCount;
+                            for (int i = 0; i < groundCardCount; i++)
+                            {
+                                groundObj.transform.GetChild(i).GetComponent<CardMoveControl>().isPlayable = true;
+                            }
+
                             if (originParent.transform.childCount > 2)
                             {
                                 int index = originParent.transform.childCount - 1 - 2;
