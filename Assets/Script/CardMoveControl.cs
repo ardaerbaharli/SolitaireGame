@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,8 +9,12 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public bool isMoving;
     public bool isChangingPostiion;
     public bool isFacingUp;
+    public bool wasFacingUp;
     public bool isDeckCard;
     public bool isPlayable;
+    public bool isK;
+    public bool didGoToEmptySpot;
+    public bool isDummy;
 
     public GameObject playcardsPanel;
     public GameObject acesPanel;
@@ -28,6 +33,14 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
             Settings.drawingCardCount = 1;
             Settings.deckRefreshCount = 999;
         }
+    }
+    private void Update()
+    {
+        if (!wasFacingUp && isFacingUp)
+            if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
+            {
+                wasFacingUp = true;
+            }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -55,16 +68,15 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (isChangingPostiion && !isMoving)
+        if (isChangingPostiion && !isMoving && !isDummy)
         {
-            bool didItMove = false;
             bool canMove = false;
             int panelIndex = Int32.Parse(collision.name);
             var originParent = gameObject.transform.parent;
 
             var originCardName = gameObject.name;
             char originCardSuit = originCardName[0];
-            int originCardValue = int.Parse(originCardName.Substring(1, originCardName.Length - 1));
+            int originCardValue = int.Parse(originCardName.Substring(1));
 
             if (collision.CompareTag("PlaceholderPanel")) // = playground cards = target
             {
@@ -73,33 +85,39 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 if (targetParent.childCount > 0)
                 {
                     var targetCard = targetParent.GetChild(targetParent.childCount - 1);
-                    var targetCardName = targetCard.name;
-                    char targetCardSuit = targetCardName[0];
-                    int targetCardValue = int.Parse(targetCardName.Substring(1, targetCardName.Length - 1));
+                    if (!targetCard.GetComponent<CardMoveControl>().isDummy)
+                    {
+                        var targetCardName = targetCard.name;
+                        char targetCardSuit = targetCardName[0];
+                        int targetCardValue = int.Parse(targetCardName.Substring(1));
 
-                    if (targetCardValue - originCardValue == 1 && IsPlaygroudCardSuitTrue(targetCardSuit, originCardSuit))
-                        canMove = true;
+                        if (targetCardValue - originCardValue == 1 && IsPlaygroudCardSuitTrue(targetCardSuit, originCardSuit))
+                            canMove = true;
+                    }
                 }
                 else if (targetParent.childCount == 0) // if the playground panel is empty
                 {
                     // then only K => 13 can go there
                     if (originCardValue == 13)
+                    {
                         canMove = true;
+                        gameObject.GetComponent<CardMoveControl>().didGoToEmptySpot = true;
+                    }
                 }
+
                 if (canMove)
                 {
                     if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
                     {
-                        didItMove = true;
                         gameObject.transform.SetParent(targetParent);
 
-                        targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent); ; // set the spacing for the panel layout
+                        targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent); ; // set the spacing for the panel layout                       
 
                         Move move = new Move();
                         move.Origin = originParent;
                         move.Card = gameObject;
                         move.Target = targetParent;
-                        GameControl.AddMove(move);
+                        GameControl.AddMove(move.ToList());
 
                         if (originParent.CompareTag("Ground"))
                         {
@@ -109,7 +127,6 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             // var groundObj = originParent;
                             for (int i = 0; i < groundCardCount; i++)
                             {
-                                var topCard = groundObj.transform.GetChild(i);
                                 groundObj.transform.GetChild(i).GetComponent<CardMoveControl>().isPlayable = true;
                             }
 
@@ -122,12 +139,13 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     }
                     else if (originParent.CompareTag("PlaycardsPanelChildren"))
                     {
-                        didItMove = true;
-
                         int holdingIndex = gameObject.transform.GetSiblingIndex();
                         int lastChildIndex = gameObject.transform.parent.childCount - 1;
-                        int cardCount = lastChildIndex - holdingIndex + 1;
-                        for (int i = 0; i < cardCount; i++)
+                        int holdingCardsCount = lastChildIndex - holdingIndex + 1;
+
+                        var moves = new List<Move>();
+
+                        for (int i = 0; i < holdingCardsCount; i++)
                         {
                             var card = originParent.GetChild(holdingIndex);
                             card.SetParent(targetParent);
@@ -136,8 +154,9 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             move.Origin = originParent;
                             move.Card = card.gameObject;
                             move.Target = targetParent;
-                            GameControl.AddMove(move);
+                            moves.Add(move);
                         }
+                        GameControl.AddMove(moves);
 
                         if (originParent.childCount > 0)
                         {
@@ -162,12 +181,15 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     if (targetParent.childCount > 0)
                     {
                         var targetCard = targetParent.GetChild(targetParent.childCount - 1);
-                        var targetCardName = targetCard.name;
-                        char targetCardSuit = targetCardName[0];
-                        int targetValue = int.Parse(targetCardName.Substring(1, targetCardName.Length - 1));
+                        if (!targetCard.GetComponent<CardMoveControl>().isDummy)
+                        {
+                            var targetCardName = targetCard.name;
+                            char targetCardSuit = targetCardName[0];
+                            int targetValue = int.Parse(targetCardName.Substring(1));
 
-                        if (originCardValue - targetValue == 1 && targetCardSuit == originCardSuit)
-                            canMove = true;
+                            if (originCardValue - targetValue == 1 && targetCardSuit == originCardSuit)
+                                canMove = true;
+                        }
                     }
                     else if (targetParent.childCount == 0) // if the ace panel is empty
                     {
@@ -177,14 +199,13 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
                     if (canMove)
                     {
-                        didItMove = true;
                         gameObject.transform.SetParent(targetParent); // change the parent of the card
 
                         Move move = new Move();
                         move.Origin = originParent;
                         move.Card = gameObject;
                         move.Target = targetParent;
-                        GameControl.AddMove(move);
+                        GameControl.AddMove(move.ToList());
 
                         if (originParent.CompareTag("PlaycardsPanelChildren"))
                         {
@@ -216,8 +237,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
             }
 
-            if (didItMove)
-                GameControl.moveCount++;
+
 
             isChangingPostiion = false;
             LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout

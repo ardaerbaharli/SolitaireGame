@@ -13,12 +13,9 @@ public class GameControl : MonoBehaviour
     [SerializeField] GameObject groundObj;
     [SerializeField] GameObject canvas;
 
-    private List<Card> Deck = new List<Card>();
     private List<Card> UnshuffledDeck = new List<Card>();
-    private List<Card> Ground = new List<Card>();
-    private List<List<Card>> Playground = new List<List<Card>>();
-    private static List<Move> Moves = new List<Move>();
-    private static List<Move> Helps = new List<Move>();
+    private static List<List<Move>> Moves = new List<List<Move>>();
+    private static List<Move> HelpHistory = new List<Move>();
 
     private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
     private const string EMPTY_DECK_SPRTIE_NAME = "Blue Back of a card";
@@ -27,7 +24,6 @@ public class GameControl : MonoBehaviour
 
     public static int moveCount;
     public static bool isGameOver;
-
 
     private void Start()
     {
@@ -82,13 +78,11 @@ public class GameControl : MonoBehaviour
     {
         for (int column = 1; column < 8; column++)
         {
-            Playground.Add(new List<Card>());
             for (int piece = 0; piece < column; piece++)
             {
                 var columnIndex = column - 1;
                 var card = Draw();
 
-                Playground[columnIndex].Add(card);
                 var cardObj = Instantiate(cardPrefab) as GameObject;
                 cardObj.transform.SetParent(playcardsObj.transform.GetChild(columnIndex).transform);
                 cardObj.name = card.ImageName;
@@ -106,6 +100,11 @@ public class GameControl : MonoBehaviour
                     cardObj.GetComponent<CardMoveControl>().isFacingUp = false;
                     cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
                 }
+                if (card.Value == 13)
+                {
+                    cardObj.GetComponent<CardMoveControl>().isK = true;
+                    cardObj.GetComponent<CardMoveControl>().didGoToEmptySpot = false;
+                }
             }
         }
     }
@@ -115,7 +114,6 @@ public class GameControl : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var card = Draw();
-            Deck.Add(card);
             var cardObj = Instantiate(cardPrefab) as GameObject;
             cardObj.transform.SetParent(deckObj.transform);
             cardObj.transform.position = deckObj.transform.position;
@@ -127,6 +125,11 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
             cardObj.AddComponent<Button>();
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
+            if (card.Value == 13)
+            {
+                cardObj.GetComponent<CardMoveControl>().isK = true;
+                cardObj.GetComponent<CardMoveControl>().didGoToEmptySpot = false;
+            }
         }
     }
     private void DealFromDeck()
@@ -137,9 +140,6 @@ public class GameControl : MonoBehaviour
             int lastCardInDeckIndex = deckObj.transform.childCount - 1;
             var topCard = deckObj.transform.GetChild(lastCardInDeckIndex);
 
-            var cardInList = Deck.Find(x => x.ImageName == topCard.name);
-            Deck.Remove(cardInList);
-            Ground.Add(cardInList);
 
             topCard.transform.SetParent(groundObj.transform);
             topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
@@ -151,7 +151,7 @@ public class GameControl : MonoBehaviour
             move.Origin = deckObj.transform;
             move.Card = topCard.gameObject;
             move.Target = groundObj.transform;
-            AddMove(move);
+            AddMove(move.ToList());
 
             if (groundObj.transform.childCount > 3)
             {
@@ -189,9 +189,6 @@ public class GameControl : MonoBehaviour
                     {
                         var bottomCard = groundObj.transform.GetChild(0);
                         bottomCard.gameObject.SetActive(true);
-                        var cardInList = Ground.Find(x => x.ImageName == bottomCard.name);
-                        Ground.Remove(cardInList);
-                        Deck.Add(cardInList);
 
                         bottomCard.transform.SetParent(deckObj.transform);
                         bottomCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
@@ -214,7 +211,8 @@ public class GameControl : MonoBehaviour
         Debug.Log("GAME OVER");
     }
 
-    public static void AddMove(Move move)
+
+    public static void AddMove(List<Move> move)
     {
         Moves.Add(move);
         moveCount++;
@@ -224,35 +222,102 @@ public class GameControl : MonoBehaviour
         var move = Moves.Last();
         if (move != null)
         {
-            var card = move.Card;
-            var origin = move.Origin;
-            var target = move.Target;
-            var newTarget = origin;
-
-            if (origin.childCount > 0)
+            foreach (var step in move)
             {
-                var lastChild = origin.GetChild(origin.childCount - 1);
-                lastChild.GetComponent<CardMoveControl>().isFacingUp = false;
-                if (!lastChild.CompareTag("Ground"))
-                    lastChild.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
-            }
-            if (newTarget.name.Contains("Deck"))
-            {
-                card.GetComponent<CardMoveControl>().enabled = false;
-                card.GetComponent<Button>().enabled = true;
-            }
-            card.transform.SetParent(newTarget);
-            if (origin.name.Contains("Panel"))
-                origin.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(origin); // set the spacing for the panel layout
-            if (target.name.Contains("Panel"))
-                target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(target); // set the spacing for the panel layout
+                var card = step.Card;
+                var origin = step.Origin;
+                var target = step.Target;
+                var newTarget = origin;
 
-            LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>()); // refresh layout
+                if (newTarget.childCount > 0)
+                {
+                    if (newTarget.name.Contains("Panel"))
+                    {
+                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
+                        if (!lastChildOfNewTarget.GetComponent<CardMoveControl>().wasFacingUp)
+                        {
+                            lastChildOfNewTarget.GetComponent<CardMoveControl>().isFacingUp = false;
+                            lastChildOfNewTarget.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+                        }
+                    }
+                    else if (newTarget.CompareTag("Ground"))
+                    {
+                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
+                        lastChildOfNewTarget.GetComponent<CardMoveControl>().isFacingUp = false;
+                        lastChildOfNewTarget.gameObject.SetActive(false);
+                    }
+                    else if (newTarget.name.Contains("Deck"))
+                    {
+                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
+                        lastChildOfNewTarget.GetComponent<CardMoveControl>().isFacingUp = false;
+                        lastChildOfNewTarget.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
 
-            Moves.Remove(move);
+                        card.GetComponent<CardMoveControl>().isFacingUp = false;
+                        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+                    }
+                }
+                if (newTarget.name.Contains("Deck"))
+                {
+                    card.GetComponent<CardMoveControl>().enabled = false;
+                    card.GetComponent<Button>().enabled = true;
+                }
+                card.transform.SetParent(newTarget);
+                if (origin.name.Contains("Panel"))
+                    origin.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(origin); // set the spacing for the panel layout
+                if (target.name.Contains("Panel"))
+                    target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(target); // set the spacing for the panel layout
+
+                LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>()); // refresh layout
+
+                Moves.Remove(move);
+            }
         }
     }
-    public List<Step> ShowNextStep()
+
+    List<List<Move>> possibleMoves = new List<List<Move>>();
+
+    public void Help()
+    {
+        possibleMoves = new List<List<Move>>();
+        var moves = ShowNextMove();
+        while (!IsNullOrEmpty(moves))
+        {
+            possibleMoves.Add(moves);
+            moves = ShowNextMove();
+        }
+        if (possibleMoves.Count > 1)
+        {
+            possibleMoves.Sort((a, b) => a.Count - b.Count);
+            moves = possibleMoves.Last();
+        }
+        else
+        {
+            moves = possibleMoves.FirstOrDefault();
+        }
+
+        if (IsNullOrEmpty(moves))
+        {
+            VibrateDeck();
+        }
+        else
+        {
+            var helpMoves = new List<Move>();
+            foreach (var item in moves)
+            {
+                Move move = new Move();
+                move.Card = item.Card;
+                move.Origin = item.Card.transform.parent;
+                move.Target = item.Target;
+                helpMoves.Add(move);
+                HelpHistory.Add(move);
+            }
+
+
+            StartCoroutine(SlideCard(helpMoves));
+        }
+    }
+
+    public List<Move> ShowNextMove()
     {
         int playcardsPanelCount = playcardsObj.transform.childCount;
 
@@ -266,19 +331,24 @@ public class GameControl : MonoBehaviour
                 var originCard = originPanel.GetChild(k);
                 if (originCard.GetComponent<CardMoveControl>().isFacingUp)
                 {
-                    if (originPanel.childCount - 1 == k)  // the card must be the top card of the panel
-                    {
-                        var result = ToAcePanel(originCard);
-                        if (!IsNullOrEmpty(result))
-                            return result;
-                    }
 
                     for (int j = 0; j < playcardsPanelCount; j++)
                     {
                         var comparePanel = playcardsObj.transform.GetChild(j);
                         var result = ToPlayground(originCard, comparePanel, originPanel);
-                        if (!IsNullOrEmpty(result))
+                        if (!IsNullOrEmpty(result) && !DoesContains(possibleMoves, result))
+                        {
                             return result;
+                        }
+                    }
+
+                    if (originPanel.childCount - 1 == k)  // the card must be the top card of the panel
+                    {
+                        var result = ToAcePanel(originCard);
+                        if (!IsNullOrEmpty(result) && !DoesContains(possibleMoves, result))
+                        {
+                            return result;
+                        }
                     }
                 }
             }
@@ -291,31 +361,52 @@ public class GameControl : MonoBehaviour
             var groundPanel = groundObj.transform;
             var groundCard = groundObj.transform.GetChild(topGroundCardIndex);
 
-            var aceResult = ToAcePanel(groundCard);
-            if (!IsNullOrEmpty(aceResult))
-                return aceResult;
-
             for (int j = 0; j < playcardsPanelCount; j++)
             {
                 var playcardsPanel = playcardsObj.transform.GetChild(j);
 
                 var result = ToPlayground(groundCard, playcardsPanel, groundPanel);
-                if (!IsNullOrEmpty(result))
+                if (!IsNullOrEmpty(result) && !DoesContains(possibleMoves, result))
+                {
                     return result;
+                }
                 else if (groundCard.GetComponent<CardMoveControl>().isDeckCard)
                     groundCard.GetComponent<CardMoveControl>().isPlayable = false;
+            }
 
+
+            var aceResult = ToAcePanel(groundCard);
+            if (!IsNullOrEmpty(aceResult) && !DoesContains(possibleMoves, aceResult))
+            {
+                return aceResult;
             }
         }
-        List<Step> empty = null;
+        List<Move> empty = null;
         return empty;
     }
+
+    private bool DoesContains(List<List<Move>> possibleMoves, List<Move> move)
+    {
+        for (int i = 0; i < possibleMoves.Count; i++)
+        {
+            foreach (var possibleMove in possibleMoves[i])
+            {
+                for (int k = 0; k < move.Count; k++)
+                {
+                    if (possibleMove.Card.name == move[k].Card.name && possibleMove.Target.name == move[k].Target.name && possibleMove.Origin.name == move[k].Origin.name)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static bool IsNullOrEmpty(ICollection collection)
     {
         return collection == null || collection.Count == 0;
     }
 
-    private List<Step> ToPlayground(Transform originCard, Transform targetPanel, Transform originPanel = null)
+    private List<Move> ToPlayground(Transform originCard, Transform targetPanel, Transform originPanel = null)
     {
         if (originPanel != targetPanel)
         {
@@ -337,70 +428,63 @@ public class GameControl : MonoBehaviour
                     var targetCard = targetPanel.GetChild(i);
                     if (i == targetPanel.childCount - 1) // target card must be on top
                     {
-                        if (targetCard.GetComponent<CardMoveControl>().isFacingUp)
+
+                        if (targetCard.GetComponent<CardMoveControl>().isFacingUp && !targetCard.GetComponent<CardMoveControl>().isDummy)
                         {
                             char targetCardSuit = targetCard.name[0];
                             int targetCardValue = int.Parse(targetCard.name.Substring(1));
                             if (originCardValue == targetCardValue - 1 && IsPlaygroudCardSuitTrue(targetCardSuit, originCardSuit))
                             {
-                                List<Step> steps = new List<Step>();
-                                for (int z = originPanelCardCount - 1; z >= originCardSiblingIndex; z--)
+                                var moves = new List<Move>();
+                                for (int z = originCardSiblingIndex; z < originPanelCardCount; z++)
                                 {
                                     Move move = new Move();
-                                    move.Card = originCard.gameObject;
+                                    move.Card = originPanel.GetChild(z).gameObject;
                                     move.Origin = originPanel;
                                     move.Target = targetPanel;
-                                    if (Helps.Count > 0 && move != null)
+                                    if (HelpHistory.Count > 0 && move != null)
                                     {
-                                        if (!Helps.Any(x => x.Card.name == move.Card.name && x.Origin.name == move.Origin.name && x.Target.name == move.Target.name))
+                                        if (!HelpHistory.Any(x => x.Card.name == move.Card.name && x.Origin.name == move.Origin.name && x.Target.name == move.Target.name))
                                         {
-                                            Step step = new Step();
-                                            step.Card = move.Card;
-                                            step.Target = move.Target;
-                                            steps.Add(step);
+                                            moves.Add(move);
                                         }
                                     }
-                                    else if (Helps.Count == 0)
+                                    else if (HelpHistory.Count == 0)
                                     {
-                                        Step step = new Step();
-                                        step.Card = move.Card;
-                                        step.Target = move.Target;
-                                        steps.Add(step);
+                                        moves.Add(move);
                                     }
                                 }
-                                return steps;
+                                return moves;
                             }
                         }
                     }
                 }
             }
-            else if (targetPanelCardCount == 0 && originCardValue == 13)
+            else if (targetPanelCardCount == 0 && originCardValue == 13 && !originCard.GetComponent<CardMoveControl>().didGoToEmptySpot)
             {
-                List<Step> steps = new List<Step>();
-
+                var moves = new List<Move>();
+                originCard.GetComponent<CardMoveControl>().isK = true;
+                originCard.GetComponent<CardMoveControl>().didGoToEmptySpot = true;
                 for (int y = originCardSiblingIndex; y < originPanelCardCount; y++)
                 {
                     Move move = new Move();
-                    move.Card = originCard.gameObject;
+                    move.Card = originPanel.GetChild(y).gameObject;
                     move.Origin = originPanel;
                     move.Target = targetPanel;
-                    if (!Helps.Any(x => x.Card.name == move.Card.name && x.Origin.name == move.Origin.name && x.Target.name == move.Target.name))
+                    if (!HelpHistory.Any(x => x.Card.name == move.Card.name && x.Origin.name == move.Origin.name && x.Target.name == move.Target.name))
                     {
-                        Step step = new Step();
-                        step.Card = move.Card;
-                        step.Target = move.Target;
-                        steps.Add(step);
+                        moves.Add(move);
                     }
                 }
-                return steps;
+                return moves;
             }
         }
 
-        List<Step> empty = null;
+        List<Move> empty = null;
         return empty;
     }
 
-    private List<Step> ToAcePanel(Transform firstCard)
+    private List<Move> ToAcePanel(Transform firstCard)
     {
         char firstCardSuit = firstCard.name[0];
         int firstCardValue = int.Parse(firstCard.name.Substring(1));
@@ -418,62 +502,26 @@ public class GameControl : MonoBehaviour
                 int acesCardValue = int.Parse(lastCard.name.Substring(1));
                 if (acesCardSuit == firstCardSuit && firstCardValue == acesCardValue + 1)
                 {
-                    Step step = new Step();
-                    step.Card = firstCard.gameObject;
-                    step.Target = acesPanel;
-                    return step.ToList();
+                    var move = new Move();
+                    move.Card = firstCard.gameObject;
+                    move.Target = acesPanel;
+                    move.Origin = move.Card.transform.parent;
+                    return move.ToList();
                 }
             }
             else if (firstCardValue == 1 && acesPanel.childCount == 0)
             {
-                Step step = new Step();
-                step.Card = firstCard.gameObject;
-                step.Target = acesPanel;
-                return step.ToList();
+                var move = new Move();
+                move.Card = firstCard.gameObject;
+                move.Target = acesPanel;
+                move.Origin = move.Card.transform.parent;
+                return move.ToList();
+
             }
         }
-        List<Step> empty = null;
+        List<Move> empty = null;
         return empty;
     }
-
-    public void Help()
-    {
-        var steps = ShowNextStep();
-        if (IsNullOrEmpty(steps))
-        {
-            VibrateDeck();
-            //if (deckObj.transform.childCount > 0)
-            //{
-            //    deckObj.transform.GetChild(deckObj.transform.childCount - 1).GetComponent<Button>().onClick.Invoke();
-            //}
-            //else if (deckObj.transform.childCount == 0)
-            //{
-            //    deckObj.transform.GetComponent<Button>().onClick.Invoke();
-            //}
-        }
-        else
-        {
-            steps.Reverse();
-            foreach (var item in steps)
-            {
-                Move move = new Move();
-                move.Card = item.Card;
-                move.Origin = item.Card.transform.parent;
-                move.Target = item.Target;
-                if (!Helps.Contains(move))
-                {
-                    // move (fly) the object to wnated position and destroy it
-                    StartCoroutine(SlideCard(move));
-
-                    Helps.Add(move);
-                    //AutoMove(item, move);
-                    //AddMove(move);
-                }
-            }
-        }
-    }
-
-
 
     private void VibrateDeck()
     {
@@ -515,26 +563,73 @@ public class GameControl : MonoBehaviour
             yield return null;
         }
     }
-    private IEnumerator SlideCard(Move move)
+    private IEnumerator SlideCard(List<Move> helpMoves)
     {
-        var positionDummy = Instantiate(cardPrefab) as GameObject;
-        positionDummy.transform.SetParent(move.Target);
-        move.Target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(move.Target); // set the spacing for the panel layout
-        LayoutRebuilder.ForceRebuildLayoutImmediate(positionDummy.transform.parent.GetComponent<RectTransform>()); // refresh layout
-        var pos = positionDummy.transform.position;
-        Destroy(positionDummy);
-        var movingDummy = Instantiate(cardPrefab) as GameObject;
-        movingDummy.transform.position = move.Card.transform.position;
-        movingDummy.transform.SetParent(canvas.transform);
-        movingDummy.GetComponent<Image>().sprite = move.Card.GetComponent<Image>().sprite;
-        yield return StartCoroutine(SlideEffect(movingDummy, pos));
-        yield return StartCoroutine(Disappear(movingDummy));
+        var target = helpMoves.First().Target;
+        var cardPositions = new List<Vector3>();
+        var posDummies = new List<GameObject>();
+        foreach (var move in helpMoves)
+        {
+            var positionDummy = Instantiate(cardPrefab) as GameObject;
+            positionDummy.GetComponent<CardMoveControl>().isDummy = true;
+            positionDummy.transform.SetParent(move.Target);
+            positionDummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            cardPositions.Add(move.Card.transform.position);
+            posDummies.Add(positionDummy);
+        }
 
-        move.Target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(move.Target); // set the spacing for the panel layout
-        LayoutRebuilder.ForceRebuildLayoutImmediate(move.Target.GetComponent<RectTransform>()); // refresh layout     
+        if (!target.parent.CompareTag("AcesPanel"))
+        {
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(target); // set the spacing for the panel layout
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
+
+        var positions = new List<Vector3>();
+        foreach (var positionDummy in posDummies)
+        {
+            var pos = positionDummy.transform.position;
+            positions.Add(pos);
+        }
+
+        var movingDummies = new List<GameObject>();
+
+        foreach (var pos in positions)
+        {
+            var movingDummy = Instantiate(cardPrefab) as GameObject;
+            movingDummy.GetComponent<CardMoveControl>().isDummy = true;
+            movingDummy.transform.position = cardPositions[positions.IndexOf(pos)];
+            helpMoves[positions.IndexOf(pos)].Card.GetComponent<Image>().enabled = false;
+            movingDummy.transform.SetParent(canvas.transform);
+            movingDummy.GetComponent<Image>().sprite = helpMoves[positions.IndexOf(pos)].Card.GetComponent<Image>().sprite;
+            movingDummies.Add(movingDummy);
+        }
+
+        for (int i = 0; i < movingDummies.Count; i++)
+        {
+            StartCoroutine(SlideAndDestroy(movingDummies[i], positions[i], helpMoves[i].Card));
+        }
+        for (int i = 0; i < movingDummies.Count; i++)
+        {
+            helpMoves[i].Card.GetComponent<Image>().enabled = true;
+
+        }
+
+        foreach (var positionDummy in posDummies)
+        {
+            DestroyImmediate(positionDummy);
+        }
+
+        if (!target.parent.CompareTag("AcesPanel"))
+        {
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardMoveControl.CalculateSpacing(target); // set the spacing for the panel layout
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
+        yield return null;
     }
 
-    private IEnumerator SlideEffect(GameObject movingDummy, Vector3 pos)
+    private IEnumerator SlideAndDestroy(GameObject movingDummy, Vector3 pos, GameObject card)
     {
         float seconds = 1f;
         float t = 0f;
@@ -544,22 +639,18 @@ public class GameControl : MonoBehaviour
             movingDummy.transform.position = Vector3.Lerp(movingDummy.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
-    }
 
-    private IEnumerator Disappear(GameObject dp)
-    {
-        float seconds = 0.3f;
-        float t = 0f;
+        seconds = 0.1f;
+        t = 0f;
         while (t <= 1.0)
         {
             t += Time.deltaTime / seconds;
-            dp.GetComponent<RectTransform>().localScale = Vector3.Lerp(dp.GetComponent<RectTransform>().localScale, Vector3.zero, Mathf.SmoothStep(0f, 1f, t));
+            movingDummy.GetComponent<RectTransform>().localScale = Vector3.Lerp(movingDummy.GetComponent<RectTransform>().localScale, Vector3.zero, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
-        Destroy(dp);
+        Destroy(movingDummy);
     }
-
-    private void AutoMove(Step step, Move move)
+    private void AutoMove(Move step, Move move)
     {
         step.Card.transform.SetParent(step.Target);
 
