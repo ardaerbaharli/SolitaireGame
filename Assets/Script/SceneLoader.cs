@@ -1,16 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Start is called before the first frame update
-  
-
-    
-    public static void LoadGameScreen()
+    public static SceneLoader instance;
+    void Start()
     {
-        SceneManager.LoadScene("Game");
+        instance = this;
+    }
+
+    public void LoadGameScreen()
+    {
+        StartCoroutine(LoadAsyncScene("Game"));
+    }
+
+    public IEnumerator LoadAsyncScene(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

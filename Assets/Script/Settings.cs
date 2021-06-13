@@ -13,7 +13,7 @@ public class Settings : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneLoader.LoadGameScreen();
+        SceneLoader.instance.LoadGameScreen();
     }
     public void OneCardToggle()
     {
