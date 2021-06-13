@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler//, IPointerUpHandler
 {
     public bool isMoving;
     public bool isChangingPostiion;
@@ -19,6 +20,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject playcardsPanel;
     public GameObject acesPanel;
     public GameObject groundObj;
+
     private void Start()
     {
         isMoving = false;
@@ -27,12 +29,6 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
         groundObj = GameObject.FindGameObjectWithTag("Ground");
 
-        // FOR TESTING 
-        if (Settings.drawingCardCount == 0)
-        {
-            Settings.drawingCardCount = 1;
-            Settings.deckRefreshCount = 999;
-        }
     }
     private void Update()
     {
@@ -41,6 +37,15 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 wasFacingUp = true;
             }
+
+        Debug.Log(Input.GetMouseButtonDown(0));
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMoving = false;
+            StartCoroutine(RefreshLayout());
+
+        }
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -48,9 +53,23 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
         isChangingPostiion = true;
         isMoving = true;
     }
-    public void OnPointerUp(PointerEventData eventData)
+    //public void OnPointerUp(PointerEventData eventData)
+    //{
+    //    isMoving = false;
+    //    //if (gameObject.transform.parent.CompareTag("Ground") )
+    //        StartCoroutine(RefreshLayout());
+    //} 
+    //public void OnMouseUp()
+    //{
+    //    isMoving = false;
+    //    //if (gameObject.transform.parent.CompareTag("Ground") )
+    //    StartCoroutine(RefreshLayout());
+    //}
+
+    private IEnumerator RefreshLayout()
     {
-        isMoving = false;
+        yield return new WaitForSeconds(0.1f);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
     }
 
     public void OnDrag(PointerEventData data)
@@ -237,10 +256,14 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
             }
 
-
-
             isChangingPostiion = false;
             LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
+        }
+        else if (isChangingPostiion && !isMoving)
+        {
+            Debug.Log(isChangingPostiion);
+            Debug.Log(isMoving);
+            Debug.Log(isDummy);
         }
     }
 

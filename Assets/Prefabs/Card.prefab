@@ -112,7 +112,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7694978506021638915}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -139,4 +139,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   isChangingPostiion: 0
+  isFacingUp: 0
+  wasFacingUp: 0
+  isDeckCard: 0
+  isPlayable: 0
+  isK: 0
+  didGoToEmptySpot: 0
+  isDummy: 0
   playcardsPanel: {fileID: 0}
+  acesPanel: {fileID: 0}
+  groundObj: {fileID: 0}
