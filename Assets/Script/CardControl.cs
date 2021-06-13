@@ -50,19 +50,7 @@ public class CardControl : MonoBehaviour, IPointerDownHandler, IDragHandler//, I
         isChangingPostiion = true;
         isMoving = true;
     }
-    //public void OnPointerUp(PointerEventData eventData)
-    //{
-    //    isMoving = false;
-    //    //if (gameObject.transform.parent.CompareTag("Ground") )
-    //        StartCoroutine(RefreshLayout());
-    //} 
-    //public void OnMouseUp()
-    //{
-    //    isMoving = false;
-    //    //if (gameObject.transform.parent.CompareTag("Ground") )
-    //    StartCoroutine(RefreshLayout());
-    //}
-
+    
     private IEnumerator RefreshLayout()
     {
         yield return new WaitForSeconds(0.1f);
@@ -87,7 +75,7 @@ public class CardControl : MonoBehaviour, IPointerDownHandler, IDragHandler//, I
         if (isChangingPostiion && !isMoving && !isDummy)
         {
             bool canMove = false;
-            int panelIndex = Int32.Parse(collision.name);
+            int panelIndex = int.Parse(collision.name);
             var originParent = gameObject.transform.parent;
 
             var originCardName = gameObject.name;
