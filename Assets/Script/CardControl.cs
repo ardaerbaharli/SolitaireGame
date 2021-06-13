@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler//, IPointerUpHandler
+public class CardControl : MonoBehaviour, IPointerDownHandler, IDragHandler//, IPointerUpHandler
 {
     public bool isMoving;
     public bool isChangingPostiion;
@@ -21,7 +21,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
     public GameObject acesPanel;
     public GameObject groundObj;
 
-    private void Start()
+     void Start()
     {
         isMoving = false;
         isChangingPostiion = false;
@@ -30,7 +30,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
         groundObj = GameObject.FindGameObjectWithTag("Ground");
 
     }
-    private void Update()
+     void Update()
     {
         if (!wasFacingUp && isFacingUp)
             if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
@@ -38,14 +38,11 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                 wasFacingUp = true;
             }
 
-        Debug.Log(Input.GetMouseButtonDown(0));
         if (Input.GetMouseButtonUp(0))
         {
             isMoving = false;
             StartCoroutine(RefreshLayout());
-
         }
-
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -104,7 +101,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                 if (targetParent.childCount > 0)
                 {
                     var targetCard = targetParent.GetChild(targetParent.childCount - 1);
-                    if (!targetCard.GetComponent<CardMoveControl>().isDummy)
+                    if (!targetCard.GetComponent<CardControl>().isDummy)
                     {
                         var targetCardName = targetCard.name;
                         char targetCardSuit = targetCardName[0];
@@ -120,7 +117,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                     if (originCardValue == 13)
                     {
                         canMove = true;
-                        gameObject.GetComponent<CardMoveControl>().didGoToEmptySpot = true;
+                        gameObject.GetComponent<CardControl>().didGoToEmptySpot = true;
                     }
                 }
 
@@ -140,13 +137,13 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
 
                         if (originParent.CompareTag("Ground"))
                         {
-                            gameObject.transform.GetComponent<CardMoveControl>().isDeckCard = false;
+                            gameObject.transform.GetComponent<CardControl>().isDeckCard = false;
 
                             int groundCardCount = originParent.childCount;
                             // var groundObj = originParent;
                             for (int i = 0; i < groundCardCount; i++)
                             {
-                                groundObj.transform.GetChild(i).GetComponent<CardMoveControl>().isPlayable = true;
+                                groundObj.transform.GetChild(i).GetComponent<CardControl>().isPlayable = true;
                             }
 
                             if (originParent.transform.childCount > 2)
@@ -182,8 +179,8 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                             // change the image and enable the cardmovecontrol script
                             var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                             lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
-                            lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
-                            lastChildOfTheOriginParent.GetComponent<CardMoveControl>().isFacingUp = true;
+                            lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
+                            lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
                         }
 
                         originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent);  // set the spacing for the panel layout
@@ -200,7 +197,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                     if (targetParent.childCount > 0)
                     {
                         var targetCard = targetParent.GetChild(targetParent.childCount - 1);
-                        if (!targetCard.GetComponent<CardMoveControl>().isDummy)
+                        if (!targetCard.GetComponent<CardControl>().isDummy)
                         {
                             var targetCardName = targetCard.name;
                             char targetCardSuit = targetCardName[0];
@@ -233,8 +230,8 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                                 // change the image and enable the cardmovecontrol script
                                 var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                                 lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
-                                lastChildOfTheOriginParent.GetComponent<CardMoveControl>().enabled = true;
-                                lastChildOfTheOriginParent.GetComponent<CardMoveControl>().isFacingUp = true;
+                                lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
+                                lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
                             }
                             originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent); // set the spacing for the panel layout
                         }
@@ -243,7 +240,7 @@ public class CardMoveControl : MonoBehaviour, IPointerDownHandler, IDragHandler/
                             int groundCardCount = originParent.childCount;
                             for (int i = 0; i < groundCardCount; i++)
                             {
-                                groundObj.transform.GetChild(i).GetComponent<CardMoveControl>().isPlayable = true;
+                                groundObj.transform.GetChild(i).GetComponent<CardControl>().isPlayable = true;
                             }
 
                             if (originParent.transform.childCount > 2)
