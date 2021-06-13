@@ -447,7 +447,11 @@ public class GameControl : MonoBehaviour
             }
         }
     }
-    public List<Move> Help()
+    public void HelpButton()
+    {
+        Help();
+    }
+    private List<Move> Help()
     {
         possibleMoves = new List<List<Move>>();
         var moves = ShowNextMove();
