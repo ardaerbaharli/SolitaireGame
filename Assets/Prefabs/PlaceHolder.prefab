@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8302371304477536673}
   - component: {fileID: 8232563280592928961}
   - component: {fileID: 1510422770286097443}
-  - component: {fileID: 5392721654107780714}
   m_Layer: 5
   m_Name: PlaceHolder
   m_TagString: Card
@@ -76,16 +75,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5392721654107780714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752624343469909217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2ad6d217c57ab489766a31ee759660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMoving: 0
