@@ -56,11 +56,11 @@ public class GameControl : MonoBehaviour
     {
         if (!isGameOver)
         {
-            if (fillPlayground)
-            {
+            //if (fillPlayground)
+            //{
                 var moves = Help();
                 StartCoroutine(AutoMove(moves));
-            }
+            //}
             int deckCardCount = deckObj.transform.childCount;
             if (deckCardCount == 0)
             {
@@ -271,6 +271,7 @@ public class GameControl : MonoBehaviour
                 cardObj.name = card.ImageName;
                 cardObj.GetComponent<CardControl>().isDeckCard = false;
                 cardObj.GetComponent<CardControl>().isPlayable = false;
+                //cardObj.GetComponent<Canvas>().overrideSorting = true;
                 if (column == piece + 1)
                 {
                     cardObj.GetComponent<CardControl>().enabled = true;
@@ -284,11 +285,6 @@ public class GameControl : MonoBehaviour
                     cardObj.GetComponent<CardControl>().isFacingUp = false;
                     cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
                 }
-                //if (card.Value == 13)
-                //{
-                //    cardObj.GetComponent<CardControl>().isK = true;
-                //    cardObj.GetComponent<CardControl>().didGoToEmptySpot = false;
-                //}
             }
         }
     }
@@ -306,6 +302,7 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<CardControl>().enabled = false;
             cardObj.GetComponent<CardControl>().isDeckCard = true;
             cardObj.GetComponent<CardControl>().isPlayable = true;
+            //cardObj.GetComponent<Canvas>().overrideSorting = true;
             cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
             cardObj.AddComponent<Button>();
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
@@ -388,7 +385,7 @@ public class GameControl : MonoBehaviour
                         topCard.GetComponent<CardControl>().isDeckCard = true;
                         topCard.GetComponent<CardControl>().enabled = false;
                         topCard.GetComponent<Button>().enabled = true;
-                    }                   
+                    }
                 }
             }
             else if (remainingRefreshes == 0)
