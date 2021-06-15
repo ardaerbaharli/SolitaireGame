@@ -12,6 +12,8 @@ TagManager:
   - AcePlaceHoldersPanel
   - Ground
   - PlaycardsPanelChildren
+  - Canvas
+  - test
   layers:
   - Default
   - TransparentFX
@@ -48,4 +50,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: cards
+    uniqueID: 1724159405
+    locked: 0
+  - name: hand
+    uniqueID: 547063129
     locked: 0

@@ -56,11 +56,11 @@ public class GameControl : MonoBehaviour
     {
         if (!isGameOver)
         {
-            //if (fillPlayground)
-            //{
+            if (fillPlayground)
+            {
                 var moves = Help();
                 StartCoroutine(AutoMove(moves));
-            //}
+            }
             int deckCardCount = deckObj.transform.childCount;
             if (deckCardCount == 0)
             {
@@ -131,67 +131,6 @@ public class GameControl : MonoBehaviour
             }
         }
         isCelebrated = true;
-    }
-    private IEnumerator WinCardMove()
-    {
-        possibleMoves = new List<List<Move>>();
-        var moves = ShowNextMove();
-        while (!IsNullOrEmpty(moves))
-        {
-            foreach (var move in moves)
-            {
-                if (move.Target.childCount == 0)
-                {
-                    if (move.Target.name.Contains("Panel"))
-                    {
-                        int cardValue = int.Parse(move.Card.name.Substring(1));
-                        if (cardValue == 13)//&& !move.Card.GetComponent<CardControl>().didGoToEmptySpot)
-                            possibleMoves.Add(moves);
-                    }
-                    else
-                        possibleMoves.Add(moves);
-                }
-                else
-                    possibleMoves.Add(moves);
-            }
-            moves = ShowNextMove();
-        }
-        if (possibleMoves.Count > 1)
-        {
-            possibleMoves.Sort((a, b) => a.Count - b.Count);
-            moves = possibleMoves.Last();
-        }
-        else
-        {
-            moves = possibleMoves.FirstOrDefault();
-        }
-
-        if (IsNullOrEmpty(moves))
-        {
-            DealFromDeck();
-        }
-        else
-        {
-            var helpMoves = new List<Move>();
-            foreach (var move in moves)
-            {
-                //if (move.Target.childCount == 0)
-                //{
-                //    int cardValue = int.Parse(move.Card.name.Substring(1));
-                //    if (cardValue == 13 && move.Card.GetComponent<CardControl>().didGoToEmptySpot)
-                //    {
-                //        move.Card.GetComponent<CardControl>().isK = true;
-                //        move.Card.GetComponent<CardControl>().didGoToEmptySpot = true;
-                //    }
-                //}
-
-                helpMoves.Add(move);
-                HelpHistory.Add(move);
-            }
-
-            StartCoroutine(AutoMove(helpMoves));
-        }
-        yield return null;
     }
     private IEnumerator DestroyAllCards()
     {
@@ -302,15 +241,14 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<CardControl>().enabled = false;
             cardObj.GetComponent<CardControl>().isDeckCard = true;
             cardObj.GetComponent<CardControl>().isPlayable = true;
-            //cardObj.GetComponent<Canvas>().overrideSorting = true;
+            var v = new Vector3(0, 180f, 0);
+            var q = Quaternion.Euler(v);
+            cardObj.GetComponent<RectTransform>().rotation = q;
+            cardObj.GetComponent<GraphicRaycaster>().ignoreReversedGraphics = false;
+
             cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
             cardObj.AddComponent<Button>();
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
-            //if (card.Value == 13)
-            //{
-            //    cardObj.GetComponent<CardControl>().isK = true;
-            //    cardObj.GetComponent<CardControl>().didGoToEmptySpot = false;
-            //}
         }
     }
     public bool DealFromDeck()
@@ -322,12 +260,14 @@ public class GameControl : MonoBehaviour
             {
                 int lastCardInDeckIndex = deckObj.transform.childCount - 1;
                 var topCard = deckObj.transform.GetChild(lastCardInDeckIndex);
-                topCard.transform.SetParent(groundObj.transform);
-                topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(groundObj.GetComponent<RectTransform>()); // refresh layout
+
+                StartCoroutine(SlideAndParent(topCard.gameObject, groundObj.transform, groundObj.transform.position, 0.5f));
+                StartCoroutine(RotateRevealCard(topCard));
+                //topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
                 topCard.GetComponent<CardControl>().enabled = true;
                 topCard.GetComponent<CardControl>().isFacingUp = true;
                 topCard.GetComponent<BoxCollider2D>().enabled = true;
-
                 topCard.GetComponent<Button>().enabled = false;
 
                 Move move = new Move();
@@ -349,6 +289,48 @@ public class GameControl : MonoBehaviour
         }
         return true;
     }
+
+    private IEnumerator SlideAndParent(GameObject card, Transform parent, Vector3 pos, float time = 1f)
+    {
+        float seconds = time;
+        float t = 0f;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            card.transform.position = Vector3.Lerp(card.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+        card.transform.SetParent(parent);
+    }
+
+    private IEnumerator RotateRevealCard(Transform card)
+    {
+        float time = 0.2f;
+        float seconds = time;
+        float t = 0f;
+        var v = new Vector3(0, 90f, 0);
+        var q = Quaternion.Euler(v);
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+
+        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
+
+        seconds = time;
+        t = 0f;
+        v = new Vector3(0, 0f, 0);
+        q = Quaternion.Euler(v);
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+    }
+
     public void RefreshDeck()
     {
         if (deckObj.transform.childCount == 0)
@@ -833,7 +815,7 @@ public class GameControl : MonoBehaviour
         }
         for (int i = 0; i < movingDummies.Count; i++)
         {
-            StartCoroutine(SlideAndDestroy(movingDummies[i], positions[i], willDisappear));
+            StartCoroutine(SlideAndDisappear(movingDummies[i], positions[i], willDisappear));
         }
 
         foreach (var positionDummy in posDummies)
@@ -849,9 +831,9 @@ public class GameControl : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
         yield return null;
     }
-    private IEnumerator SlideAndDestroy(GameObject movingDummy, Vector3 pos, bool willDisappear)
+    private IEnumerator SlideAndDisappear(GameObject movingDummy, Vector3 pos, bool willDisappear, float time = 1f)
     {
-        float seconds = 1f;
+        float seconds = time;
         float t = 0f;
         while (t <= 1.0)
         {
@@ -987,7 +969,6 @@ public class GameControl : MonoBehaviour
         else
             return false;
     }
-
     public void RestartGame()
     {
         System.GC.Collect();

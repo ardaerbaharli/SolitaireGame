@@ -13,17 +13,11 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     public bool wasFacingUp;
     public bool isDeckCard;
     public bool isPlayable;
-    //public bool isK;
-    //public bool didGoToEmptySpot;
     public bool isDummy;
 
     public GameObject playcardsPanel;
     public GameObject acesPanel;
     public GameObject groundObj;
-    //public GameObject canvas;
-
-    //public Transform test;
-    //private Transform origin;
 
     void Start()
     {
@@ -32,8 +26,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         playcardsPanel = GameObject.FindGameObjectWithTag("PlaycardsPanel");
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
         groundObj = GameObject.FindGameObjectWithTag("Ground");
-        //canvas = GameObject.FindGameObjectWithTag("Canvas");
-        //test = GameObject.Find("Panel (8)").transform;
     }
     void Update()
     {
@@ -49,19 +41,14 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             gameObject.GetComponent<Canvas>().overrideSorting = false;
             gameObject.GetComponent<Canvas>().sortingOrder = 1;
 
-            if (gameObject.transform.childCount > 0)
-            {
-                var abc = gameObject.transform.GetChild(0);
-                while (abc != null)
-                {
-                    abc.SetParent(gameObject.transform.parent);
-                    if (abc.transform.childCount > 0)
-                        abc = abc.transform.GetChild(0);
-                    else break;
-                }
-            }
+
+          
 
             StartCoroutine(RefreshLayout());
+        }
+        if (gameObject.transform.parent.name.Contains("Panel"))
+        {
+            gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         }
     }
 
@@ -80,32 +67,30 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         {
             for (int i = childCount - 1; i > siblingIndex; i--)
             {
+                gameObject.transform.parent.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
                 gameObject.transform.parent.GetChild(i).SetParent(gameObject.transform.parent.GetChild(i - 1).transform);
             }
         }
-
-        //int siblingIndex = gameObject.transform.GetSiblingIndex();
-        //int childCount = gameObject.transform.parent.childCount;
-
-        //for (int i = siblingIndex; i < childCount; i++)
-        //{
-        //    gameObject.transform.parent.GetChild(siblingIndex).transform.SetParent(test);
-        //}
     }
 
     private IEnumerator RefreshLayout()
     {
         yield return new WaitForSeconds(0.1f);
-        //if (gameObject.transform.parent.name.Contains("8"))
-        //{
-        //    int siblingIndex = gameObject.transform.GetSiblingIndex();
-        //    int childCount = gameObject.transform.parent.childCount;
+        while (gameObject.transform.childCount > 0)
+        {
+            if (gameObject.transform.GetChild(0).childCount > 0)
+            {
+                gameObject.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+                gameObject.transform.GetChild(0).GetChild(0).SetParent(gameObject.transform);
+            }
+            else
+            {
+                gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+                gameObject.transform.GetChild(0).SetParent(gameObject.transform.parent);
 
-        //    for (int i = siblingIndex; i < childCount; i++)
-        //    {
-        //        gameObject.transform.parent.GetChild(i).transform.SetParent(origin);
-        //    }
-        //}
+            }
+        }
+        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
     }
 
@@ -158,7 +143,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                     if (originCardValue == 13)
                     {
                         canMove = true;
-                        //gameObject.GetComponent<CardControl>().didGoToEmptySpot = true;
                     }
                 }
 
@@ -219,7 +203,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                         {
                             // change the image and enable the cardmovecontrol script
                             var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
-                            lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
+                            StartCoroutine(RotateRevealCard(lastChildOfTheOriginParent));
+                            //lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                             lastChildOfTheOriginParent.GetComponent<BoxCollider2D>().enabled = true;
                             lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
                             lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
@@ -271,7 +256,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                             {
                                 // change the image and enable the cardmovecontrol script
                                 var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
-                                lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
+                                StartCoroutine(RotateRevealCard(lastChildOfTheOriginParent));
+                                //lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                                 lastChildOfTheOriginParent.GetComponent<BoxCollider2D>().enabled = true;
                                 lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
                                 lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
@@ -301,9 +287,32 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
         }
     }
+    private IEnumerator RotateRevealCard(Transform card)
+    {
+        float seconds = 0.2f;
+        float t = 0f;
+        var v = new Vector3(0, 90f, 0);
+        var q = Quaternion.Euler(v);
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
 
+        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
 
-
+        seconds = 0.2f;
+        t = 0f;
+        v = new Vector3(0, 0f, 0);
+        q = Quaternion.Euler(v);
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+    }
     private bool IsPlaygroudCardSuitTrue(char targetCardSuit, char cardSuit)
     {
         if (targetCardSuit == 'H' && (cardSuit == 'S' || cardSuit == 'C'))
