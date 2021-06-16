@@ -6,7 +6,6 @@ public class Move
     public Transform Origin { get; set; }
     public Transform Target { get; set; }
     public GameObject Card { get; set; }
-    public GameObject EarlierOrigin { get; set; }
 
     internal List<Move> ToList()
     {

@@ -19,6 +19,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     public GameObject acesPanel;
     public GameObject groundObj;
 
+    private Color outlineColor = Color.green;
+    private Vector2 outlineSize = new Vector2(8, 5);
     void Start()
     {
         isMoving = false;
@@ -26,6 +28,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         playcardsPanel = GameObject.FindGameObjectWithTag("PlaycardsPanel");
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
         groundObj = GameObject.FindGameObjectWithTag("Ground");
+
+
     }
     void Update()
     {
@@ -37,21 +41,21 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
 
         if (Input.GetMouseButtonUp(0))
         {
-            isMoving = false;
-            gameObject.GetComponent<Canvas>().overrideSorting = false;
-            gameObject.GetComponent<Canvas>().sortingOrder = 1;
+            if (isMoving)
+            {
+                isMoving = false;
+                gameObject.GetComponent<Canvas>().overrideSorting = false;
+                gameObject.GetComponent<Canvas>().sortingOrder = 1;
 
+                StartCoroutine(RefreshLayout());
+            }
 
-          
-
-            StartCoroutine(RefreshLayout());
         }
         if (gameObject.transform.parent.name.Contains("Panel"))
         {
             gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         }
     }
-
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -60,6 +64,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
 
         int siblingIndex = gameObject.transform.GetSiblingIndex();
         int childCount = gameObject.transform.parent.childCount;
+        gameObject.GetComponent<Outline>().effectColor = outlineColor;
+        gameObject.GetComponent<Outline>().effectDistance = outlineSize;
 
         gameObject.GetComponent<Canvas>().overrideSorting = true;
         gameObject.GetComponent<Canvas>().sortingOrder = 2;
@@ -68,6 +74,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             for (int i = childCount - 1; i > siblingIndex; i--)
             {
                 gameObject.transform.parent.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectColor = outlineColor;
+                gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectDistance = outlineSize;
                 gameObject.transform.parent.GetChild(i).SetParent(gameObject.transform.parent.GetChild(i - 1).transform);
             }
         }
@@ -76,21 +84,24 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     private IEnumerator RefreshLayout()
     {
         yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<Outline>().effectDistance = Vector2.zero;
         while (gameObject.transform.childCount > 0)
         {
             if (gameObject.transform.GetChild(0).childCount > 0)
             {
                 gameObject.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+                gameObject.transform.GetChild(0).GetChild(0).GetComponent<Outline>().effectDistance = Vector2.zero;
                 gameObject.transform.GetChild(0).GetChild(0).SetParent(gameObject.transform);
             }
             else
             {
                 gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+                gameObject.transform.GetChild(0).GetComponent<Outline>().effectDistance = Vector2.zero;
                 gameObject.transform.GetChild(0).SetParent(gameObject.transform.parent);
 
             }
         }
-        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
+        gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
     }
 
