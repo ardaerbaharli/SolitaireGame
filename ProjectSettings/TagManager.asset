@@ -14,6 +14,9 @@ TagManager:
   - PlaycardsPanelChildren
   - Canvas
   - test
+  - QuestionBackground
+  - YesButton
+  - NoButton
   layers:
   - Default
   - TransparentFX

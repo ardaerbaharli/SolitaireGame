@@ -22,6 +22,8 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator LoadAsyncScene(string sceneName)
     {
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
         while (!asyncLoad.isDone)

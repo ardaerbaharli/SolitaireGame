@@ -28,8 +28,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         playcardsPanel = GameObject.FindGameObjectWithTag("PlaycardsPanel");
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
         groundObj = GameObject.FindGameObjectWithTag("Ground");
-
-
     }
     void Update()
     {
@@ -47,16 +45,42 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 gameObject.GetComponent<Canvas>().overrideSorting = false;
                 gameObject.GetComponent<Canvas>().sortingOrder = 1;
 
+                gameObject.GetComponent<Outline>().effectDistance = Vector2.zero;
+                gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+
+                //selectedObjects.Reverse();
+                //DetachAllChildren(gameObject);
+                foreach (var go in selectedObjects)
+                {
+                    go.GetComponent<BoxCollider2D>().enabled = true;
+                    go.GetComponent<Outline>().effectDistance = Vector2.zero;
+                    //go.transform.SetParent(gameObject.transform.parent);
+                    //go.transform.SetAsLastSibling();
+                }
+                selectedObjects.Clear();
+
                 StartCoroutine(RefreshLayout());
             }
-
         }
+
         if (gameObject.transform.parent.name.Contains("Panel"))
-        {
             gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
+    }
+    private List<GameObject> selectedObjects = new List<GameObject>();
+    private void DetachAllChildren(GameObject gObj)
+    {
+        while (gObj.transform.childCount > 0)
+        {
+            if (gObj.transform.GetChild(0).childCount > 0)
+            {
+                gObj.transform.GetChild(0).GetChild(0).SetParent(gObj.transform);
+            }
+            else
+            {
+                gObj.transform.GetChild(0).SetParent(gObj.transform.parent);
+            }
         }
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         isChangingPostiion = true;
@@ -76,6 +100,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 gameObject.transform.parent.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
                 gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectColor = outlineColor;
                 gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectDistance = outlineSize;
+                selectedObjects.Add(gameObject.transform.parent.GetChild(i).gameObject);
                 gameObject.transform.parent.GetChild(i).SetParent(gameObject.transform.parent.GetChild(i - 1).transform);
             }
         }
@@ -84,24 +109,10 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     private IEnumerator RefreshLayout()
     {
         yield return new WaitForSeconds(0.1f);
-        gameObject.GetComponent<Outline>().effectDistance = Vector2.zero;
-        while (gameObject.transform.childCount > 0)
-        {
-            if (gameObject.transform.GetChild(0).childCount > 0)
-            {
-                gameObject.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
-                gameObject.transform.GetChild(0).GetChild(0).GetComponent<Outline>().effectDistance = Vector2.zero;
-                gameObject.transform.GetChild(0).GetChild(0).SetParent(gameObject.transform);
-            }
-            else
-            {
-                gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
-                gameObject.transform.GetChild(0).GetComponent<Outline>().effectDistance = Vector2.zero;
-                gameObject.transform.GetChild(0).SetParent(gameObject.transform.parent);
+        DetachAllChildren(gameObject);
 
-            }
-        }
-        gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
+        if (gameObject.transform.parent.name.Contains("Panel"))
+            gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
     }
 
@@ -190,25 +201,38 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                         }
                     }
                     else if (originParent.CompareTag("PlaycardsPanelChildren"))
-                    {
+                    {                      
+
+                        //while (gameObject.transform.childCount > 0)
+                        //{
+                        //    if (gameObject.transform.GetChild(0).childCount > 0)
+                        //    {
+                        //        gameObject.transform.GetChild(0).GetChild(0).SetParent(gameObject.transform);
+                        //    }
+                        //    else
+                        //    {
+                        //        gameObject.transform.GetChild(0).SetParent(gameObject.transform.parent);
+                        //    }
+                        //}
+
+                        DetachAllChildren(gameObject);
+
                         int holdingIndex = gameObject.transform.GetSiblingIndex();
                         int lastChildIndex = gameObject.transform.parent.childCount - 1;
-                        int holdingCardsCount = lastChildIndex - holdingIndex + 1;
-
+                        int holdingCardsCount = lastChildIndex - holdingIndex + 1;// gameObject.transform.childCount + 1;// 
                         var moves = new List<Move>();
-
                         for (int i = 0; i < holdingCardsCount; i++)
                         {
-                            var card = originParent.GetChild(holdingIndex);
-                            card.SetParent(targetParent);
-
-                            Move move = new Move();
-                            move.Origin = originParent;
-                            move.Card = card.gameObject;
-                            move.Target = targetParent;
-                            moves.Add(move);
+                            var m = new Move();
+                            m.Card = originParent.GetChild(holdingIndex).gameObject;
+                            m.Target = targetParent;
+                            m.Origin = originParent;
+                            moves.Add(m);
+                            originParent.GetChild(holdingIndex).SetParent(targetParent);
                         }
                         GameControl.AddMove(moves);
+
+                        //gameObject.transform.SetParent(targetParent);
 
                         if (originParent.childCount > 0)
                         {

@@ -1263,9 +1263,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000441315}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadMainScreen
+      - m_Target: {fileID: 1000441312}
+        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1802,7 +1802,8 @@ MonoBehaviour:
   acePanel: {fileID: 216467570}
   groundObj: {fileID: 390773517}
   canvas: {fileID: 1841236958}
-  scale: 1
+  questionPrefab: {fileID: 8761199187973855518, guid: 6d0db8c086116c749a58795a2c1f35a4, type: 3}
+  timeScale: 1
   isGameOver: 0
   didPlayerWin: 0
   isCelebrated: 0
@@ -2074,9 +2075,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000441315}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadGameScreen
+      - m_Target: {fileID: 1000441312}
+        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

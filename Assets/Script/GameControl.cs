@@ -12,7 +12,8 @@ public class GameControl : MonoBehaviour
     [SerializeField] GameObject acePanel;
     [SerializeField] GameObject groundObj;
     [SerializeField] GameObject canvas;
-    [SerializeField] [Range(0, 1f)] float scale = 1f;
+    [SerializeField] GameObject questionPrefab;
+    [SerializeField] [Range(0, 1f)] float timeScale = 1f;
     private enum GameOverType { Win, Lose };
 
     private List<Card> UnshuffledDeck = new List<Card>();
@@ -56,7 +57,7 @@ public class GameControl : MonoBehaviour
     {
         if (!isGameOver)
         {
-            Time.timeScale = scale;
+            Time.timeScale = timeScale;
             if (fillPlayground)
             {
                 var moves = Help();
@@ -336,6 +337,14 @@ public class GameControl : MonoBehaviour
         }
         card.transform.SetParent(parent);
         card.GetComponent<Canvas>().overrideSorting = false;
+
+        //if (card.transform.parent.name.Contains("Panel"))
+        //    card.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(card.transform.parent);
+        //if (parent.name.Contains("Panel"))
+        //    parent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(parent);
+
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>());
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
     }
     private IEnumerator RotateToRevealCard(Transform card, float time = 0.2f)
     {
@@ -1047,8 +1056,18 @@ public class GameControl : MonoBehaviour
     }
     public void RestartGame()
     {
-        System.GC.Collect();
-        Resources.UnloadUnusedAssets();
-        SceneLoader.instance.LoadGameScreen();
+        var q = Instantiate(questionPrefab);
+        q.transform.SetParent(canvas.transform);
+        q.transform.GetComponent<RectTransform>().localPosition = Vector2.zero;
+        var yesButton = GameObject.FindGameObjectWithTag("YesButton");
+        yesButton.GetComponent<Button>().onClick.AddListener(delegate { SceneLoader.instance.LoadGameScreen(); });
+    }
+    public void LoadMainMenu()
+    {
+        var q = Instantiate(questionPrefab);
+        q.transform.SetParent(canvas.transform);
+        q.transform.GetComponent<RectTransform>().localPosition = Vector2.zero;
+        var yesButton = GameObject.FindGameObjectWithTag("YesButton");
+        yesButton.GetComponent<Button>().onClick.AddListener(delegate { SceneLoader.instance.LoadMainScreen(); });
     }
 }
