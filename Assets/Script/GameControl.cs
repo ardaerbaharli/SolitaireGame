@@ -253,49 +253,64 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
         }
     }
-    private bool isCardSliding = false;
-    public bool DealFromDeck()
+    private bool isCardSliding = false, isCardRotating = false;
+    public void DealFromDeck()
     {
-        if (!isCardSliding)
+        isCardSliding = true;
+        isCardRotating = true;
+        var cardsToDeal = new List<GameObject>();
+        int dealingCardCount = Settings.drawingCardCount;
+        int deckCardCount = deckObj.transform.childCount;
+        int startIndex = deckCardCount - dealingCardCount;
+        var moves = new List<Move>();
+
+        for (int i = deckCardCount - 1; i >= startIndex; i--)
         {
-            int cardsToDeal = Settings.drawingCardCount;
-            for (int i = 0; i < cardsToDeal; i++)
-            {
-                if (deckObj.transform.childCount > 0)
-                {
-                    int lastCardInDeckIndex = deckObj.transform.childCount - 1;
-                    var topCard = deckObj.transform.GetChild(lastCardInDeckIndex);
-                    //LayoutRebuilder.ForceRebuildLayoutImmediate(groundObj.GetComponent<RectTransform>()); // refresh layout
+            var card = deckObj.transform.GetChild(i).gameObject;
+            cardsToDeal.Add(card);
+            card.GetComponent<CardControl>().enabled = true;
+            card.GetComponent<CardControl>().isFacingUp = true;
+            card.GetComponent<BoxCollider2D>().enabled = true;
+            card.GetComponent<Button>().enabled = false;
 
-                    topCard.GetComponent<CardControl>().enabled = true;
-                    topCard.GetComponent<CardControl>().isFacingUp = true;
-                    topCard.GetComponent<BoxCollider2D>().enabled = true;
-                    topCard.GetComponent<Button>().enabled = false;
+            Move move = new Move();
+            move.Origin = deckObj.transform;
+            move.Card = card.gameObject;
+            move.Target = groundObj.transform;
+            moves.Add(move);
 
-                    StartCoroutine(SlideAndParentToGround(topCard.gameObject, 0.5f));
-                    StartCoroutine(RotateToRevealCard(topCard, 0.2f));
-                    //topCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(topCard.name);
-
-                    Move move = new Move();
-                    move.Origin = deckObj.transform;
-                    move.Card = topCard.gameObject;
-                    move.Target = groundObj.transform;
-                    AddMove(move.ToList());
-
-                    //if (groundObj.transform.childCount > 3)
-                    //{
-                    //    for (int k = 0; k < groundObj.transform.childCount - 3; k++)
-                    //    {
-                    //        groundObj.transform.GetChild(k).gameObject.SetActive(false);
-                    //    }
-                    //}
-                }
-                else
-                    return false;
-            }
-            return true;
+            StartCoroutine(SlideAndParentToGround(card, 0.5f));
+            StartCoroutine(RotateToRevealCard(card.transform, 0.2f));
         }
-        else return false;
+
+        AddMove(moves);
+
+
+
+
+        //for (int i = 0; i < dealingCardCount; i++)
+        //{
+        //    if (deckObj.transform.childCount > dealingCardCount)
+        //    {
+        //        int lastCardInDeckIndex = deckObj.transform.childCount - 1;
+        //        var topCard = deckObj.transform.GetChild(lastCardInDeckIndex);
+
+        //        topCard.GetComponent<CardControl>().enabled = true;
+        //        topCard.GetComponent<CardControl>().isFacingUp = true;
+        //        topCard.GetComponent<BoxCollider2D>().enabled = true;
+        //        topCard.GetComponent<Button>().enabled = false;
+
+        //        StartCoroutine(SlideAndParentToGround(topCard.gameObject, 0.5f));
+        //        StartCoroutine(RotateToRevealCard(topCard, 0.2f));
+
+        //        Move move = new Move();
+        //        move.Origin = deckObj.transform;
+        //        move.Card = topCard.gameObject;
+        //        move.Target = groundObj.transform;
+        //        AddMove(move.ToList());
+        //    }
+        //}
+
     }
 
     private IEnumerator SlideAndParentToGround(GameObject card, float time)
@@ -337,14 +352,6 @@ public class GameControl : MonoBehaviour
         }
         card.transform.SetParent(parent);
         card.GetComponent<Canvas>().overrideSorting = false;
-
-        //if (card.transform.parent.name.Contains("Panel"))
-        //    card.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(card.transform.parent);
-        //if (parent.name.Contains("Panel"))
-        //    parent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(parent);
-
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>());
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
     }
     private IEnumerator RotateToRevealCard(Transform card, float time = 0.2f)
     {
@@ -372,6 +379,7 @@ public class GameControl : MonoBehaviour
             card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
+        isCardRotating = false;
     }
     private IEnumerator RotateToHideCard(Transform card, float time = 0.2f)
     {
@@ -498,29 +506,26 @@ public class GameControl : MonoBehaviour
                         if (!lastChildOfNewTarget.GetComponent<CardControl>().wasFacingUp)
                         {
                             StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
-                            //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
-                            //lastChildOfNewTarget.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
                         }
                     }
                     else if (newTarget.CompareTag("Ground"))
                     {
-                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
-                        StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                        if (newTarget.childCount > 3)
+                        {
+                            var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
+                            StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
 
-                        //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
-                        lastChildOfNewTarget.gameObject.SetActive(false);
+                            //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
+                            lastChildOfNewTarget.gameObject.SetActive(false);
+                        }
                     }
                     else if (newTarget.name.Contains("Deck"))
                     {
                         var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
                         StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
 
-                        //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
-                        //lastChildOfNewTarget.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
 
                         StartCoroutine(RotateToHideCard(card.transform));
-                        //card.GetComponent<CardControl>().isFacingUp = false;
-                        //card.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
                     }
                 }
                 if (newTarget.name.Contains("Deck"))
@@ -530,13 +535,6 @@ public class GameControl : MonoBehaviour
                 }
                 var pos = new Vector2(newTarget.position.x, newTarget.position.y + newTarget.GetComponent<RectTransform>().rect.width / 2 - cardPrefab.GetComponent<RectTransform>().rect.height / 2);
                 StartCoroutine(SlideAndParent(card, newTarget, pos));
-                //card.transform.SetParent(newTarget);
-                //if (origin.name.Contains("Panel"))
-                //    origin.transform.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(origin); // set the spacing for the panel layout
-                //if (target.name.Contains("Panel"))
-                //    target.transform.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(target); // set the spacing for the panel layout
-
-                //LayoutRebuilder.ForceRebuildLayoutImmediate(card.transform.parent.GetComponent<RectTransform>()); // refresh layout
 
                 Moves.Remove(move);
             }
