@@ -22,7 +22,6 @@ public class GameUI : MonoBehaviour
         if (sec < 10) secs = $"0{sec}";
         timeText.GetComponent<Text>().text = $"{mins}:{secs}";
 
-
         if (GameControl.moveCount != initialMoveCount)
         {
             initialMoveCount = GameControl.moveCount;

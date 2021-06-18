@@ -11,8 +11,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     public bool isChangingPostiion;
     public bool isFacingUp;
     public bool wasFacingUp;
-    public bool isDeckCard;
-    public bool isPlayable;
     public bool isDummy;
 
     public GameObject playcardsPanel;
@@ -184,14 +182,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
 
                         if (originParent.CompareTag("Ground"))
                         {
-                            gameObject.transform.GetComponent<CardControl>().isDeckCard = false;
-
-                            int groundCardCount = originParent.childCount;
-                            // var groundObj = originParent;
-                            for (int i = 0; i < groundCardCount; i++)
-                            {
-                                groundObj.transform.GetChild(i).GetComponent<CardControl>().isPlayable = true;
-                            }
 
                             if (originParent.transform.childCount > 2)
                             {
@@ -201,7 +191,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                         }
                     }
                     else if (originParent.CompareTag("PlaycardsPanelChildren"))
-                    {                      
+                    {
 
                         //while (gameObject.transform.childCount > 0)
                         //{
@@ -301,12 +291,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                         }
                         else if (originParent.CompareTag("Ground")) // 6  => 1 2 (3 4 5 )
                         {
-                            int groundCardCount = originParent.childCount;
-                            for (int i = 0; i < groundCardCount; i++)
-                            {
-                                groundObj.transform.GetChild(i).GetComponent<CardControl>().isPlayable = true;
-                            }
-
                             if (originParent.transform.childCount > 2)
                             {
                                 int index = originParent.transform.childCount - 1 - 2;
@@ -324,28 +308,31 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     }
     private IEnumerator RotateRevealCard(Transform card)
     {
-        float seconds = 0.2f;
-        float t = 0f;
-        var v = new Vector3(0, 90f, 0);
-        var q = Quaternion.Euler(v);
-        while (t <= 1.0)
+        if (!card.GetComponent<CardControl>().isFacingUp)
         {
-            t += Time.deltaTime / seconds;
-            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
-        }
+            float seconds = 0.2f;
+            float t = 0f;
+            var v = new Vector3(0, 90f, 0);
+            var q = Quaternion.Euler(v);
+            while (t <= 1.0)
+            {
+                t += Time.deltaTime / seconds;
+                card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+                yield return null;
+            }
 
-        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
+            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
 
-        seconds = 0.2f;
-        t = 0f;
-        v = new Vector3(0, 0f, 0);
-        q = Quaternion.Euler(v);
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
+            seconds = 0.2f;
+            t = 0f;
+            v = new Vector3(0, 0f, 0);
+            q = Quaternion.Euler(v);
+            while (t <= 1.0)
+            {
+                t += Time.deltaTime / seconds;
+                card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+                yield return null;
+            }
         }
     }
     private bool IsPlaygroudCardSuitTrue(char targetCardSuit, char cardSuit)
