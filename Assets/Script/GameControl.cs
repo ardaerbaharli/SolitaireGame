@@ -761,55 +761,79 @@ public class GameControl : MonoBehaviour
     }
     public void Undo()
     {
-        var move = Moves.Last();
-        if (move != null)
+        if (Moves.Count > 0)
         {
-            foreach (var step in move)
+            var move = Moves.Last();
+            if (move != null)
             {
-                var card = step.Card;
-                var origin = step.Origin;
-                var target = step.Target;
-                var newTarget = origin;
-
-                if (newTarget.childCount > 0)
+                foreach (var step in move)
                 {
-                    if (newTarget.name.Contains("Panel"))
+                    var card = step.Card;
+                    var origin = step.Origin;
+                    var target = step.Target;
+                    var newTarget = origin;
+
+                    if (newTarget.childCount > 0)
                     {
-                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
-                        if (!lastChildOfNewTarget.GetComponent<CardControl>().wasFacingUp)
+                        if (newTarget.name.Contains("Panel"))
                         {
+                            var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
+                            if (!lastChildOfNewTarget.GetComponent<CardControl>().wasFacingUp)
+                            {
+                                StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                            }
+                        }
+                        else if (newTarget.CompareTag("Ground"))
+                        {
+                            if (newTarget.childCount > 3)
+                            {
+                                var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
+                                StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+
+                                //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
+                                lastChildOfNewTarget.gameObject.SetActive(false);
+                            }
+                        }
+                        else if (newTarget.name.Contains("Deck"))
+                        {
+                            // enable the last 3 cards in the ground   
+                            const int cardsAppearing = 3;
+                            if (groundObj.transform.childCount > cardsAppearing)
+                            {
+                                int cardsLeft = groundObj.transform.childCount - Settings.drawingCardCount;
+                                int startIndex, finishIndex;
+                                if (cardsLeft < 3)
+                                {
+                                    startIndex = 0;
+                                    finishIndex = cardsLeft;
+                                }
+                                else
+                                {
+                                    startIndex = groundObj.transform.childCount - 3 - Settings.drawingCardCount;
+                                    finishIndex = groundObj.transform.childCount - 3;
+                                }
+
+                                for (int i = startIndex; i < finishIndex; i++)
+                                {
+                                    groundObj.transform.GetChild(i).gameObject.SetActive(true);
+                                }
+                            }
+
+                            var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
                             StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                            StartCoroutine(RotateToHideCard(card.transform));
                         }
                     }
-                    else if (newTarget.CompareTag("Ground"))
+                    if (newTarget.name.Contains("Deck"))
                     {
-                        if (newTarget.childCount > 3)
-                        {
-                            var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
-                            StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
-
-                            //lastChildOfNewTarget.GetComponent<CardControl>().isFacingUp = false;
-                            lastChildOfNewTarget.gameObject.SetActive(false);
-                        }
+                        card.GetComponent<CardControl>().enabled = false;
+                        card.GetComponent<Button>().enabled = true;
                     }
-                    else if (newTarget.name.Contains("Deck"))
-                    {
-                        var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
-                        StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                    var pos = new Vector2(newTarget.position.x, newTarget.position.y + newTarget.GetComponent<RectTransform>().rect.width / 2 - cardPrefab.GetComponent<RectTransform>().rect.height / 2);
+                    StartCoroutine(SlideAndParent(card, newTarget, pos));
 
-
-                        StartCoroutine(RotateToHideCard(card.transform));
-                    }
+                    Moves.Remove(move);
                 }
-                if (newTarget.name.Contains("Deck"))
-                {
-                    card.GetComponent<CardControl>().enabled = false;
-                    card.GetComponent<Button>().enabled = true;
-                }
-                var pos = new Vector2(newTarget.position.x, newTarget.position.y + newTarget.GetComponent<RectTransform>().rect.width / 2 - cardPrefab.GetComponent<RectTransform>().rect.height / 2);
-                StartCoroutine(SlideAndParent(card, newTarget, pos));
-
-                Moves.Remove(move);
             }
         }
     }
