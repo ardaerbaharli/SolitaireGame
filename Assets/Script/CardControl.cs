@@ -40,6 +40,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             if (isMoving)
             {
                 isMoving = false;
+
                 gameObject.GetComponent<Canvas>().overrideSorting = false;
                 gameObject.GetComponent<Canvas>().sortingOrder = 1;
 
@@ -112,6 +113,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         if (gameObject.transform.parent.name.Contains("Panel"))
             gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
+        isChangingPostiion = false;
     }
 
     public void OnDrag(PointerEventData data)
