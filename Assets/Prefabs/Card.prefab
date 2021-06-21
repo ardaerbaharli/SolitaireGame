@@ -144,12 +144,11 @@ MonoBehaviour:
   isChangingPostiion: 0
   isFacingUp: 0
   wasFacingUp: 0
-  isDeckCard: 0
-  isPlayable: 0
   isDummy: 0
   playcardsPanel: {fileID: 0}
   acesPanel: {fileID: 0}
   groundObj: {fileID: 0}
+  cardPref: {fileID: 7694978506021638915}
 --- !u!223 &1414790794817569605
 Canvas:
   m_ObjectHideFlags: 0

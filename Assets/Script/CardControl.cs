@@ -12,10 +12,13 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     public bool isFacingUp;
     public bool wasFacingUp;
     public bool isDummy;
+    public Vector3 lastKnownLocation;
+    public Vector3 earlierLocation;
 
     public GameObject playcardsPanel;
     public GameObject acesPanel;
     public GameObject groundObj;
+    public GameObject cardPref;
 
     private Color outlineColor = Color.green;
     private Vector2 outlineSize = new Vector2(8, 5);
@@ -27,13 +30,25 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
         acesPanel = GameObject.FindGameObjectWithTag("AcesPanel");
         groundObj = GameObject.FindGameObjectWithTag("Ground");
     }
+
     void Update()
     {
-        if (!wasFacingUp && isFacingUp)
-            if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
+        if (!gameObject.transform.parent.CompareTag("Ground") && !gameObject.transform.parent.name.Equals("Deck"))
+        {
+            if (!wasFacingUp && isFacingUp)
             {
-                wasFacingUp = true;
+                if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
+                {
+                    wasFacingUp = true;
+                }
+                else
+                {
+                    wasFacingUp = false;
+                }
             }
+            else
+                wasFacingUp = false;
+        }
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -58,7 +73,8 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 }
                 selectedObjects.Clear();
 
-                StartCoroutine(RefreshLayout());
+                //if (!isInTrigger)
+                    StartCoroutine(RefreshLayout());
             }
         }
 
@@ -84,14 +100,17 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     {
         isChangingPostiion = true;
         isMoving = true;
+        gameObject.GetComponent<CardControl>().lastKnownLocation = gameObject.transform.position;
 
         int siblingIndex = gameObject.transform.GetSiblingIndex();
         int childCount = gameObject.transform.parent.childCount;
+
         gameObject.GetComponent<Outline>().effectColor = outlineColor;
         gameObject.GetComponent<Outline>().effectDistance = outlineSize;
 
         gameObject.GetComponent<Canvas>().overrideSorting = true;
         gameObject.GetComponent<Canvas>().sortingOrder = 2;
+
         if (childCount - siblingIndex != 1)
         {
             for (int i = childCount - 1; i > siblingIndex; i--)
@@ -104,18 +123,34 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             }
         }
     }
-
     private IEnumerator RefreshLayout()
     {
-        yield return new WaitForSeconds(0.1f);
-        DetachAllChildren(gameObject);
+        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(SlideBackToPosition());
 
-        if (gameObject.transform.parent.name.Contains("Panel"))
-            gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
-        isChangingPostiion = false;
+        ////yield return new WaitForSeconds(0.1f);
+        //StartCoroutine(SlideBackToPosition());
+        //DetachAllChildren(gameObject);
+
+        //if (gameObject.transform.parent.name.Contains("Panel"))
+        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
+        //yield return null;
     }
-
+    private IEnumerator SlideBackToPosition()
+    {
+        float seconds = 0.2f;
+        float t = 0f;
+        var pos = gameObject.GetComponent<CardControl>().lastKnownLocation;
+        //gameObject.transform.localPosition = new Vector3(0f, 391f, 0);
+        //yield return null;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>());
+    }
     public void OnDrag(PointerEventData data)
     {
         if (isMoving)
@@ -129,7 +164,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             }
         }
     }
-
     public void OnTriggerStay2D(Collider2D target)
     {
         if (!isDummy && !isMoving && isChangingPostiion)
@@ -172,6 +206,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 {
                     if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
                     {
+                        gameObject.GetComponent<CardControl>().earlierLocation = gameObject.GetComponent<CardControl>().lastKnownLocation;
                         gameObject.transform.SetParent(targetParent);
 
                         targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent); ; // set the spacing for the panel layout                       
@@ -220,7 +255,9 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                             m.Target = targetParent;
                             m.Origin = originParent;
                             moves.Add(m);
+                            originParent.GetChild(holdingIndex).GetComponent<CardControl>().earlierLocation = originParent.GetChild(holdingIndex).GetComponent<CardControl>().lastKnownLocation;
                             originParent.GetChild(holdingIndex).SetParent(targetParent);
+
                         }
                         GameControl.AddMove(moves);
 
@@ -270,6 +307,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                     if (canMove)
                     {
                         gameObject.transform.SetParent(targetParent); // change the parent of the card
+                        gameObject.GetComponent<CardControl>().earlierLocation = gameObject.GetComponent<CardControl>().lastKnownLocation;
 
                         Move move = new Move();
                         move.Origin = originParent;
@@ -305,7 +343,14 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
 
 
             isChangingPostiion = false;
-            LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
+            if (canMove)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>()); // refresh layout
+                gameObject.GetComponent<CardControl>().lastKnownLocation = gameObject.transform.position;
+            }
+            else
+                StartCoroutine(SlideBackToPosition());
+
         }
     }
     private IEnumerator RotateRevealCard(Transform card)
