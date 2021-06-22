@@ -1799,7 +1799,6 @@ MonoBehaviour:
   cardPrefab: {fileID: 7694978506021638915, guid: b95cfa3648c4cb942a4382468dc8d044, type: 3}
   playcardsObj: {fileID: 1735381561}
   deckObj: {fileID: 997569842}
-  deckHolderObj: {fileID: 1842273836}
   acePanel: {fileID: 216467570}
   groundObj: {fileID: 390773517}
   canvas: {fileID: 1841236958}

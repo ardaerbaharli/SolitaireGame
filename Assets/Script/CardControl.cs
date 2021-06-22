@@ -62,24 +62,19 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 gameObject.GetComponent<Outline>().effectDistance = Vector2.zero;
                 gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
 
-                //selectedObjects.Reverse();
-                //DetachAllChildren(gameObject);
                 foreach (var go in selectedObjects)
                 {
                     go.GetComponent<BoxCollider2D>().enabled = true;
                     go.GetComponent<Outline>().effectDistance = Vector2.zero;
-                    //go.transform.SetParent(gameObject.transform.parent);
-                    //go.transform.SetAsLastSibling();
                 }
                 selectedObjects.Clear();
 
-                //if (!isInTrigger)
-                    StartCoroutine(RefreshLayout());
+                StartCoroutine(RefreshLayout());
             }
         }
+        //if (gameObject.transform.parent.name.Contains("Panel"))
+        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
 
-        if (gameObject.transform.parent.name.Contains("Panel"))
-            gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
     }
     private List<GameObject> selectedObjects = new List<GameObject>();
     private void DetachAllChildren(GameObject gObj)

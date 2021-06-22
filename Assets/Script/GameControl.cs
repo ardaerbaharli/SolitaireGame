@@ -13,8 +13,9 @@ public class GameControl : MonoBehaviour
     [SerializeField] GameObject groundObj;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject questionPrefab;
+    [SerializeField] GameObject loseWinMenuPrefab;
     [SerializeField] [Range(0, 1f)] float timeScale = 1f;
-    private enum GameOverType { Win, Lose };
+    public enum GameOverType { Win, Lose };
 
     private List<Card> UnshuffledDeck = new List<Card>();
     private static List<List<Move>> Moves = new List<List<Move>>();
@@ -31,7 +32,7 @@ public class GameControl : MonoBehaviour
     public bool didPlayerWin;
     public bool isCelebrated;
     public bool isGameOverThingsComplete;
-
+    public GameOverType gameOverType;
     private bool fillPlayground;
 
     private void Awake()
@@ -334,7 +335,7 @@ public class GameControl : MonoBehaviour
             }
         }
     }
-    private IEnumerator SlideAndParent(GameObject card, Transform parent, Vector3 pos, float time = 0.3f)
+    private IEnumerator SlideAndParent(GameObject card, Transform parent, Vector3 pos, Transform earlierParent, float time = 0.3f)
     {
         card.GetComponent<Canvas>().overrideSorting = true;
         card.GetComponent<Canvas>().sortingOrder = 2;
@@ -348,6 +349,8 @@ public class GameControl : MonoBehaviour
             yield return null;
         }
         card.transform.SetParent(parent);
+        if (earlierParent.name.Contains("Panel"))
+            earlierParent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(earlierParent); // set the spacing for the panel layout
         card.GetComponent<Canvas>().overrideSorting = false;
     }
     private IEnumerator RotateToRevealCard(Transform card, float time = 0.2f, bool animation = true)
@@ -452,7 +455,7 @@ public class GameControl : MonoBehaviour
                         m.Target = deckObj.transform;
                         moves.Add(m);
 
-                        StartCoroutine(SlideAndParent(topCard.gameObject, deckObj.transform, deckObj.transform.position, 0.3f));
+                        StartCoroutine(SlideAndParent(topCard.gameObject, deckObj.transform, deckObj.transform.position, m.Target, 0.3f));
                         StartCoroutine(RotateToHideCard(topCard, 0.2f));
                     }
                 }
@@ -678,7 +681,7 @@ public class GameControl : MonoBehaviour
     {
         var cardSuit = card.name[0];
         int cardValue = int.Parse(card.name.Substring(1));
-
+        var parent = card.parent;
         bool isCardA = (cardValue == 1) ? true : false;
 
         int acePanelCount = acePanel.transform.childCount;
@@ -691,11 +694,23 @@ public class GameControl : MonoBehaviour
                 var lastCardSuit = lastCard.name[0];
                 int lastCardValue = int.Parse(lastCard.name.Substring(1));
                 if (lastCardSuit == cardSuit && cardValue == lastCardValue + 1)
-                    return true;
+                {
+                    var m = new Move();
+                    m.Card = card.gameObject;
+                    m.Origin = parent;
+                    m.Target = panel;
+                    if (!IsItDumbMove(m.ToList()))
+                        return true;
+                }
             }
             else if (panel.childCount == 0 && isCardA)
             {
-                return true;
+                var m = new Move();
+                m.Card = card.gameObject;
+                m.Origin = parent;
+                m.Target = panel;
+                if (!IsItDumbMove(m.ToList()))
+                    return true;
             }
         }
         return false;
@@ -704,6 +719,7 @@ public class GameControl : MonoBehaviour
     {
         var cardSuit = card.name[0];
         int cardValue = int.Parse(card.name.Substring(1));
+        var parent = card.parent;
 
         bool isCardK = (cardValue == 13) ? true : false;
 
@@ -718,17 +734,34 @@ public class GameControl : MonoBehaviour
                 int lastCardValue = int.Parse(lastCard.name.Substring(1));
 
                 if (cardValue == lastCardValue - 1 && IsPlaygroudCardSuitTrue(lastCardSuit, cardSuit))
-                    return true;
+                {
+                    var m = new Move();
+                    m.Card = card.gameObject;
+                    m.Origin = parent;
+                    m.Target = panel;
+                    if (!IsItDumbMove(m.ToList()))
+                        return true;
+                }
             }
             else if (panel.childCount == 0 && isCardK)
             {
-                return true;
+                var m = new Move();
+                m.Card = card.gameObject;
+                m.Origin = parent;
+                m.Target = panel;
+                if (!IsItDumbMove(m.ToList()))
+                    return true;
             }
         }
         return false;
     }
     private void GameOver(GameOverType type)
     {
+        gameOverType = type;
+        var lwm = Instantiate(loseWinMenuPrefab);
+        lwm.transform.SetParent(canvas.transform);
+        lwm.transform.GetComponent<RectTransform>().localPosition = Vector2.zero;
+
         isGameOver = true;
 
         Debug.Log("GAME OVER");
@@ -832,7 +865,7 @@ public class GameControl : MonoBehaviour
 
                         var pos = card.GetComponent<CardControl>().earlierLocation;
 
-                        StartCoroutine(SlideAndParent(card, newTarget, pos));
+                        StartCoroutine(SlideAndParent(card, newTarget, pos, target));
                         Moves.Remove(move);
                     }
                 }
@@ -876,7 +909,10 @@ public class GameControl : MonoBehaviour
         if (IsNullOrEmpty(moves))
         {
             if (IsThereAMove())
-                VibrateDeck();
+            {
+                if (animation)
+                    VibrateDeck();
+            }
             else
                 GameOver(GameOverType.Lose);
         }
@@ -906,10 +942,12 @@ public class GameControl : MonoBehaviour
         var origin = result.First().Origin;
         var target = result.First().Target;
         var card = result.First().Card;
+        int cardValue = int.Parse(card.name.Substring(1));
+        bool isCardK = (cardValue == 13) ? true : false;
 
         if (card.transform.GetSiblingIndex() == 0) // for the card K => if it is already in the empty panel, it doesnt need to change position
         {
-            if (target.childCount == 0)
+            if (target.childCount == 0 && isCardK)
                 return true;
             else
                 return false;
