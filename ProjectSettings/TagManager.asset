@@ -17,6 +17,8 @@ TagManager:
   - QuestionBackground
   - YesButton
   - NoButton
+  - GameOverType
+  - GameControl
   layers:
   - Default
   - TransparentFX
