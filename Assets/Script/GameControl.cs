@@ -19,7 +19,6 @@ public class GameControl : MonoBehaviour
 
     private List<Card> UnshuffledDeck = new List<Card>();
     private static List<List<Move>> Moves = new List<List<Move>>();
-    //private static List<Move> HelpHistory = new List<Move>();
     private List<List<Move>> possibleMoves = new List<List<Move>>();
 
     private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
@@ -37,11 +36,6 @@ public class GameControl : MonoBehaviour
 
     private void Awake()
     {
-        fillPlayground = false;
-        //HelpHistory.Clear();
-        Moves.Clear();
-        moveCount = 0;
-        isGameOver = false;
         // FOR TESTING 
         if (Settings.drawingCardCount == 0)
         {
@@ -49,6 +43,11 @@ public class GameControl : MonoBehaviour
             Settings.deckRefreshCount = 999;
         }
         //
+
+        fillPlayground = false;
+        Moves.Clear();
+        moveCount = 0;
+        isGameOver = false;
         remainingRefreshes = Settings.deckRefreshCount;
         UnshuffledDeck = CreateADeck();
         DealPlayCards();
@@ -103,8 +102,6 @@ public class GameControl : MonoBehaviour
                             fillPlayground = true;
                         }
                     }
-
-
                 }
             }
         }
@@ -213,7 +210,6 @@ public class GameControl : MonoBehaviour
                 var cardObj = Instantiate(cardPrefab) as GameObject;
                 cardObj.transform.SetParent(playcardsObj.transform.GetChild(columnIndex).transform);
                 cardObj.name = card.ImageName;
-                //cardObj.GetComponent<Canvas>().overrideSorting = true;
                 if (column == piece + 1)
                 {
                     cardObj.GetComponent<CardControl>().enabled = true;
@@ -225,6 +221,8 @@ public class GameControl : MonoBehaviour
                 }
                 else
                 {
+                    cardObj.GetComponent<CardControl>().earlierLocation = gameObject.transform.position;
+                    cardObj.GetComponent<CardControl>().lastKnownLocation = gameObject.transform.position;
                     cardObj.GetComponent<CardControl>().enabled = false;
                     cardObj.GetComponent<CardControl>().isFacingUp = false;
                     cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
@@ -299,7 +297,7 @@ public class GameControl : MonoBehaviour
             move.Card = card.gameObject;
             move.Target = groundObj.transform;
             moves.Add(move);
-            card.GetComponent<CardControl>().earlierLocation = gameObject.transform.position;
+            card.GetComponent<CardControl>().earlierLocation = deckObj.transform.position;
             card.GetComponent<CardControl>().lastKnownLocation = cardPositions[posIndex];
 
             StartCoroutine(SlideAndParentToGround(card, 0.5f, cardPositions[posIndex], animation));
@@ -337,6 +335,8 @@ public class GameControl : MonoBehaviour
     }
     private IEnumerator SlideAndParent(GameObject card, Transform parent, Vector3 pos, Transform earlierParent, float time = 0.3f)
     {
+        card.GetComponent<BoxCollider2D>().enabled = false;
+
         card.GetComponent<Canvas>().overrideSorting = true;
         card.GetComponent<Canvas>().sortingOrder = 2;
 
@@ -352,6 +352,8 @@ public class GameControl : MonoBehaviour
         if (earlierParent.name.Contains("Panel"))
             earlierParent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(earlierParent); // set the spacing for the panel layout
         card.GetComponent<Canvas>().overrideSorting = false;
+
+        card.GetComponent<BoxCollider2D>().enabled = true;
     }
     private IEnumerator RotateToRevealCard(Transform card, float time = 0.2f, bool animation = true)
     {
@@ -426,15 +428,7 @@ public class GameControl : MonoBehaviour
                 var moves = new List<Move>();
                 remainingRefreshes--;
                 int groundCardCount = groundObj.transform.childCount;
-                //int cantPlayCount = 0;
-                //for (int i = 0; i < groundCardCount; i++)
-                //{
-                //    var topCard = groundObj.transform.GetChild(i);
-                //    if (!topCard.GetComponent<CardControl>().isPlayable)
-                //    {
-                //        cantPlayCount++;
-                //    }
-                //}
+
                 if (!IsThereAMove())
                 {
                     GameOver(GameOverType.Lose);
@@ -469,14 +463,10 @@ public class GameControl : MonoBehaviour
     }
     private List<Move> ShowNextMove()
     {
-        // from playground
         var moveList = FromPlayground();
         if (!IsNullOrEmpty(moveList))
             return moveList;
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // from ground
         var moves = FromGround();
         if (!IsNullOrEmpty(moves))
             return moves;
@@ -632,9 +622,6 @@ public class GameControl : MonoBehaviour
                 if (lastCardSuit == cardSuit && cardValue == lastCardValue + 1)
                 {
                     var move = new Move(card.gameObject, card.transform.parent, panel);
-                    //move.Card = card.gameObject;
-                    //move.Origin = card.transform.parent;
-                    //move.Target = panel;
                     return move;
                 }
 
@@ -642,9 +629,6 @@ public class GameControl : MonoBehaviour
             else if (panel.childCount == 0 && isCardA)
             {
                 var move = new Move(card.gameObject, card.transform.parent, panel);
-                //move.Card = card.gameObject;
-                //move.Origin = card.transform.parent;
-                //move.Target = panel;
                 return move;
             }
         }
@@ -800,6 +784,7 @@ public class GameControl : MonoBehaviour
                     var origin = step.Origin;
                     var target = step.Target;
                     var newTarget = origin;
+
                     if (newTarget.name != card.transform.parent.name)
                     {
                         if (newTarget.childCount > 0)
@@ -859,6 +844,8 @@ public class GameControl : MonoBehaviour
                         }
                         if (newTarget.name.Contains("Deck"))
                         {
+                            StartCoroutine(RotateToHideCard(card.transform));
+
                             card.GetComponent<CardControl>().enabled = false;
                             card.GetComponent<Button>().enabled = true;
                         }
@@ -1140,6 +1127,7 @@ public class GameControl : MonoBehaviour
                     if (originParent.CompareTag("Ground") || originParent.CompareTag("AcePlaceholderPanel"))
                     {
                         card.transform.SetParent(targetParent);
+                        //StartCoroutine(SlideAndParent(card,targetParent))
 
                         targetParent.GetComponent<VerticalLayoutGroup>().spacing = CardControl.CalculateSpacing(targetParent); ; // set the spacing for the panel layout                 
 

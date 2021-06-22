@@ -72,9 +72,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 StartCoroutine(RefreshLayout());
             }
         }
-        //if (gameObject.transform.parent.name.Contains("Panel"))
-        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
-
     }
     private List<GameObject> selectedObjects = new List<GameObject>();
     private void DetachAllChildren(GameObject gObj)
@@ -122,22 +119,14 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
     {
         yield return new WaitForSeconds(0.2f);
         yield return StartCoroutine(SlideBackToPosition());
-
-        ////yield return new WaitForSeconds(0.1f);
-        //StartCoroutine(SlideBackToPosition());
-        //DetachAllChildren(gameObject);
-
-        //if (gameObject.transform.parent.name.Contains("Panel"))
-        //    gameObject.transform.parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(gameObject.transform.parent);
-        //yield return null;
     }
     private IEnumerator SlideBackToPosition()
     {
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         float seconds = 0.2f;
         float t = 0f;
         var pos = gameObject.GetComponent<CardControl>().lastKnownLocation;
-        //gameObject.transform.localPosition = new Vector3(0f, 391f, 0);
-        //yield return null;
         while (t <= 1.0)
         {
             t += Time.deltaTime / seconds;
@@ -145,6 +134,7 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             yield return null;
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.transform.parent.GetComponent<RectTransform>());
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
     public void OnDrag(PointerEventData data)
     {
@@ -224,19 +214,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                     }
                     else if (originParent.CompareTag("PlaycardsPanelChildren"))
                     {
-
-                        //while (gameObject.transform.childCount > 0)
-                        //{
-                        //    if (gameObject.transform.GetChild(0).childCount > 0)
-                        //    {
-                        //        gameObject.transform.GetChild(0).GetChild(0).SetParent(gameObject.transform);
-                        //    }
-                        //    else
-                        //    {
-                        //        gameObject.transform.GetChild(0).SetParent(gameObject.transform.parent);
-                        //    }
-                        //}
-
                         DetachAllChildren(gameObject);
 
                         int holdingIndex = gameObject.transform.GetSiblingIndex();
@@ -256,14 +233,11 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                         }
                         GameControl.AddMove(moves);
 
-                        //gameObject.transform.SetParent(targetParent);
-
                         if (originParent.childCount > 0)
                         {
                             // change the image and enable the cardmovecontrol script
                             var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                             StartCoroutine(RotateRevealCard(lastChildOfTheOriginParent));
-                            //lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                             lastChildOfTheOriginParent.GetComponent<BoxCollider2D>().enabled = true;
                             lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
                             lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
@@ -317,7 +291,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                                 // change the image and enable the cardmovecontrol script
                                 var lastChildOfTheOriginParent = originParent.GetChild(originParent.childCount - 1);
                                 StartCoroutine(RotateRevealCard(lastChildOfTheOriginParent));
-                                //lastChildOfTheOriginParent.GetComponent<Image>().sprite = Resources.Load<Sprite>(lastChildOfTheOriginParent.name);
                                 lastChildOfTheOriginParent.GetComponent<BoxCollider2D>().enabled = true;
                                 lastChildOfTheOriginParent.GetComponent<CardControl>().enabled = true;
                                 lastChildOfTheOriginParent.GetComponent<CardControl>().isFacingUp = true;
@@ -336,7 +309,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
                 }
             }
 
-
             isChangingPostiion = false;
             if (canMove)
             {
@@ -345,7 +317,6 @@ public class CardControl : MonoBehaviour, IDragHandler, IPointerDownHandler//, I
             }
             else
                 StartCoroutine(SlideBackToPosition());
-
         }
     }
     private IEnumerator RotateRevealCard(Transform card)
