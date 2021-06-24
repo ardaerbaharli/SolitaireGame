@@ -97,7 +97,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: -940
+  m_Spacing: -1000
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.22076797, y: 1.067627}
+  m_Offset: {x: 0.74578094, y: -3.7167053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -150,7 +150,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 108.20045, y: 944.14453}
+  m_Size: {x: 135.45604, y: 1546.9712}
   m_EdgeRadius: 0
 --- !u!1001 &2444390784378823293
 PrefabInstance:
@@ -159,6 +159,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7798117404427796966}
     m_Modifications:
+    - target: {fileID: 1510422770286097443, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510422770286097443, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510422770286097443, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510422770286097443, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1752624343469909217, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
       propertyPath: m_Name
       value: PlaceHolder
@@ -193,11 +209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302371304477536673, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 168.5813
+      value: 212.42
       objectReference: {fileID: 0}
     - target: {fileID: 8302371304477536673, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 154.0865
+      value: 194.1539
       objectReference: {fileID: 0}
     - target: {fileID: 8302371304477536673, guid: 2af5749e7f2853046b5552f8994be79a, type: 3}
       propertyPath: m_LocalPosition.x

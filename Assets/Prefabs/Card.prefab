@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 168.5813, y: 154.0865}
+  m_SizeDelta: {x: 212.42, y: 194.1539}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &47125120010745635
 CanvasRenderer:
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5391998, y: -2.6927032}
+  m_Offset: {x: 0.39390564, y: -0.31568146}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -105,7 +105,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 167.95355, y: 157.13489}
+  m_Size: {x: 212.3122, y: 193.90422}
   m_EdgeRadius: 0
 --- !u!50 &8666512542971699611
 Rigidbody2D:
@@ -145,6 +145,9 @@ MonoBehaviour:
   isFacingUp: 0
   wasFacingUp: 0
   isDummy: 0
+  didDragged: 0
+  lastKnownLocation: {x: 0, y: 0, z: 0}
+  earlierLocation: {x: 0, y: 0, z: 0}
   playcardsPanel: {fileID: 0}
   acesPanel: {fileID: 0}
   groundObj: {fileID: 0}
