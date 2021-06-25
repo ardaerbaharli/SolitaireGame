@@ -44,14 +44,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                     if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
                     {
                         wasFacingUp = true;
-                    }
-                    //else
-                    //{
-                    //    wasFacingUp = false;
-                    //}
-                }
-                //else
-                //    wasFacingUp = false;
+                    }                
+                }              
             }
 
             if (Input.GetMouseButtonUp(0))

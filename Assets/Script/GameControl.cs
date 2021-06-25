@@ -28,7 +28,8 @@ public class GameControl : MonoBehaviour
 
     private int remainingRefreshes;
     public static GameControl instance;
-    public static int moveCount;
+    //public static int moveCount;
+    //public static float time;
     public bool isGameOver;
     public bool didPlayerWin;
     public bool isCelebrated;
@@ -50,7 +51,7 @@ public class GameControl : MonoBehaviour
 
         fillPlayground = false;
         Moves.Clear();
-        moveCount = 0;
+        StatisticController.MoveCount = 0;
         isGameOver = false;
         remainingRefreshes = Settings.deckRefreshCount;
 
@@ -133,6 +134,11 @@ public class GameControl : MonoBehaviour
     }
     private void GameOver(GameOverType type)
     {
+        if (type == GameOverType.Win)
+        {
+            StatisticController.UpdateBestTime(StatisticController.Time);
+            StatisticController.UpdateBestMove(StatisticController.MoveCount);
+        }
         gameOverType = type;
         var lwm = Instantiate(loseWinMenuPrefab, canvas.transform);
         lwm.transform.GetComponent<RectTransform>().localPosition = Vector2.zero;
@@ -421,7 +427,7 @@ public class GameControl : MonoBehaviour
         }
 
         if (target.parent.name.Contains("Panel"))
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1); // set the spacing for the panel layout
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
 
@@ -845,7 +851,7 @@ public class GameControl : MonoBehaviour
     {
         Moves.Add(move);
         helpList.Clear();
-        moveCount++;
+        StatisticController.MoveCount++;
     }
     public void UndoButton()
     {
@@ -858,7 +864,7 @@ public class GameControl : MonoBehaviour
             var move = Moves.Last();
             if (move != null)
             {
-                moveCount++;
+                StatisticController.MoveCount++;
 
                 foreach (var step in move)
                 {
@@ -1037,18 +1043,23 @@ public class GameControl : MonoBehaviour
         }
         else if (origin.childCount >= 2 && target.childCount >= 1) // if its already in the same color and value, its donest need to move
         {
-            var bigBrotherOfOriginCardIndex = result.First().Card.transform.GetSiblingIndex() - 1;
-            var bigBrotherOfOriginCard = origin.GetChild(bigBrotherOfOriginCardIndex);
-
-            if (bigBrotherOfOriginCard.GetComponent<CardController>().isFacingUp)
+            if (origin.name.Contains("Panel"))
             {
-                var bigBrotherOfOriginCardValue = int.Parse(bigBrotherOfOriginCard.name.Substring(1));
+                var bigBrotherOfOriginCardIndex = result.First().Card.transform.GetSiblingIndex() - 1;
+                var bigBrotherOfOriginCard = origin.GetChild(bigBrotherOfOriginCardIndex);
 
-                var targetCard = target.GetChild(target.childCount - 1);
-                int targetCardValue = int.Parse(targetCard.name.Substring(1));
+                if (bigBrotherOfOriginCard.GetComponent<CardController>().isFacingUp)
+                {
+                    var bigBrotherOfOriginCardValue = int.Parse(bigBrotherOfOriginCard.name.Substring(1));
 
-                if (bigBrotherOfOriginCardValue == targetCardValue)
-                    return true;
+                    var targetCard = target.GetChild(target.childCount - 1);
+                    int targetCardValue = int.Parse(targetCard.name.Substring(1));
+
+                    if (bigBrotherOfOriginCardValue == targetCardValue)
+                        return true;
+                    else
+                        return false;
+                }
                 else
                     return false;
             }
@@ -1079,37 +1090,102 @@ public class GameControl : MonoBehaviour
     }
     public IEnumerator Shake(GameObject obj, float s = 0.05f)
     {
-        float seconds;
-        float t;
-        var dpPos = obj.GetComponent<RectTransform>().position;
-        Vector3 left = new Vector3(dpPos.x + 3, dpPos.y, dpPos.z);
-        Vector3 right = new Vector3(dpPos.x - 3, dpPos.y, dpPos.z);
-        for (int i = 0; i < 5; i++)
+        if (obj.transform.parent.name.Contains("Panel"))
         {
-            seconds = s;
-            t = 0f;
-            while (t <= 1.0)
+            var parent = obj.transform.parent;
+            var sibIndex = obj.transform.GetSiblingIndex();
+            var childCount = parent.transform.childCount;
+
+            float seconds;
+            float t;
+            var leftPositions = new List<Vector3>();
+            var rightPositions = new List<Vector3>();
+            var startPositions = new List<Vector3>();
+            for (int k = sibIndex; k < childCount; k++)
             {
-                t += Time.deltaTime / seconds;
-                obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, left, Mathf.SmoothStep(0f, 1f, t));
-                yield return null;
+                var startPos = parent.GetChild(k).GetComponent<RectTransform>().position;
+                startPositions.Add(startPos);
+                leftPositions.Add(new Vector3(startPos.x + 3, startPos.y, startPos.z));
+                rightPositions.Add(new Vector3(startPos.x - 3, startPos.y, startPos.z));
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                seconds = s;
+                t = 0f;
+                while (t <= 1.0)
+                {
+                    t += Time.deltaTime / seconds;
+                    int index = 0;
+                    for (int k = sibIndex; k < childCount; k++)
+                    {
+                        parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, leftPositions[index], Mathf.SmoothStep(0f, 1f, t));
+                        index++;
+                    }
+                    yield return null;
+                }
+                seconds = s;
+                t = 0f;
+                while (t <= 1.0)
+                {
+                    t += Time.deltaTime / seconds;
+                    int index = 0;
+
+                    for (int k = sibIndex; k < childCount; k++)
+                    {
+                        parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, rightPositions[index], Mathf.SmoothStep(0f, 1f, t));
+                        index++;
+                    }
+                    yield return null;
+                }
             }
             seconds = s;
             t = 0f;
             while (t <= 1.0)
             {
                 t += Time.deltaTime / seconds;
-                obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, right, Mathf.SmoothStep(0f, 1f, t));
+                int index = 0;
+                for (int k = sibIndex; k < childCount; k++)
+                {
+                    parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, startPositions[index], Mathf.SmoothStep(0f, 1f, t));
+                    index++;
+                }
                 yield return null;
             }
         }
-        seconds = s;
-        t = 0f;
-        while (t <= 1.0)
+        else
         {
-            t += Time.deltaTime / seconds;
-            obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, dpPos, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
+            float seconds;
+            float t;
+            var startPos = obj.GetComponent<RectTransform>().position;
+            Vector3 left = new Vector3(startPos.x + 3, startPos.y, startPos.z);
+            Vector3 right = new Vector3(startPos.x - 3, startPos.y, startPos.z);
+            for (int i = 0; i < 5; i++)
+            {
+                seconds = s;
+                t = 0f;
+                while (t <= 1.0)
+                {
+                    t += Time.deltaTime / seconds;
+                    obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, left, Mathf.SmoothStep(0f, 1f, t));
+                    yield return null;
+                }
+                seconds = s;
+                t = 0f;
+                while (t <= 1.0)
+                {
+                    t += Time.deltaTime / seconds;
+                    obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, right, Mathf.SmoothStep(0f, 1f, t));
+                    yield return null;
+                }
+            }
+            seconds = s;
+            t = 0f;
+            while (t <= 1.0)
+            {
+                t += Time.deltaTime / seconds;
+                obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, startPos, Mathf.SmoothStep(0f, 1f, t));
+                yield return null;
+            }
         }
     }
     private IEnumerator SlideHelpCard(List<Move> helpMoves, bool willDisappear)
@@ -1127,10 +1203,9 @@ public class GameControl : MonoBehaviour
             posDummies.Add(positionDummy);
         }
 
-        if (!target.parent.CompareTag("AcesPanel"))
-        {
+        if (target.name.Contains("Panel"))
             target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target); // set the spacing for the panel layout
-        }
+
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
 
@@ -1163,10 +1238,9 @@ public class GameControl : MonoBehaviour
             DestroyImmediate(positionDummy);
         }
 
-        if (!target.parent.CompareTag("AcesPanel"))
-        {
+        if (target.name.Contains("Panel"))
             target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target); // set the spacing for the panel layout
-        }
+
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
         yield return null;
@@ -1247,7 +1321,7 @@ public class GameControl : MonoBehaviour
                         targetParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(targetParent);  // set the spacing for the panel layout
                     }
                 }
-                else if (move.Target.parent.name.Contains("AcesPanel"))
+                else if (move.Target.parent.name.Contains("AcesPs"))
                 {
                     card.transform.SetParent(targetParent); // change the parent of the card              
 

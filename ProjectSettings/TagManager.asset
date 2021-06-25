@@ -19,6 +19,7 @@ TagManager:
   - NoButton
   - GameOverType
   - GameControl
+  - LoseWinMenu
   layers:
   - Default
   - TransparentFX

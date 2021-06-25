@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\LoseWinMenu.cs" />
     <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\GameControl.cs" />
+    <Compile Include="Assets\Script\StatisticController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

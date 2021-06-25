@@ -5,27 +5,38 @@ public class GameUI : MonoBehaviour
 {
     [SerializeField] GameObject timeText;
     [SerializeField] GameObject moveCountText;
-    private int initialMoveCount;
-    private float time;
+
     void Start()
     {
-        time = 0;
-        initialMoveCount = GameControl.moveCount;
+        StatisticController.Time = 0;
     }
 
     private void Update()
     {
-        time += Time.deltaTime;
-        int sec = (int)(time % 60);
-        int mins = (int)(time / 60);
-        string secs = sec.ToString();
-        if (sec < 10) secs = $"0{sec}";
-        timeText.GetComponent<Text>().text = $"{mins}:{secs}";
-
-        if (GameControl.moveCount != initialMoveCount)
+        if (!GameControl.instance.isGameOver)
         {
-            initialMoveCount = GameControl.moveCount;
-            moveCountText.GetComponent<Text>().text = GameControl.moveCount.ToString();
+            StatisticController.Time += Time.deltaTime;
+            int sec = (int)(StatisticController.Time % 60);
+            int min = (int)(StatisticController.Time / 60);
+
+            string secs = sec.ToString();
+            if (sec < 10)
+                secs = $"0{sec}";
+
+            string mins = sec.ToString();
+            if (min < 10)
+                mins = $"0{min}";
+
+            timeText.GetComponent<Text>().text = $"{mins}:{secs}";
+
+            moveCountText.GetComponent<Text>().text = StatisticController.MoveCount.ToString();
+
+        }
+        else
+        {
+            Destroy(timeText.transform.parent.gameObject);
+            Destroy(moveCountText.transform.parent.gameObject);
+            gameObject.GetComponent<GameUI>().enabled = false;
         }
     }
 }
