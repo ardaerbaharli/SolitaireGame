@@ -35,6 +35,7 @@ public class GameControl : MonoBehaviour
     public bool isGameOverThingsComplete;
     public GameOverType gameOverType;
     public bool fillPlayground;
+    public bool isSomethingMoving;
 
     private void Awake()
     {
@@ -64,6 +65,9 @@ public class GameControl : MonoBehaviour
     }
     private void Update()
     {
+        if (instance == null)
+            instance = this;
+
         if (!isGameOver)
         {
             Time.timeScale = timeScale;
@@ -333,7 +337,7 @@ public class GameControl : MonoBehaviour
 
             Move move = new Move();
             move.Origin = deckObj.transform;
-            move.Card = card.gameObject;
+            move.Card = card;
             move.Target = groundObj.transform;
             moves.Add(move);
             card.GetComponent<CardController>().earlierLocation = deckObj.transform.position;
@@ -416,10 +420,8 @@ public class GameControl : MonoBehaviour
             posDummies.Add(positionDummy);
         }
 
-        if (!target.parent.CompareTag("AcesPanel"))
-        {
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target); // set the spacing for the panel layout
-        }
+        if (target.parent.name.Contains("Panel"))
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1); // set the spacing for the panel layout
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
 
@@ -434,7 +436,7 @@ public class GameControl : MonoBehaviour
         for (int i = siblingIndex; i < childCount; i++)
         {
             parent.GetChild(siblingIndex).GetComponent<CardController>().isDummy = true;
-            StartCoroutine(SlideAndParent(parent.GetChild(siblingIndex).gameObject, target.transform, positions[index], parent.transform));
+            StartCoroutine(SlideAndParent(parent.GetChild(i).gameObject, target.transform, positions[index], parent.transform));
             index++;
         }
 
@@ -442,7 +444,12 @@ public class GameControl : MonoBehaviour
         {
             DestroyImmediate(positionDummy);
         }
-        yield return null;
+
+        while (parent.name == card.transform.parent.name)
+            yield return null;
+
+        if (target.name.Contains("Panel"))
+            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target);
     }
 
     public IEnumerator RotateToRevealCard(Transform card, float time = 0.2f, bool animation = true)
@@ -596,7 +603,7 @@ public class GameControl : MonoBehaviour
             var cardSuit = card.name[0];
             int cardValue = int.Parse(card.name.Substring(1));
             var parent = card.parent;
-            bool isCardA = (cardValue == 1) ? true : false;
+            bool isCardA = (cardValue == 1);
 
             int acePanelCount = acePanel.transform.childCount;
             for (int i = 0; i < acePanelCount; i++)
@@ -638,7 +645,7 @@ public class GameControl : MonoBehaviour
             int cardValue = int.Parse(card.name.Substring(1));
             var parent = card.parent;
 
-            bool isCardK = (cardValue == 13) ? true : false;
+            bool isCardK = (cardValue == 13);
 
             int playgroundPanelCount = playcardsObj.transform.childCount;
             for (int i = 0; i < playgroundPanelCount; i++)
@@ -746,7 +753,7 @@ public class GameControl : MonoBehaviour
         var cardSuit = card.name[0];
         int cardValue = int.Parse(card.name.Substring(1));
 
-        bool isCardA = (cardValue == 1) ? true : false;
+        bool isCardA = (cardValue == 1);
 
         int acePanelCount = acePanel.transform.childCount;
         for (int i = 0; i < acePanelCount; i++)
@@ -779,8 +786,8 @@ public class GameControl : MonoBehaviour
         int cardIndex = card.GetSiblingIndex();
         int parentChildCount = card.transform.parent.childCount;
 
-        bool isCardK = (cardValue == 13) ? true : false;
-        bool isLastCard = (parentChildCount - 1 == cardIndex) ? true : false;
+        bool isCardK = (cardValue == 13);
+        bool isLastCard = (parentChildCount - 1 == cardIndex);
 
 
         int playgroundPanelCount = playcardsObj.transform.childCount;
@@ -840,7 +847,11 @@ public class GameControl : MonoBehaviour
         helpList.Clear();
         moveCount++;
     }
-    public void Undo()
+    public void UndoButton()
+    {
+        StartCoroutine(Undo());
+    }
+    public IEnumerator Undo()
     {
         if (Moves.Count > 0)
         {
@@ -848,6 +859,7 @@ public class GameControl : MonoBehaviour
             if (move != null)
             {
                 moveCount++;
+
                 foreach (var step in move)
                 {
                     var card = step.Card;
@@ -912,6 +924,7 @@ public class GameControl : MonoBehaviour
                                 StartCoroutine(RotateToHideCard(card.transform));
                             }
                         }
+
                         if (newTarget.name.Contains("Deck"))
                         {
                             StartCoroutine(RotateToHideCard(card.transform));
@@ -920,10 +933,15 @@ public class GameControl : MonoBehaviour
                             card.GetComponent<Button>().enabled = true;
                         }
 
-                        var pos = card.GetComponent<CardController>().earlierLocation;
+                        //var pos = card.GetComponent<CardController>().earlierLocation;
 
-                        StartCoroutine(SlideAndParent(card, newTarget, pos, target));
+                        //StartCoroutine(SlideAndParent(card, newTarget, pos, target));
+                        StartCoroutine(SlideAndParent(move.First().Card, move.First().Origin));
+
+                        while (target.name == card.transform.parent.name)
+                            yield return null;
                         Moves.Remove(move);
+
                     }
                 }
             }
@@ -934,6 +952,7 @@ public class GameControl : MonoBehaviour
         Help();
     }
     public static List<List<Move>> helpList = new List<List<Move>>();
+
     public List<List<Move>> GetAllPossibleMoves()
     {
         possibleMoves = new List<List<Move>>();
@@ -1007,7 +1026,7 @@ public class GameControl : MonoBehaviour
         var target = result.First().Target;
         var card = result.First().Card;
         int cardValue = int.Parse(card.name.Substring(1));
-        bool isCardK = (cardValue == 13) ? true : false;
+        bool isCardK = (cardValue == 13);
 
         if (card.transform.GetSiblingIndex() == 0) // for the card K => if it is already in the empty panel, it doesnt need to change position
         {
@@ -1289,9 +1308,9 @@ public class GameControl : MonoBehaviour
         var yesButton = GameObject.FindGameObjectWithTag("YesButton");
         yesButton.GetComponent<Button>().onClick.AddListener(delegate { SceneLoader.instance.LoadMainScreen(); });
     }
-    public static float CalculateSpacing(Transform transform)
+    public static float CalculateSpacing(Transform transform, int extraChildCount = 0)
     {
-        float spacing = -1480f + (transform.childCount * 50f);
+        float spacing = -1480f + ((transform.childCount + extraChildCount) * 50f);
         if (spacing > -180f)
             spacing = -180f;
         else if (spacing < -1430f)

@@ -9,7 +9,11 @@ public class SceneLoader : MonoBehaviour
     {
         instance = this;
     }
-
+    private void Update()
+    {
+        if (instance == null)
+            instance = this;
+    }
     public void LoadGameScreen()
     {
         StartCoroutine(LoadAsyncScene("Game"));
