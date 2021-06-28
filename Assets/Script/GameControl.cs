@@ -319,7 +319,6 @@ public class GameControl : MonoBehaviour
         {
             var dummy = Instantiate(cardPrefab, parent);
             dummy.GetComponent<CardController>().isDummy = true;
-            //dummy.transform.SetParent(parent);
             dummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             posDummies.Add(dummy.transform);
         }
@@ -341,6 +340,9 @@ public class GameControl : MonoBehaviour
             card.GetComponent<BoxCollider2D>().enabled = true;
             card.GetComponent<Button>().enabled = false;
 
+            card.GetComponent<Canvas>().overrideSorting = true;
+            card.GetComponent<Canvas>().sortingOrder = (dealingCardCount + posIndex) + 3;
+
             Move move = new Move();
             move.Origin = deckObj.transform;
             move.Card = card;
@@ -354,7 +356,13 @@ public class GameControl : MonoBehaviour
             StartCoroutine(RotateToRevealCard(card.transform, 0.2f));
             card.GetComponent<CardController>().isFacingUp = true;
         }
+        for (int i = groundObj.transform.childCount - 3; i < groundObj.transform.childCount; i++)
+        {
+            var card = groundObj.transform.GetChild(i).gameObject;
 
+            card.GetComponent<Canvas>().overrideSorting = false;
+
+        }
         AddMove(moves);
     }
     private IEnumerator SlideAndParentToGround(GameObject card, float time, Vector3 pos, bool animation = true)
