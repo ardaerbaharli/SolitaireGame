@@ -23,8 +23,8 @@ public class GameControl : MonoBehaviour
     private static List<List<Move>> Moves = new List<List<Move>>();
     private List<List<Move>> possibleMoves = new List<List<Move>>();
 
-    private const string BACK_OF_A_CARD_SPRITE_NAME = "Red Back of a card";
-    private const string EMPTY_DECK_SPRTIE_NAME = "Blue Back of a card";
+    private const string BACK_OF_A_CARD_SPRITE_NAME = "Peter River";
+    private const string EMPTY_DECK_SPRTIE_NAME = "Pomegranate";
 
     private int remainingRefreshes;
     public static GameControl instance;
@@ -1374,7 +1374,7 @@ public class GameControl : MonoBehaviour
         else
             return false;
     }
-    public void RestartGame()
+    public void LoadNewGame()
     {
         var q = Instantiate(questionPrefab, canvas.transform);
         q.transform.GetComponent<RectTransform>().localPosition = Vector2.zero;
