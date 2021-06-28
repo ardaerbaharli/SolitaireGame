@@ -298,10 +298,14 @@ public class GameControl : MonoBehaviour
 
             cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
             cardObj.AddComponent<Button>();
-            cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeck(); });
+            cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeckButton(); });
         }
     }
-    public void DealFromDeck(bool animation = true)
+    public void DealFromDeckButton()
+    {
+        StartCoroutine(DealFromDeck());
+    }
+    public IEnumerator DealFromDeck(bool animation = true)
     {
         int dealingCardCount = Settings.drawingCardCount;
 
@@ -356,13 +360,21 @@ public class GameControl : MonoBehaviour
             StartCoroutine(RotateToRevealCard(card.transform, 0.2f));
             card.GetComponent<CardController>().isFacingUp = true;
         }
-        for (int i = groundObj.transform.childCount - 3; i < groundObj.transform.childCount; i++)
+
+        do
+        {
+            yield return null;
+
+        } while (deckObj.transform.childCount != deckCardCount - posIndex);
+
+
+        for (int i = groundObj.transform.childCount - dealingCardCount; i < groundObj.transform.childCount; i++)
         {
             var card = groundObj.transform.GetChild(i).gameObject;
 
             card.GetComponent<Canvas>().overrideSorting = false;
-
         }
+
         AddMove(moves);
     }
     private IEnumerator SlideAndParentToGround(GameObject card, float time, Vector3 pos, bool animation = true)
@@ -451,7 +463,7 @@ public class GameControl : MonoBehaviour
         {
             parent.GetChild(siblingIndex).GetComponent<CardController>().isDummy = true;
             StartCoroutine(SlideAndParent(parent.GetChild(i).gameObject, target.transform, positions[index], parent.transform));
-         
+
             index++;
         }
 
@@ -1052,7 +1064,7 @@ public class GameControl : MonoBehaviour
 
         if (card.transform.GetSiblingIndex() == 0) // for the card K => if it is already in the empty panel, it doesnt need to change position
         {
-            if (target.childCount == 0 && isCardK)
+            if (target.childCount == 0 && isCardK && !target.name.Contains("Panel"))
                 return true;
             else
                 return false;
@@ -1290,7 +1302,7 @@ public class GameControl : MonoBehaviour
         if (moves == null)
         {
             if (deckObj.transform.childCount > 0)
-                DealFromDeck(false);
+                StartCoroutine(DealFromDeck(false));
             else
                 deckObj.GetComponent<Button>().onClick.Invoke();
         }
