@@ -397,7 +397,8 @@ public class GameControl : MonoBehaviour
 
         card.GetComponent<Canvas>().overrideSorting = true;
         card.GetComponent<Canvas>().sortingOrder = 2;
-
+        if (target.name.Contains("Deck"))
+            StartCoroutine(RotateToHideCard(card.transform));
         float seconds = time;
         float t = 0f;
         while (t <= 1.0)
@@ -450,6 +451,7 @@ public class GameControl : MonoBehaviour
         {
             parent.GetChild(siblingIndex).GetComponent<CardController>().isDummy = true;
             StartCoroutine(SlideAndParent(parent.GetChild(i).gameObject, target.transform, positions[index], parent.transform));
+         
             index++;
         }
 
@@ -941,24 +943,23 @@ public class GameControl : MonoBehaviour
                                 lastChildOfNewTarget.GetComponent<CardController>().enabled = false;
                                 StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
 
-                                card.GetComponent<CardController>().enabled = false;
-                                StartCoroutine(RotateToHideCard(card.transform));
                             }
                         }
 
                         if (newTarget.name.Contains("Deck"))
                         {
-                            StartCoroutine(RotateToHideCard(card.transform));
+                            //StartCoroutine(RotateToHideCard(card.transform));
 
                             card.GetComponent<CardController>().enabled = false;
+                            card.GetComponent<BoxCollider2D>().enabled = false;
                             card.GetComponent<Button>().enabled = true;
+                            StartCoroutine(SlideAndParent(card, newTarget));
+
                         }
-
-                        //var pos = card.GetComponent<CardController>().earlierLocation;
-
-                        //StartCoroutine(SlideAndParent(card, newTarget, pos, target));
-                        StartCoroutine(SlideAndParent(move.First().Card, move.First().Origin));
-
+                        else
+                        {
+                            StartCoroutine(SlideAndParent(move.First().Card, move.First().Origin));
+                        }
                         while (target.name == card.transform.parent.name)
                             yield return null;
                         Moves.Remove(move);
