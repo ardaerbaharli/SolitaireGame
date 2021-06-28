@@ -428,8 +428,7 @@ public class GameControl : MonoBehaviour
 
         if (target.parent.name.Contains("Panel"))
             target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1);
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
+        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>());
 
         var positions = new List<Vector3>();
         foreach (var positionDummy in posDummies)
@@ -446,10 +445,18 @@ public class GameControl : MonoBehaviour
             index++;
         }
 
+        do
+        {
+            yield return null;
+
+        } while (parent.childCount != childCount - index);
+
+
         foreach (var positionDummy in posDummies)
         {
             DestroyImmediate(positionDummy);
         }
+
 
         while (parent.name == card.transform.parent.name)
             yield return null;
