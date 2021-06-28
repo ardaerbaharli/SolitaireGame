@@ -1097,6 +1097,7 @@ public class GameControl : MonoBehaviour
     }
     public IEnumerator Shake(GameObject obj, float s = 0.05f)
     {
+        float shakeRadius = obj.GetComponent<RectTransform>().rect.width / 32f;
         if (obj.transform.parent.name.Contains("Panel"))
         {
             var parent = obj.transform.parent;
@@ -1112,8 +1113,8 @@ public class GameControl : MonoBehaviour
             {
                 var startPos = parent.GetChild(k).GetComponent<RectTransform>().position;
                 startPositions.Add(startPos);
-                leftPositions.Add(new Vector3(startPos.x + 3, startPos.y, startPos.z));
-                rightPositions.Add(new Vector3(startPos.x - 3, startPos.y, startPos.z));
+                leftPositions.Add(new Vector3(startPos.x + shakeRadius, startPos.y, startPos.z));
+                rightPositions.Add(new Vector3(startPos.x - shakeRadius, startPos.y, startPos.z));
             }
             for (int i = 0; i < 5; i++)
             {
@@ -1164,8 +1165,8 @@ public class GameControl : MonoBehaviour
             float seconds;
             float t;
             var startPos = obj.GetComponent<RectTransform>().position;
-            Vector3 left = new Vector3(startPos.x + 3, startPos.y, startPos.z);
-            Vector3 right = new Vector3(startPos.x - 3, startPos.y, startPos.z);
+            Vector3 left = new Vector3(startPos.x + shakeRadius, startPos.y, startPos.z);
+            Vector3 right = new Vector3(startPos.x - shakeRadius, startPos.y, startPos.z);
             for (int i = 0; i < 5; i++)
             {
                 seconds = s;
