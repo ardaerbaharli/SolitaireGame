@@ -44,8 +44,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                     if (gameObject.transform.parent.childCount > gameObject.transform.GetSiblingIndex() + 1)
                     {
                         wasFacingUp = true;
-                    }                
-                }              
+                    }
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -149,6 +149,14 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                     foreach (var m in move)
                         m.Card.GetComponent<CardController>().lastKnownLocation = m.Card.transform.position;
 
+                    if (move.First().Origin.name.Contains("Ground"))
+                    {
+                        if (move.First().Origin.transform.childCount > 2)
+                        {
+                            int index = move.First().Origin.transform.childCount - 1 - 2;
+                            move.First().Origin.transform.GetChild(index).gameObject.SetActive(true);
+                        }
+                    }
                     if (move.First().Origin.childCount > 0)
                     {
                         var topCard = move.First().Origin.GetChild(move.First().Origin.childCount - 1);
@@ -159,6 +167,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                         StartCoroutine(GameControl.instance.RotateToRevealCard(topCard));
                     }
                     break;
+
                 }
             }
             if (!isFound)

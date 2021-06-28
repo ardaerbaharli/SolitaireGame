@@ -1061,10 +1061,13 @@ public class GameControl : MonoBehaviour
         var card = result.First().Card;
         int cardValue = int.Parse(card.name.Substring(1));
         bool isCardK = (cardValue == 13);
+        bool isCardA = (cardValue == 1);
 
         if (card.transform.GetSiblingIndex() == 0) // for the card K => if it is already in the empty panel, it doesnt need to change position
         {
-            if (target.childCount == 0 && isCardK && !target.name.Contains("Panel"))
+            if (origin.name.Contains("Ground"))
+                return false;
+            if (target.childCount == 0 && isCardK)
                 return true;
             else
                 return false;
@@ -1308,7 +1311,7 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            AddMove(moves);
+            //AddMove(moves);
             foreach (var move in moves)
             {
                 var originParent = move.Origin;
@@ -1343,7 +1346,6 @@ public class GameControl : MonoBehaviour
                             lastChildOfTheOriginParent.GetComponent<CardController>().enabled = true;
                             lastChildOfTheOriginParent.GetComponent<CardController>().isFacingUp = true;
                             lastChildOfTheOriginParent.GetComponent<BoxCollider2D>().enabled = true;
-
                         }
 
                         originParent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(originParent);  // set the spacing for the panel layout
