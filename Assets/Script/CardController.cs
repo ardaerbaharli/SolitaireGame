@@ -157,6 +157,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                             move.First().Origin.transform.GetChild(index).gameObject.SetActive(true);
                         }
                     }
+
                     if (move.First().Origin.childCount > 0)
                     {
                         var topCard = move.First().Origin.GetChild(move.First().Origin.childCount - 1);

@@ -1311,7 +1311,7 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            //AddMove(moves);
+            AddMove(moves);
             foreach (var move in moves)
             {
                 var originParent = move.Origin;
