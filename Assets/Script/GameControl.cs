@@ -1,3 +1,4 @@
+using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,12 @@ using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
-    [SerializeField] GameObject cardPrefab;
-    [SerializeField] GameObject playcardsObj;
-    [SerializeField] GameObject deckObj;
-    [SerializeField] GameObject acePanel;
-    [SerializeField] GameObject groundObj;
-    [SerializeField] GameObject canvas;
+    public GameObject cardPrefab;
+    public GameObject groundObj;
+    public GameObject canvas;
+    public GameObject playcardsObj;
+    public GameObject deckObj;
+    public GameObject acePanel;
     [SerializeField] GameObject undoButton;
     [SerializeField] GameObject helpButton;
     [SerializeField] GameObject questionPrefab;
@@ -21,15 +22,13 @@ public class GameControl : MonoBehaviour
 
     private List<Card> UnshuffledDeck = new List<Card>();
     private static List<List<Move>> Moves = new List<List<Move>>();
-    private List<List<Move>> possibleMoves = new List<List<Move>>();
+    public List<List<Move>> possibleMoves = new List<List<Move>>();
 
-    private const string BACK_OF_A_CARD_SPRITE_NAME = "Peter River";
-    private const string EMPTY_DECK_SPRTIE_NAME = "Pomegranate";
+    public const string BACK_OF_A_CARD_SPRITE_NAME = "Peter River";
+    public const string EMPTY_DECK_SPRTIE_NAME = "Pomegranate";
 
     private int remainingRefreshes;
     public static GameControl instance;
-    //public static int moveCount;
-    //public static float time;
     public bool isGameOver;
     public bool didPlayerWin;
     public bool isCelebrated;
@@ -299,7 +298,10 @@ public class GameControl : MonoBehaviour
             cardObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
             cardObj.AddComponent<Button>();
             cardObj.GetComponent<Button>().onClick.AddListener(delegate { DealFromDeckButton(); });
+            cardObj.GetComponent<Button>().enabled = false;
         }
+        if (deckObj.transform.childCount > 0)
+            deckObj.transform.GetChild(deckObj.transform.childCount - 1).GetComponent<Button>().enabled = true;
     }
     public void DealFromDeckButton()
     {
@@ -312,6 +314,7 @@ public class GameControl : MonoBehaviour
         int deckCardCount = deckObj.transform.childCount;
         if (deckCardCount < Settings.drawingCardCount)
             dealingCardCount = deckCardCount;
+
 
         int startIndex = deckCardCount - dealingCardCount;
         var moves = new List<Move>();
@@ -355,9 +358,9 @@ public class GameControl : MonoBehaviour
             card.GetComponent<CardController>().earlierLocation = deckObj.transform.position;
             card.GetComponent<CardController>().lastKnownLocation = cardPositions[posIndex];
 
-            StartCoroutine(SlideAndParentToGround(card, 0.5f, cardPositions[posIndex], animation));
+            StartCoroutine(MyAnimationController.SlideAndParentToGround(card, 0.5f, cardPositions[posIndex], animation));
             posIndex++;
-            StartCoroutine(RotateToRevealCard(card.transform, 0.2f));
+            StartCoroutine(MyAnimationController.RotateToRevealCard(card.transform, 0.2f));
             card.GetComponent<CardController>().isFacingUp = true;
         }
 
@@ -374,183 +377,200 @@ public class GameControl : MonoBehaviour
 
             card.GetComponent<Canvas>().overrideSorting = false;
         }
+        if (deckObj.transform.childCount > 0)
+            deckObj.transform.GetChild(deckObj.transform.childCount - 1).GetComponent<Button>().enabled = true;
 
         AddMove(moves);
     }
-    private IEnumerator SlideAndParentToGround(GameObject card, float time, Vector3 pos, bool animation = true)
-    {
-        Transform parent = groundObj.transform;
-        if (animation)
-        {
-            float seconds = time;
-            float t = 0f;
-            while (t <= 1.0)
-            {
-                t += Time.deltaTime / seconds;
-                card.transform.position = Vector3.Lerp(card.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
-                yield return null;
-            }
-        }
+    //private IEnumerator SlideAndParentToGround(GameObject card, float time, Vector3 pos, bool animation = true)
+    //{
+    //    card.GetComponent<CardController>().isSliding = true;
+    //    Transform parent = groundObj.transform;
+    //    if (animation)
+    //    {
+    //        float seconds = time;
+    //        float t = 0f;
+    //        while (t <= 1.0)
+    //        {
+    //            t += Time.deltaTime / seconds;
+    //            card.transform.position = Vector3.Lerp(card.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
+    //            yield return null;
+    //        }
+    //    }
 
-        card.transform.SetParent(parent);
+    //    card.transform.SetParent(parent);
 
-        if (parent.childCount > 3)
-        {
-            for (int k = 0; k < parent.childCount - 3; k++)
-            {
-                parent.GetChild(k).gameObject.SetActive(false);
-            }
-        }
-        card.GetComponent<CardController>().isDummy = false;
-    }
-    public IEnumerator SlideAndParent(GameObject card, Transform target, Vector3 pos, Transform parent, float time = 0.3f)
-    {
-        card.GetComponent<CardController>().isDummy = true;
+    //    if (parent.childCount > 3)
+    //    {
+    //        for (int k = 0; k < parent.childCount - 3; k++)
+    //        {
+    //            parent.GetChild(k).gameObject.SetActive(false);
+    //        }
+    //    }
+    //    card.GetComponent<CardController>().isDummy = false;
+    //    card.GetComponent<CardController>().isSliding = false;
+    //}
+    //public IEnumerator SlideAndParent(GameObject card, Transform target, Vector3 pos, Transform parent, float time = 0.3f)
+    //{
+    //    card.GetComponent<CardController>().isSliding = true;
 
-        card.GetComponent<Canvas>().overrideSorting = true;
-        card.GetComponent<Canvas>().sortingOrder = 2;
-        if (target.name.Contains("Deck"))
-            StartCoroutine(RotateToHideCard(card.transform));
-        float seconds = time;
-        float t = 0f;
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            card.transform.position = Vector3.Lerp(card.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
-        }
+    //    card.GetComponent<CardController>().isDummy = true;
 
-        card.transform.SetParent(target);
+    //    card.GetComponent<Canvas>().overrideSorting = true;
+    //    card.GetComponent<Canvas>().sortingOrder = 2;
+    //    if (target.name.Contains("Deck"))
+    //        StartCoroutine(RotateToHideCard(card.transform));
+    //    float seconds = time;
+    //    float t = 0f;
+    //    while (t <= 1.0)
+    //    {
+    //        t += Time.deltaTime / seconds;
+    //        card.transform.position = Vector3.Lerp(card.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
+    //        yield return null;
+    //    }
 
-        if (parent.name.Contains("Panel"))
-            parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(parent); // set the spacing for the panel layout
+    //    card.transform.SetParent(target);
 
-        card.GetComponent<Canvas>().overrideSorting = false;
+    //    if (parent.name.Contains("Panel"))
+    //        parent.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(parent); // set the spacing for the panel layout
 
-        card.GetComponent<CardController>().isDummy = false;
-    }
+    //    card.GetComponent<Canvas>().overrideSorting = false;
 
-    public IEnumerator SlideAndParent(GameObject card, Transform target, float time = 0.3f)
-    {
-        var parent = card.transform.parent;
-        int siblingIndex = card.transform.GetSiblingIndex();
-        int childCount = card.transform.parent.childCount;
+    //    card.GetComponent<CardController>().isDummy = false;
+    //    card.GetComponent<CardController>().isSliding = false;
+    //}
 
-        var cardPositions = new List<Vector3>();
-        var posDummies = new List<GameObject>();
-        for (int i = siblingIndex; i < childCount; i++)
-        {
-            var positionDummy = Instantiate(cardPrefab, target) as GameObject;
-            positionDummy.GetComponent<CardController>().isDummy = true;
-            positionDummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            cardPositions.Add(parent.GetChild(i).transform.position);
-            posDummies.Add(positionDummy);
-        }
+    //public IEnumerator SlideAndParent(GameObject card, Transform target, float time = 0.3f)
+    //{
+    //    card.GetComponent<CardController>().isSliding = true;
 
-        if (target.parent.name.Contains("Panel"))
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>());
+    //    var parent = card.transform.parent;
+    //    int siblingIndex = card.transform.GetSiblingIndex();
+    //    int childCount = card.transform.parent.childCount;
 
-        var positions = new List<Vector3>();
-        foreach (var positionDummy in posDummies)
-        {
-            var pos = positionDummy.transform.position;
-            positions.Add(pos);
-        }
+    //    var cardPositions = new List<Vector3>();
+    //    var posDummies = new List<GameObject>();
+    //    for (int i = siblingIndex; i < childCount; i++)
+    //    {
+    //        var positionDummy = Instantiate(cardPrefab, target) as GameObject;
+    //        positionDummy.GetComponent<CardController>().isDummy = true;
+    //        positionDummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    //        cardPositions.Add(parent.GetChild(i).transform.position);
+    //        posDummies.Add(positionDummy);
+    //    }
 
-        int index = 0;
-        for (int i = siblingIndex; i < childCount; i++)
-        {
-            parent.GetChild(siblingIndex).GetComponent<CardController>().isDummy = true;
-            StartCoroutine(SlideAndParent(parent.GetChild(i).gameObject, target.transform, positions[index], parent.transform));
+    //    if (target.parent.name.Contains("Panel"))
+    //        target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target, 1);
+    //    LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>());
 
-            index++;
-        }
+    //    var positions = new List<Vector3>();
+    //    foreach (var positionDummy in posDummies)
+    //    {
+    //        var pos = positionDummy.transform.position;
+    //        positions.Add(pos);
+    //    }
 
-        do
-        {
-            yield return null;
+    //    int index = 0;
+    //    for (int i = siblingIndex; i < childCount; i++)
+    //    {
+    //        parent.GetChild(siblingIndex).GetComponent<CardController>().isDummy = true;
+    //        StartCoroutine(SlideAndParent(parent.GetChild(i).gameObject, target.transform, positions[index], parent.transform));
 
-        } while (parent.childCount != childCount - index);
+    //        index++;
+    //    }
+
+    //    do
+    //    {
+    //        yield return null;
+
+    //    } while (parent.childCount != childCount - index);
 
 
-        foreach (var positionDummy in posDummies)
-        {
-            DestroyImmediate(positionDummy);
-        }
+    //    foreach (var positionDummy in posDummies)
+    //    {
+    //        DestroyImmediate(positionDummy);
+    //    }
 
 
-        while (parent.name == card.transform.parent.name)
-            yield return null;
+    //    while (parent.name == card.transform.parent.name)
+    //        yield return null;
 
-        if (target.name.Contains("Panel"))
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target);
-    }
+    //    if (target.name.Contains("Panel"))
+    //        target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target);
 
-    public IEnumerator RotateToRevealCard(Transform card, float time = 0.2f, bool animation = true)
-    {
-        if (animation)
-        {
-            if (!card.GetComponent<CardController>().isFacingUp)
-            {
-                float seconds = time;
-                float t = 0f;
-                var v = new Vector3(0, 90f, 0);
-                var q = Quaternion.Euler(v);
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-                    yield return null;
-                }
+    //    card.GetComponent<CardController>().isSliding = false;
 
-                card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
-                card.GetComponent<CardController>().isFacingUp = true;
+    //}
 
-                seconds = time;
-                t = 0f;
-                v = new Vector3(0, 0f, 0);
-                q = Quaternion.Euler(v);
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-                    yield return null;
-                }
-            }
-        }
-        else
-        {
-            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
-            card.GetComponent<CardController>().isFacingUp = true;
-        }
-    }
-    private IEnumerator RotateToHideCard(Transform card, float time = 0.2f)
-    {
-        float seconds = time;
-        float t = 0f;
-        var v = new Vector3(0, 90f, 0);
-        var q = Quaternion.Euler(v);
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
-        }
+    //public IEnumerator RotateToRevealCard(Transform card, float time = 0.2f, bool animation = true)
+    //{
+    //    if (animation)
+    //    {
+    //        if (!card.GetComponent<CardController>().isFacingUp)
+    //        {
 
-        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
-        card.GetComponent<CardController>().isFacingUp = false;
-        seconds = time;
-        t = 0f;
-        v = new Vector3(0, 0f, 0);
-        q = Quaternion.Euler(v);
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
-        }
-    }
+    //            card.GetComponent<CardController>().isSliding = true;
+
+    //            float seconds = time;
+    //            float t = 0f;
+    //            var v = new Vector3(0, 90f, 0);
+    //            var q = Quaternion.Euler(v);
+    //            while (t <= 1.0)
+    //            {
+    //                t += Time.deltaTime / seconds;
+    //                card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+    //                yield return null;
+    //            }
+
+    //            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
+    //            card.GetComponent<CardController>().isFacingUp = true;
+
+    //            seconds = time;
+    //            t = 0f;
+    //            v = new Vector3(0, 0f, 0);
+    //            q = Quaternion.Euler(v);
+    //            while (t <= 1.0)
+    //            {
+    //                t += Time.deltaTime / seconds;
+    //                card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+    //                yield return null;
+    //            }
+    //            card.GetComponent<CardController>().isSliding = false;
+    //        }
+
+    //    }
+    //    else
+    //    {
+    //        card.GetComponent<Image>().sprite = Resources.Load<Sprite>(card.name);
+    //        card.GetComponent<CardController>().isFacingUp = true;
+    //    }
+    //}
+    //private IEnumerator RotateToHideCard(Transform card, float time = 0.2f)
+    //{
+    //    float seconds = time;
+    //    float t = 0f;
+    //    var v = new Vector3(0, 90f, 0);
+    //    var q = Quaternion.Euler(v);
+    //    while (t <= 1.0)
+    //    {
+    //        t += Time.deltaTime / seconds;
+    //        card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+    //        yield return null;
+    //    }
+
+    //    card.GetComponent<Image>().sprite = Resources.Load<Sprite>(BACK_OF_A_CARD_SPRITE_NAME);
+    //    card.GetComponent<CardController>().isFacingUp = false;
+    //    seconds = time;
+    //    t = 0f;
+    //    v = new Vector3(0, 0f, 0);
+    //    q = Quaternion.Euler(v);
+    //    while (t <= 1.0)
+    //    {
+    //        t += Time.deltaTime / seconds;
+    //        card.GetComponent<RectTransform>().rotation = Quaternion.Lerp(card.GetComponent<RectTransform>().rotation, q, Mathf.SmoothStep(0f, 1f, t));
+    //        yield return null;
+    //    }
+    //}
     public void RefreshDeck()
     {
         if (deckObj.transform.childCount == 0)
@@ -561,12 +581,14 @@ public class GameControl : MonoBehaviour
                 remainingRefreshes--;
                 int groundCardCount = groundObj.transform.childCount;
 
-                if (!IsThereAMove())
+                if (!Foreseer.IsThereAMove())
                 {
                     GameOver(GameOverType.Lose);
                 }
                 else
                 {
+
+
                     for (int i = groundCardCount - 1; i >= 0; i--)
                     {
                         var topCard = groundObj.transform.GetChild(i);
@@ -580,9 +602,9 @@ public class GameControl : MonoBehaviour
                         m.Origin = topCard.parent;
                         m.Target = deckObj.transform;
                         moves.Add(m);
-
-                        StartCoroutine(SlideAndParent(topCard.gameObject, deckObj.transform, deckObj.transform.position, m.Target, 0.3f));
-                        StartCoroutine(RotateToHideCard(topCard, 0.2f));
+                        
+                        StartCoroutine(MyAnimationController.SlideToDeck(topCard.gameObject, 0.3f));
+                        StartCoroutine(MyAnimationController.RotateToHideCard(topCard, 0.2f));
                     }
                 }
             }
@@ -592,288 +614,6 @@ public class GameControl : MonoBehaviour
                 GameOver(GameOverType.Lose);
             }
         }
-    }
-    private List<Move> GetNextMove()
-    {
-        var moveList = FromPlayground();
-        if (!IsNullOrEmpty(moveList))
-            return moveList;
-
-        var moves = FromGround();
-        if (!IsNullOrEmpty(moves))
-            return moves;
-
-        return null;
-    }
-    private bool IsThereAMove()
-    {
-        int deckCardCount = deckObj.transform.childCount;
-        for (int i = 0; i < deckCardCount; i++)
-        {
-            var card = deckObj.transform.GetChild(i);
-
-            if (CanItGoToAnyAcePanel(card))
-                return true;
-            if (CanItGoToAnyPlaygroundPanel(card))
-                return true;
-        }
-
-        int groundCardCount = groundObj.transform.childCount;
-        for (int i = 0; i < groundCardCount; i++)
-        {
-            var card = groundObj.transform.GetChild(i);
-
-            if (CanItGoToAnyAcePanel(card))
-                return true;
-            if (CanItGoToAnyPlaygroundPanel(card))
-                return true;
-        }
-
-        return false;
-    }
-    private bool CanItGoToAnyAcePanel(Transform card)
-    {
-        if (!card.GetComponent<CardController>().isDummy)
-        {
-            var cardSuit = card.name[0];
-            int cardValue = int.Parse(card.name.Substring(1));
-            var parent = card.parent;
-            bool isCardA = (cardValue == 1);
-
-            int acePanelCount = acePanel.transform.childCount;
-            for (int i = 0; i < acePanelCount; i++)
-            {
-                var panel = acePanel.transform.GetChild(i);
-                if (panel.childCount > 0)
-                {
-                    var lastCard = panel.GetChild(panel.childCount - 1);
-                    var lastCardSuit = lastCard.name[0];
-                    int lastCardValue = int.Parse(lastCard.name.Substring(1));
-                    if (lastCardSuit == cardSuit && cardValue == lastCardValue + 1)
-                    {
-                        var m = new Move();
-                        m.Card = card.gameObject;
-                        m.Origin = parent;
-                        m.Target = panel;
-                        if (!IsItDumbMove(m.ToList()))
-                            return true;
-                    }
-                }
-                else if (panel.childCount == 0 && isCardA)
-                {
-                    var m = new Move();
-                    m.Card = card.gameObject;
-                    m.Origin = parent;
-                    m.Target = panel;
-                    if (!IsItDumbMove(m.ToList()))
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-    private bool CanItGoToAnyPlaygroundPanel(Transform card)
-    {
-        if (!card.GetComponent<CardController>().isDummy)
-        {
-            var cardSuit = card.name[0];
-            int cardValue = int.Parse(card.name.Substring(1));
-            var parent = card.parent;
-
-            bool isCardK = (cardValue == 13);
-
-            int playgroundPanelCount = playcardsObj.transform.childCount;
-            for (int i = 0; i < playgroundPanelCount; i++)
-            {
-                var panel = playcardsObj.transform.GetChild(i);
-                if (panel.childCount > 0)
-                {
-                    var lastCard = panel.GetChild(panel.childCount - 1);
-                    if (!lastCard.GetComponent<CardController>().isDummy)
-                    {
-                        var lastCardSuit = lastCard.name[0];
-                        int lastCardValue = int.Parse(lastCard.name.Substring(1));
-
-                        if (cardValue == lastCardValue - 1 && IsPlaygroudCardSuitTrue(lastCardSuit, cardSuit))
-                        {
-                            var m = new Move();
-                            m.Card = card.gameObject;
-                            m.Origin = parent;
-                            m.Target = panel;
-                            if (!IsItDumbMove(m.ToList()))
-                                return true;
-                        }
-                    }
-                }
-                else if (panel.childCount == 0 && isCardK)
-                {
-                    var m = new Move();
-                    m.Card = card.gameObject;
-                    m.Origin = parent;
-                    m.Target = panel;
-                    if (!IsItDumbMove(m.ToList()))
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-    private List<Move> FromGround()
-    {
-        if (groundObj.transform.childCount > 0)
-        {
-            var card = groundObj.transform.GetChild(groundObj.transform.childCount - 1);
-
-            if (CanItGoToAnyAcePanel(card))
-            {
-                var move = GetAcePanelMove(card);
-
-                if (!IsItDumbMove(move.ToList()) && !DoesContains(possibleMoves, move.ToList()))//!DoesExistInHelpHistory(move.ToList()) &&
-                    return move.ToList();
-            }
-            if (CanItGoToAnyPlaygroundPanel(card))
-            {
-                var moves = GetPlaygroundMoves(card);
-                if (!IsItDumbMove(moves) && !DoesContains(possibleMoves, moves))//!DoesExistInHelpHistory(moves) && 
-                    return moves;
-            }
-        }
-        return null;
-    }
-    private List<Move> FromPlayground()
-    {
-        int playgroundPanelCount = playcardsObj.transform.childCount;
-
-        // to ace panel
-        for (int i = 0; i < playgroundPanelCount; i++)
-        {
-            var panel = playcardsObj.transform.GetChild(i);
-            if (panel.childCount > 0)
-            {
-                var lastCard = panel.transform.GetChild(panel.childCount - 1);
-                if (CanItGoToAnyAcePanel(lastCard))
-                {
-                    var move = GetAcePanelMove(lastCard);
-
-                    if (!IsItDumbMove(move.ToList()) && !DoesContains(possibleMoves, move.ToList()))//!DoesExistInHelpHistory(move.ToList()) &&
-                        return move.ToList();
-                }
-            }
-        }
-
-        // to playground
-        for (int i = 0; i < playgroundPanelCount; i++)
-        {
-            var playgroundPanel = playcardsObj.transform.GetChild(i);
-            int playgroundPanelCardcount = playgroundPanel.childCount;
-            if (playgroundPanelCardcount > 0)
-            {
-                for (int k = 0; k < playgroundPanelCardcount; k++)
-                {
-                    var card = playgroundPanel.GetChild(k);
-                    if (card.GetComponent<CardController>().isFacingUp)
-                        if (CanItGoToAnyPlaygroundPanel(card))
-                        {
-                            var moves = GetPlaygroundMoves(card);
-                            if (!IsItDumbMove(moves) && !DoesContains(possibleMoves, moves))//!DoesExistInHelpHistory(moves) &&
-                                return moves;
-                        }
-                }
-            }
-        }
-        return null;
-    }
-    private Move GetAcePanelMove(Transform card)
-    {
-        var cardSuit = card.name[0];
-        int cardValue = int.Parse(card.name.Substring(1));
-
-        bool isCardA = (cardValue == 1);
-
-        int acePanelCount = acePanel.transform.childCount;
-        for (int i = 0; i < acePanelCount; i++)
-        {
-            var panel = acePanel.transform.GetChild(i);
-            if (panel.childCount > 0)
-            {
-                var lastCard = panel.GetChild(panel.childCount - 1);
-                var lastCardSuit = lastCard.name[0];
-                int lastCardValue = int.Parse(lastCard.name.Substring(1));
-                if (lastCardSuit == cardSuit && cardValue == lastCardValue + 1)
-                {
-                    var move = new Move(card.gameObject, card.transform.parent, panel);
-                    return move;
-                }
-
-            }
-            else if (panel.childCount == 0 && isCardA)
-            {
-                var move = new Move(card.gameObject, card.transform.parent, panel);
-                return move;
-            }
-        }
-        return null;
-    }
-    private List<Move> GetPlaygroundMoves(Transform card)
-    {
-        var cardSuit = card.name[0];
-        int cardValue = int.Parse(card.name.Substring(1));
-        int cardIndex = card.GetSiblingIndex();
-        int parentChildCount = card.transform.parent.childCount;
-
-        bool isCardK = (cardValue == 13);
-        bool isLastCard = (parentChildCount - 1 == cardIndex);
-
-
-        int playgroundPanelCount = playcardsObj.transform.childCount;
-        for (int i = 0; i < playgroundPanelCount; i++)
-        {
-            var panel = playcardsObj.transform.GetChild(i);
-            if (panel.childCount > 0)
-            {
-                var lastCard = panel.GetChild(panel.childCount - 1);
-                var lastCardSuit = lastCard.name[0];
-                int lastCardValue = int.Parse(lastCard.name.Substring(1));
-
-                if (cardValue == lastCardValue - 1 && IsPlaygroudCardSuitTrue(lastCardSuit, cardSuit))
-                {
-                    if (isLastCard)
-                    {
-                        var move = new Move(card.gameObject, card.transform.parent, panel.transform);
-                        return move.ToList();
-                    }
-                    else
-                    {
-                        var moves = new List<Move>();
-                        for (int k = cardIndex; k < parentChildCount; k++)
-                        {
-                            var move = new Move(card.transform.parent.GetChild(k).gameObject, card.transform.parent, panel.transform);
-                            moves.Add(move);
-                        }
-                        return moves;
-                    }
-                }
-            }
-            else if (panel.childCount == 0 && isCardK)
-            {
-                if (isLastCard)
-                {
-                    var move = new Move(card.gameObject, card.transform.parent, panel.transform);
-                    return move.ToList();
-                }
-                else
-                {
-                    var moves = new List<Move>();
-                    for (int k = cardIndex; k < parentChildCount; k++)
-                    {
-                        var move = new Move(card.gameObject, card.transform.parent, panel.transform);
-                        moves.Add(move);
-                    }
-                    return moves;
-                }
-            }
-        }
-        return null;
     }
 
     public static void AddMove(List<Move> move)
@@ -911,7 +651,7 @@ public class GameControl : MonoBehaviour
                                 var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
                                 if (!lastChildOfNewTarget.GetComponent<CardController>().wasFacingUp)
                                 {
-                                    StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                                    StartCoroutine(MyAnimationController.RotateToHideCard(lastChildOfNewTarget.transform));
                                     lastChildOfNewTarget.GetComponent<CardController>().enabled = false;
                                 }
                             }
@@ -920,7 +660,7 @@ public class GameControl : MonoBehaviour
                                 if (newTarget.childCount > 3)
                                 {
                                     var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 3);
-                                    StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                                    StartCoroutine(MyAnimationController.RotateToHideCard(lastChildOfNewTarget.transform));
                                     lastChildOfNewTarget.GetComponent<CardController>().enabled = false;
 
                                     lastChildOfNewTarget.gameObject.SetActive(false);
@@ -953,7 +693,7 @@ public class GameControl : MonoBehaviour
 
                                 var lastChildOfNewTarget = newTarget.GetChild(newTarget.childCount - 1);
                                 lastChildOfNewTarget.GetComponent<CardController>().enabled = false;
-                                StartCoroutine(RotateToHideCard(lastChildOfNewTarget.transform));
+                                StartCoroutine(MyAnimationController.RotateToHideCard(lastChildOfNewTarget.transform));
 
                             }
                         }
@@ -965,12 +705,12 @@ public class GameControl : MonoBehaviour
                             card.GetComponent<CardController>().enabled = false;
                             card.GetComponent<BoxCollider2D>().enabled = false;
                             card.GetComponent<Button>().enabled = true;
-                            StartCoroutine(SlideAndParent(card, newTarget));
+                            StartCoroutine(MyAnimationController.SlideAndParent(card, newTarget, 0.3f));
 
                         }
                         else
                         {
-                            StartCoroutine(SlideAndParent(move.First().Card, move.First().Origin));
+                            StartCoroutine(MyAnimationController.SlideAndParent(move.First().Card, move.First().Origin, 0.3f));
                         }
                         while (target.name == card.transform.parent.name)
                             yield return null;
@@ -987,30 +727,18 @@ public class GameControl : MonoBehaviour
     }
     public static List<List<Move>> helpList = new List<List<Move>>();
 
-    public List<List<Move>> GetAllPossibleMoves()
-    {
-        possibleMoves = new List<List<Move>>();
-        var moves = GetNextMove();
-        while (!IsNullOrEmpty(moves))
-        {
-            possibleMoves.Add(moves);
-            moves = GetNextMove();
-        }
-
-        return possibleMoves;
-    }
     private List<Move> Help(bool animation = true)
     {
-        possibleMoves = GetAllPossibleMoves();
+        possibleMoves = Foreseer.GetAllPossibleMoves();
         List<Move> moves = new List<Move>();
 
-        if (!IsNullOrEmpty(possibleMoves))
+        if (!Helpers.IsNullOrEmpty(possibleMoves))
         {
             possibleMoves.Sort((a, b) => b.Count - a.Count);
             moves = possibleMoves.First();
 
         }
-        while (DoesContains(helpList, moves))
+        while (Helpers.DoesContains(helpList, moves))
         {
             possibleMoves.Remove(moves);
             if (possibleMoves.Count == 0)
@@ -1024,12 +752,12 @@ public class GameControl : MonoBehaviour
         if (moves != null)
             helpList.Add(moves);
 
-        if (IsNullOrEmpty(moves))
+        if (Helpers.IsNullOrEmpty(moves))
         {
-            if (IsThereAMove())
+            if (Foreseer.IsThereAMove())
             {
                 if (animation)
-                    StartCoroutine(Shake(deckObj));
+                    StartCoroutine(MyAnimationController.Shake(deckObj));
             }
             else
                 GameOver(GameOverType.Lose);
@@ -1047,259 +775,14 @@ public class GameControl : MonoBehaviour
                 //HelpHistory.Add(move);
             }
             if (animation)
-                StartCoroutine(SlideHelpCard(helpMoves, true));
+                StartCoroutine(MyAnimationController.SlideHelpCard(helpMoves, true));
             return helpMoves;
         }
         List<Move> empty = null;
         return empty;
     }
-    private bool IsItDumbMove(List<Move> result)
-    {
-        // return true => it is dumb move
-        var origin = result.First().Origin;
-        var target = result.First().Target;
-        var card = result.First().Card;
-        int cardValue = int.Parse(card.name.Substring(1));
-        bool isCardK = (cardValue == 13);
-        bool isCardA = (cardValue == 1);
-
-        if (card.transform.GetSiblingIndex() == 0) // for the card K => if it is already in the empty panel, it doesnt need to change position
-        {
-            if (origin.name.Contains("Ground"))
-                return false;
-            if (target.childCount == 0 && isCardK)
-                return true;
-            else
-                return false;
-        }
-        else if (origin.childCount >= 2 && target.childCount >= 1) // if its already in the same color and value, its donest need to move
-        {
-            if (origin.name.Contains("Panel"))
-            {
-                var bigBrotherOfOriginCardIndex = result.First().Card.transform.GetSiblingIndex() - 1;
-                var bigBrotherOfOriginCard = origin.GetChild(bigBrotherOfOriginCardIndex);
-
-                if (bigBrotherOfOriginCard.GetComponent<CardController>().isFacingUp)
-                {
-                    var bigBrotherOfOriginCardValue = int.Parse(bigBrotherOfOriginCard.name.Substring(1));
-
-                    var targetCard = target.GetChild(target.childCount - 1);
-                    int targetCardValue = int.Parse(targetCard.name.Substring(1));
-
-                    if (bigBrotherOfOriginCardValue == targetCardValue)
-                        return true;
-                    else
-                        return false;
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
-        else
-            return false;
-    }
-    private bool DoesContains(List<List<Move>> possibleMoves, List<Move> move)
-    {
-        for (int i = 0; i < possibleMoves.Count; i++)
-        {
-            foreach (var possibleMove in possibleMoves[i])
-            {
-                for (int k = 0; k < move.Count; k++)
-                {
-                    if (possibleMove.Card.name == move[k].Card.name && possibleMove.Target.name == move[k].Target.name && possibleMove.Origin.name == move[k].Origin.name)
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-    public static bool IsNullOrEmpty(ICollection collection)
-    {
-        return collection == null || collection.Count == 0;
-    }
-    public IEnumerator Shake(GameObject obj, float s = 0.05f)
-    {
-        float shakeRadius = obj.GetComponent<RectTransform>().rect.width / 32f;
-        if (obj.transform.parent.name.Contains("Panel"))
-        {
-            var parent = obj.transform.parent;
-            var sibIndex = obj.transform.GetSiblingIndex();
-            var childCount = parent.transform.childCount;
-
-            float seconds;
-            float t;
-            var leftPositions = new List<Vector3>();
-            var rightPositions = new List<Vector3>();
-            var startPositions = new List<Vector3>();
-            for (int k = sibIndex; k < childCount; k++)
-            {
-                var startPos = parent.GetChild(k).GetComponent<RectTransform>().position;
-                startPositions.Add(startPos);
-                leftPositions.Add(new Vector3(startPos.x + shakeRadius, startPos.y, startPos.z));
-                rightPositions.Add(new Vector3(startPos.x - shakeRadius, startPos.y, startPos.z));
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                seconds = s;
-                t = 0f;
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    int index = 0;
-                    for (int k = sibIndex; k < childCount; k++)
-                    {
-                        parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, leftPositions[index], Mathf.SmoothStep(0f, 1f, t));
-                        index++;
-                    }
-                    yield return null;
-                }
-                seconds = s;
-                t = 0f;
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    int index = 0;
-
-                    for (int k = sibIndex; k < childCount; k++)
-                    {
-                        parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, rightPositions[index], Mathf.SmoothStep(0f, 1f, t));
-                        index++;
-                    }
-                    yield return null;
-                }
-            }
-            seconds = s;
-            t = 0f;
-            while (t <= 1.0)
-            {
-                t += Time.deltaTime / seconds;
-                int index = 0;
-                for (int k = sibIndex; k < childCount; k++)
-                {
-                    parent.GetChild(k).GetComponent<RectTransform>().position = Vector3.Lerp(parent.GetChild(k).GetComponent<RectTransform>().position, startPositions[index], Mathf.SmoothStep(0f, 1f, t));
-                    index++;
-                }
-                yield return null;
-            }
-        }
-        else
-        {
-            float seconds;
-            float t;
-            var startPos = obj.GetComponent<RectTransform>().position;
-            Vector3 left = new Vector3(startPos.x + shakeRadius, startPos.y, startPos.z);
-            Vector3 right = new Vector3(startPos.x - shakeRadius, startPos.y, startPos.z);
-            for (int i = 0; i < 5; i++)
-            {
-                seconds = s;
-                t = 0f;
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, left, Mathf.SmoothStep(0f, 1f, t));
-                    yield return null;
-                }
-                seconds = s;
-                t = 0f;
-                while (t <= 1.0)
-                {
-                    t += Time.deltaTime / seconds;
-                    obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, right, Mathf.SmoothStep(0f, 1f, t));
-                    yield return null;
-                }
-            }
-            seconds = s;
-            t = 0f;
-            while (t <= 1.0)
-            {
-                t += Time.deltaTime / seconds;
-                obj.GetComponent<RectTransform>().position = Vector3.Lerp(obj.GetComponent<RectTransform>().position, startPos, Mathf.SmoothStep(0f, 1f, t));
-                yield return null;
-            }
-        }
-    }
-    private IEnumerator SlideHelpCard(List<Move> helpMoves, bool willDisappear)
-    {
-        var target = helpMoves.First().Target;
-        var cardPositions = new List<Vector3>();
-        var posDummies = new List<GameObject>();
-        foreach (var move in helpMoves)
-        {
-            var positionDummy = Instantiate(cardPrefab, move.Target) as GameObject;
-            positionDummy.GetComponent<CardController>().isDummy = true;
-            //positionDummy.transform.SetParent(move.Target);
-            positionDummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            cardPositions.Add(move.Card.transform.position);
-            posDummies.Add(positionDummy);
-        }
-
-        if (target.name.Contains("Panel"))
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target); // set the spacing for the panel layout
 
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
-
-        var positions = new List<Vector3>();
-        foreach (var positionDummy in posDummies)
-        {
-            var pos = positionDummy.transform.position;
-            positions.Add(pos);
-        }
-
-        var movingDummies = new List<GameObject>();
-
-        for (int i = 0; i < positions.Count; i++)
-        {
-            var movingDummy = Instantiate(cardPrefab, canvas.transform) as GameObject;
-            //movingDummy.transform.SetParent(canvas.transform);
-            movingDummy.GetComponent<CardController>().isDummy = true;
-            movingDummy.transform.position = cardPositions[i];
-            movingDummy.GetComponent<Canvas>().overrideSorting = true;
-            movingDummy.GetComponent<Image>().sprite = helpMoves[i].Card.GetComponent<Image>().sprite;
-            movingDummies.Add(movingDummy);
-        }
-        for (int i = 0; i < movingDummies.Count; i++)
-        {
-            StartCoroutine(SlideAndDisappear(movingDummies[i], positions[i], willDisappear));
-        }
-
-        foreach (var positionDummy in posDummies)
-        {
-            DestroyImmediate(positionDummy);
-        }
-
-        if (target.name.Contains("Panel"))
-            target.transform.GetComponent<VerticalLayoutGroup>().spacing = CalculateSpacing(target); // set the spacing for the panel layout
-
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(target.GetComponent<RectTransform>()); // refresh layout
-        yield return null;
-    }
-    private IEnumerator SlideAndDisappear(GameObject movingDummy, Vector3 pos, bool willDisappear, float time = 1f)
-    {
-        float seconds = time;
-        float t = 0f;
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            movingDummy.transform.position = Vector3.Lerp(movingDummy.transform.position, pos, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
-        }
-        if (willDisappear)
-        {
-            seconds = 0.1f;
-            t = 0f;
-            while (t <= 1.0)
-            {
-                t += Time.deltaTime / seconds;
-                movingDummy.GetComponent<RectTransform>().localScale = Vector3.Lerp(movingDummy.GetComponent<RectTransform>().localScale, Vector3.zero, Mathf.SmoothStep(0f, 1f, t));
-                yield return null;
-            }
-            Destroy(movingDummy);
-        }
-    }
     private IEnumerator AutoMove(List<Move> moves)
     {
         if (moves == null)
@@ -1385,19 +868,7 @@ public class GameControl : MonoBehaviour
             yield return null;
         }
     }
-    private bool IsPlaygroudCardSuitTrue(char targetCardSuit, char cardSuit)
-    {
-        if (targetCardSuit == 'H' && (cardSuit == 'S' || cardSuit == 'C'))
-            return true;
-        else if (targetCardSuit == 'D' && (cardSuit == 'S' || cardSuit == 'C'))
-            return true;
-        else if (targetCardSuit == 'S' && (cardSuit == 'H' || cardSuit == 'D'))
-            return true;
-        else if (targetCardSuit == 'C' && (cardSuit == 'H' || cardSuit == 'D'))
-            return true;
-        else
-            return false;
-    }
+
     public void LoadNewGame()
     {
         var q = Instantiate(questionPrefab, canvas.transform);

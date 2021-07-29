@@ -1,3 +1,4 @@
+using Assets.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
     public bool wasFacingUp;
     public bool isDummy;
     public bool isDragged;
+    public bool isSliding;
+
     public Vector3 lastKnownLocation;
     public Vector3 earlierLocation;
 
@@ -48,7 +51,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                 }
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && !isSliding)
             {
                 if (isMoving)
                 {
@@ -85,7 +88,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
         GameControl.instance.isSomethingMoving = true;
         yield return StartCoroutine(DetachAllChildren(gameObject, 1));
 
-        var moves = GameControl.instance.GetAllPossibleMoves();
+        var moves = Foreseer.GetAllPossibleMoves();
         if (selectedObjects.Count > 0)
         {
             bool isFound = false;
@@ -104,7 +107,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                             foreach (var m in move)
                                 m.Card.GetComponent<CardController>().earlierLocation = m.Card.transform.position;
 
-                            yield return StartCoroutine(GameControl.instance.SlideAndParent(move.First().Card, move.First().Target));
+                            yield return StartCoroutine(MyAnimationController.SlideAndParent(move.First().Card, move.First().Target, 0.3f));
 
                             foreach (var m in move)
                                 m.Card.GetComponent<CardController>().lastKnownLocation = m.Card.transform.position;
@@ -117,7 +120,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                                 topCard.GetComponent<CardController>().enabled = true;
                                 if (topCard.GetComponent<CardController>().isFacingUp)
                                     topCard.GetComponent<CardController>().wasFacingUp = true;
-                                StartCoroutine(GameControl.instance.RotateToRevealCard(topCard));
+                                StartCoroutine(MyAnimationController.RotateToRevealCard(topCard));
                             }
                             break;
                         }
@@ -128,7 +131,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                     break;
             }
             if (!isFound)
-                yield return StartCoroutine(GameControl.instance.Shake(gameObject, 0.03f));
+                yield return StartCoroutine(MyAnimationController.Shake(gameObject, 0.03f));
         }
         else
         {
@@ -144,7 +147,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                     foreach (var m in move)
                         m.Card.GetComponent<CardController>().earlierLocation = m.Card.transform.position;
 
-                    yield return StartCoroutine(GameControl.instance.SlideAndParent(move.First().Card, move.First().Target));
+                    yield return StartCoroutine(MyAnimationController.SlideAndParent(move.First().Card, move.First().Target, 0.3f));
 
                     foreach (var m in move)
                         m.Card.GetComponent<CardController>().lastKnownLocation = m.Card.transform.position;
@@ -165,14 +168,14 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
                         topCard.GetComponent<CardController>().enabled = true;
                         if (topCard.GetComponent<CardController>().isFacingUp)
                             topCard.GetComponent<CardController>().wasFacingUp = true;
-                        StartCoroutine(GameControl.instance.RotateToRevealCard(topCard));
+                        StartCoroutine(MyAnimationController.RotateToRevealCard(topCard));
                     }
                     break;
 
                 }
             }
             if (!isFound)
-                yield return StartCoroutine(GameControl.instance.Shake(gameObject, 0.03f));
+                yield return StartCoroutine(MyAnimationController.Shake(gameObject, 0.03f));
         }
         GameControl.instance.isSomethingMoving = false;
     }
@@ -209,34 +212,37 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler//
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (gameObject.transform.parent.name.Contains("Ground"))
+        if (!isSliding)
         {
-            if (gameObject.transform.parent.childCount - 1 != gameObject.transform.GetSiblingIndex())
-                return;
-        }
-
-        isChangingPostiion = true;
-        isMoving = true;
-        gameObject.GetComponent<CardController>().lastKnownLocation = gameObject.transform.position;
-
-        gameObject.GetComponent<Outline>().effectColor = outlineColor;
-        gameObject.GetComponent<Outline>().effectDistance = outlineSize;
-
-        gameObject.GetComponent<Canvas>().overrideSorting = true;
-        gameObject.GetComponent<Canvas>().sortingOrder = 2;
-
-        int siblingIndex = gameObject.transform.GetSiblingIndex();
-        int childCount = gameObject.transform.parent.childCount;
-
-        if (childCount - siblingIndex != 1 && gameObject.transform.parent.name.Contains("Panel"))
-        {
-            for (int i = childCount - 1; i > siblingIndex; i--)
+            if (gameObject.transform.parent.name.Contains("Ground"))
             {
-                gameObject.transform.parent.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
-                gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectColor = outlineColor;
-                gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectDistance = outlineSize;
-                selectedObjects.Add(gameObject.transform.parent.GetChild(i).gameObject);
-                gameObject.transform.parent.GetChild(i).SetParent(gameObject.transform.parent.GetChild(i - 1).transform);
+                if (gameObject.transform.parent.childCount - 1 != gameObject.transform.GetSiblingIndex())
+                    return;
+            }
+
+            isChangingPostiion = true;
+            isMoving = true;
+            gameObject.GetComponent<CardController>().lastKnownLocation = gameObject.transform.position;
+
+            gameObject.GetComponent<Outline>().effectColor = outlineColor;
+            gameObject.GetComponent<Outline>().effectDistance = outlineSize;
+
+            gameObject.GetComponent<Canvas>().overrideSorting = true;
+            gameObject.GetComponent<Canvas>().sortingOrder = 2;
+
+            int siblingIndex = gameObject.transform.GetSiblingIndex();
+            int childCount = gameObject.transform.parent.childCount;
+
+            if (childCount - siblingIndex != 1 && gameObject.transform.parent.name.Contains("Panel"))
+            {
+                for (int i = childCount - 1; i > siblingIndex; i--)
+                {
+                    gameObject.transform.parent.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
+                    gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectColor = outlineColor;
+                    gameObject.transform.parent.GetChild(i).GetComponent<Outline>().effectDistance = outlineSize;
+                    selectedObjects.Add(gameObject.transform.parent.GetChild(i).gameObject);
+                    gameObject.transform.parent.GetChild(i).SetParent(gameObject.transform.parent.GetChild(i - 1).transform);
+                }
             }
         }
     }

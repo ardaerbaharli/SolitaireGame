@@ -20,6 +20,7 @@ TagManager:
   - GameOverType
   - GameControl
   - LoseWinMenu
+  - dummy
   layers:
   - Default
   - TransparentFX

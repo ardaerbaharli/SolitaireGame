@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.11f1 (99c7afb366b3) revision 10078127'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Enterprise; OS build 19042.1052; Version 2009; 64bit' Language: 'tr' Physical Memory: 8144 MB
+OS: 'Windows 10 Pro; OS build 19042.1110; Version 2009; 64bit' Language: 'tr' Physical Memory: 16322 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -11,2266 +11,514 @@ C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Repos/SolitaireGame
+D:/UnityRepos/SolitaireGame-main
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60889
-Successfully changed project path to: C:/Repos/SolitaireGame
-C:/Repos/SolitaireGame
+51918
+Successfully changed project path to: D:/UnityRepos/SolitaireGame-main
+D:/UnityRepos/SolitaireGame-main
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 134.46 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 32.31 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.11f1 (99c7afb366b3)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Repos/SolitaireGame/Assets
+[Subsystems] Discovering subsystems at path D:/UnityRepos/SolitaireGame-main/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD Radeon HD 7600M Series (ID=0x6840)
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2080 (ID=0x1e87)
     Vendor:   
-    VRAM:     2028 MB
-    Driver:   15.201.1151.1008
+    VRAM:     8010 MB
+    Driver:   27.21.14.6647
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56248
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56540
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003610 seconds.
+Registered in 0.001622 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 76.45 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 31.62 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in 17.591 seconds
+- Completed reload, in  1.781 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.016424 seconds.
+Registered in 0.002329 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 72.76 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 30.65 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.544 seconds
+- Completed reload, in  0.902 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
-Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.34 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2091 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 93.6 MB.
-System memory in use after: 93.7 MB.
+Unloading 2095 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 113.0 MB.
+System memory in use after: 113.1 MB.
 
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 2532.
-Total: 3.821600 ms (FindLiveObjects: 0.325100 ms CreateObjectMapping: 0.229400 ms MarkObjects: 3.162800 ms  DeleteObjects: 0.102300 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2555.
+Total: 1.680700 ms (FindLiveObjects: 0.130200 ms CreateObjectMapping: 0.057100 ms MarkObjects: 1.475000 ms  DeleteObjects: 0.017700 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Script/StatisticController.cs
-  artifactKey: Guid(10d22ba145d814b4a9541671e20bc23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Script/StatisticController.cs using Guid(10d22ba145d814b4a9541671e20bc23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b6ec8ceca3f14df92aee4bce81f3b8c') in 0.129579 seconds
-  Import took 0.137256 seconds .
+  path: Assets/Scenes/Main.unity
+  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Main.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c4fb084c1f38534bb17eaf53824533a') in 0.013248 seconds
+  Import took 0.015686 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006690 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.083 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.61 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 93.0 MB.
-System memory in use after: 93.1 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2536.
-Total: 3.539600 ms (FindLiveObjects: 0.290600 ms CreateObjectMapping: 0.199400 ms MarkObjects: 3.023600 ms  DeleteObjects: 0.024600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 1640.949232 seconds.
-  path: Assets/Script/StatisticController.cs
-  artifactKey: Guid(10d22ba145d814b4a9541671e20bc23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Script/StatisticController.cs using Guid(10d22ba145d814b4a9541671e20bc23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebb6654b6381abf10fb222bdb01cd84a') in 0.008790 seconds
-  Import took 0.014021 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 222.781732 seconds.
-  path: Assets/Prefabs/GameControl.prefab
-  artifactKey: Guid(b3f53b82ef0f1b944980b1cb3a712ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/GameControl.prefab using Guid(b3f53b82ef0f1b944980b1cb3a712ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cec68d97b23a77d0e015f0283242f192') in 0.103890 seconds
-  Import took 0.112337 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000345 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5fbc3a27a87331e73ba1792cbec34fc') in 0.017534 seconds
-  Import took 0.025645 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 37.428471 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '878ec90aa8d31cf3e79d695025ea8d1f') in 0.021853 seconds
-  Import took 0.028268 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.485399 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcdb13f1fa46ed99f892ed589ca207ac') in 0.019681 seconds
-  Import took 0.026049 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.267947 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee270ed5f8447e65a232913c1345e327') in 0.024782 seconds
-  Import took 0.031460 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.767785 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8866007c2ad7947ac7e07373c882195f') in 0.016966 seconds
-  Import took 0.023093 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.793786 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85d532d9ed0c3ebcb7480e3c7d285277') in 0.021378 seconds
-  Import took 0.029598 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.718849 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8776065fc0fa223ef4d06a08df12e17') in 0.013872 seconds
-  Import took 0.021053 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.884903 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f9005a4e15d3f45f8bb318eb1e67031') in 0.019710 seconds
-  Import took 0.027599 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.695409 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '330b4ad63afc2c1a60bc3318abeee414') in 0.018856 seconds
-  Import took 0.025237 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.056914 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6a45238f798d0570f962c20ceae3c69') in 0.019194 seconds
-  Import took 0.024490 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.164847 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eab14fb73b980029e7b5ce6ac6c9d0c8') in 0.020202 seconds
-  Import took 0.027110 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.074859 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19df4708ba2cddba6c0ec0b906baf2f6') in 0.021906 seconds
-  Import took 0.029830 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.930931 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73bd74546f10a5632ce7cd49d4d43283') in 0.023729 seconds
-  Import took 0.030553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.688615 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2273ec09f8b68afc025251519f270f33') in 0.013526 seconds
-  Import took 0.020537 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.554545 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af19f167d609a3ac5204a180a5ab3fd0') in 0.017304 seconds
-  Import took 0.023769 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.248815 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2cd1ac924b0bfe0bde6f03b15d5b4c1') in 0.019437 seconds
-  Import took 0.026650 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.542562 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6ebed54197ba6526caa964bfe6000a4') in 0.022783 seconds
-  Import took 0.031484 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.552990 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e98b31d2f9f565ed84608ce95a4dcd26') in 0.014356 seconds
-  Import took 0.020364 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.797222 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8962ee96f6d025538086c9e97be7532') in 0.022691 seconds
-  Import took 0.033466 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.369816 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '069e773d0d76252867d809e3af6a2830') in 0.022406 seconds
-  Import took 0.030593 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.256336 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcd1eaf37dd3f25e6e17c6d5f411d530') in 0.020993 seconds
-  Import took 0.027632 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.814973 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd19c5422ee17d5e842838bce0900a3a3') in 0.022629 seconds
-  Import took 0.029184 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.787242 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0920ca74ba689023a3994056b4bebf12') in 0.021938 seconds
-  Import took 0.030376 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.088624 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd692c3a773e046a4b19b22d052e6f90b') in 0.013561 seconds
-  Import took 0.019997 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 25.567932 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fdd867a7b1d8df8003353fa043376f5') in 0.020800 seconds
-  Import took 0.028210 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.576871 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff7dee31cf36406fb2a1a5bdef803f92') in 0.020075 seconds
-  Import took 0.027616 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.948247 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8a1218199d662213c7877b4012bb7d1') in 0.024348 seconds
-  Import took 0.030798 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.534777 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ea100365b624281fb41a00ead2ae223') in 0.021144 seconds
-  Import took 0.028651 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.636270 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb145dae1666a3d7a0cf961f7f91e701') in 0.022754 seconds
-  Import took 0.030704 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.287981 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ce664b792bc8fbcc09c7434eeff6338') in 0.022001 seconds
-  Import took 0.032061 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.144839 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cec2034a3d1d8954e956109b3ab978c') in 0.019870 seconds
-  Import took 0.026785 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.701576 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2ad764c01ee01a25c9f8407750a53ce') in 0.026756 seconds
-  Import took 0.034043 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.832597 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8260f98b22ea8b2119218521419b92f7') in 0.018382 seconds
-  Import took 0.024811 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.883544 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efe30e263d1f73a3f63306883c5ba24e') in 0.024425 seconds
-  Import took 0.031994 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.238223 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '807135bef423a51e32e24b4ce22bc1fd') in 0.020281 seconds
-  Import took 0.026848 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.622849 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62882dfd1dffe88105341ca70b188991') in 0.021006 seconds
-  Import took 0.028907 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.008576 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bb72617ccf2e3fb6d27805785414268') in 0.023155 seconds
-  Import took 0.030925 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.323329 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05cc4b132e05f0ccb15a7f0b7a065d76') in 0.019003 seconds
-  Import took 0.026184 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.872113 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ae233b11f22659b9faefbfeb9301e30') in 0.019642 seconds
-  Import took 0.026832 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.241049 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3510722987d2790c6012650ce507e0bb') in 0.018770 seconds
-  Import took 0.025096 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.550803 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '305313e1b1ab61abdbd99ca90f9da21c') in 0.018694 seconds
-  Import took 0.025042 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.322153 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f6bf2e06b3a506f25bbe8245c692511') in 0.020154 seconds
-  Import took 0.028313 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.473358 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6670d84d39bbae29be3879b80ff7428') in 0.014247 seconds
-  Import took 0.020026 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.261980 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3605961af3d35bd740166706b7ee7ce1') in 0.020738 seconds
-  Import took 0.026284 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.624330 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d77859eab5ec5eafa7160b5d2b499fa') in 0.022224 seconds
-  Import took 0.030932 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.038530 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23c7308811c8395cfa47b4f5e0e1861e') in 0.020721 seconds
-  Import took 0.026362 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.346805 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb820a9d6b8f4fdfff791d6ad01a846e') in 0.022222 seconds
-  Import took 0.028739 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.122255 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '239a48ddab2016b5c75531a3099c4577') in 0.018281 seconds
-  Import took 0.023881 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.472734 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83b939f3bad1f9c3efb7ee99b62f0cb5') in 0.018195 seconds
-  Import took 0.025572 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.874582 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d48c9bbf08485845aa2208e70b7ef45') in 0.018541 seconds
-  Import took 0.024900 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.915998 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3c2c70e458faabfdc0a8d5cfb3e63dc') in 0.012866 seconds
-  Import took 0.019244 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.380725 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b72b4f25c29302a424f1d7c4ff4f406a') in 0.011298 seconds
-  Import took 0.016353 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.665359 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a1759c340e2e540387f42e6cb0a3468') in 0.015491 seconds
-  Import took 0.023445 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.017780 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c1af62da53cf200823dce93d716dcbe') in 0.011270 seconds
-  Import took 0.017819 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.102778 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a2d81681c91e3f53278c5b8dcf4b85f') in 0.010813 seconds
-  Import took 0.015620 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.849026 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c713e0f625a2ab65add86d46939b9e78') in 0.016670 seconds
-  Import took 0.023717 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.031276 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c74f87e3abbfbe61fd6be828d55f2c61') in 0.015478 seconds
-  Import took 0.021315 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.426693 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98069a617d0652f54bab5dcf463393a8') in 0.012158 seconds
-  Import took 0.019325 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.507383 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3e3ca484019cf5fc4b2e53697dffd7b') in 0.010868 seconds
-  Import took 0.019395 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 20.948675 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fe0cf19bd95716239c346f4c9a5e13e') in 0.024952 seconds
-  Import took 0.033077 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.885268 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c569f7bbf885bf7bda0953fc5c63e46') in 0.014781 seconds
-  Import took 0.020122 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.757130 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '867b8e83d04e08b377dcdcc5c55560e1') in 0.010186 seconds
-  Import took 0.015872 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.721762 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c6400f798868398310b56b5ff2f86bd') in 0.014585 seconds
-  Import took 0.021795 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.465603 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bf190e859b914539c375d901bdd0120') in 0.011988 seconds
-  Import took 0.017636 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.488801 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b537b2a9919fc3e0103e13a54936f112') in 0.012533 seconds
-  Import took 0.018622 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.932013 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0af4dc1cdc491aeb0e97b1e3797f2e7') in 0.044815 seconds
-  Import took 0.056091 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.085414 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ed308e73aa89866b7a27d6a724d097a') in 0.012858 seconds
-  Import took 0.019779 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 110.631324 seconds.
-  path: Assets/UI/star.png
-  artifactKey: Guid(d665e8b95e2fc0d458797b18df9c6f1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/star.png using Guid(d665e8b95e2fc0d458797b18df9c6f1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0a4addfd145a89d7d98551d3732ed92') in 0.145213 seconds
-  Import took 0.150926 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012176 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.946 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.01 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2548.
-Total: 5.270500 ms (FindLiveObjects: 0.423000 ms CreateObjectMapping: 0.239800 ms MarkObjects: 4.541100 ms  DeleteObjects: 0.063800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010586 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.920 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 3.17 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2552.
-Total: 8.389500 ms (FindLiveObjects: 0.677900 ms CreateObjectMapping: 0.328000 ms MarkObjects: 7.333600 ms  DeleteObjects: 0.046600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010481 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.41 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.932 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.18 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2556.
-Total: 7.387600 ms (FindLiveObjects: 0.594700 ms CreateObjectMapping: 0.338600 ms MarkObjects: 6.406000 ms  DeleteObjects: 0.045300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010085 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.417 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 2.38 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2560.
-Total: 12.428300 ms (FindLiveObjects: 5.259400 ms CreateObjectMapping: 0.287700 ms MarkObjects: 6.763400 ms  DeleteObjects: 0.042300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012023 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.363 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.13 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2564.
-Total: 7.104200 ms (FindLiveObjects: 0.479900 ms CreateObjectMapping: 0.184500 ms MarkObjects: 6.391300 ms  DeleteObjects: 0.045600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007576 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.263 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.2 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2568.
-Total: 4.424700 ms (FindLiveObjects: 0.619000 ms CreateObjectMapping: 0.286200 ms MarkObjects: 3.474800 ms  DeleteObjects: 0.041700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011892 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.410 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2572.
-Total: 3.628500 ms (FindLiveObjects: 0.345300 ms CreateObjectMapping: 0.230300 ms MarkObjects: 3.021700 ms  DeleteObjects: 0.028900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011028 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.621 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2576.
-Total: 3.932700 ms (FindLiveObjects: 0.356300 ms CreateObjectMapping: 0.240700 ms MarkObjects: 3.299300 ms  DeleteObjects: 0.033500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.015913 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.238 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.14 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2580.
-Total: 7.287800 ms (FindLiveObjects: 0.470600 ms CreateObjectMapping: 0.179700 ms MarkObjects: 6.592400 ms  DeleteObjects: 0.042400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013569 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.505 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2584.
-Total: 4.432800 ms (FindLiveObjects: 0.420900 ms CreateObjectMapping: 0.282100 ms MarkObjects: 3.693200 ms  DeleteObjects: 0.034100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008846 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 2.10 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.948 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2588.
-Total: 5.458700 ms (FindLiveObjects: 0.397100 ms CreateObjectMapping: 0.218500 ms MarkObjects: 4.803100 ms  DeleteObjects: 0.037500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009147 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.036 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.20 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2592.
-Total: 3.514700 ms (FindLiveObjects: 0.325300 ms CreateObjectMapping: 0.219500 ms MarkObjects: 2.940800 ms  DeleteObjects: 0.027200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009962 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.23 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.163 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.16 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2596.
-Total: 6.100400 ms (FindLiveObjects: 0.666300 ms CreateObjectMapping: 0.313300 ms MarkObjects: 5.085500 ms  DeleteObjects: 0.032600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008128 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.233 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2600.
-Total: 4.620200 ms (FindLiveObjects: 0.392400 ms CreateObjectMapping: 0.245300 ms MarkObjects: 3.946000 ms  DeleteObjects: 0.033900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
 Received Import Request.
-  Time since last request: 1737.902061 seconds.
+  Time since last request: 476.675891 seconds.
   path: Assets/Scenes/Game.unity
   artifactKey: Guid(cff7ea7e5d3bd4c4c9f0d09fa913accd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Game.unity using Guid(cff7ea7e5d3bd4c4c9f0d09fa913accd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '964cf2c945787507f278f2c50f8b6295') in 0.031861 seconds
-  Import took 0.040939 seconds .
+Start importing Assets/Scenes/Game.unity using Guid(cff7ea7e5d3bd4c4c9f0d09fa913accd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aa72bc7d40af9c9e5d3eedaf6ecba03') in 0.005256 seconds
+  Import took 0.008483 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.104828 seconds.
+  path: Assets/DECKSON/C1.png
+  artifactKey: Guid(c164a73006790334f98e67d54f62afe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C1.png using Guid(c164a73006790334f98e67d54f62afe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0ab5ea64bba66ad1134e35110de5087') in 0.099513 seconds
+  Import took 0.101967 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/DECKSON/H2.png
+  artifactKey: Guid(8bb11f29d37aaf54f99053b5cd30beb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H2.png using Guid(8bb11f29d37aaf54f99053b5cd30beb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dcdd2c026624cf8a260132c71a060c3') in 0.009578 seconds
+  Import took 0.011862 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/DECKSON/S7.png
+  artifactKey: Guid(cc78d04913d5b6c4999e062af5435915) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S7.png using Guid(cc78d04913d5b6c4999e062af5435915) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5f085f70ff5ad97887174735acbdda6') in 0.007845 seconds
+  Import took 0.010219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/DECKSON/C2.png
+  artifactKey: Guid(d3828b39623397f489cc52d5091b95fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C2.png using Guid(d3828b39623397f489cc52d5091b95fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '861f17b56f13888d93a31a303e1e62b0') in 0.010173 seconds
+  Import took 0.012761 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/DECKSON/H13.png
+  artifactKey: Guid(c35739bbf0d0f1f46b0e2855e1afcdb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H13.png using Guid(c35739bbf0d0f1f46b0e2855e1afcdb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25162bd8171247a8b9b98ab2c9ea1f69') in 0.008243 seconds
+  Import took 0.010709 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/DECKSON/S9.png
+  artifactKey: Guid(b6c64ffbc33aefc4abc37d199e7d7a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S9.png using Guid(b6c64ffbc33aefc4abc37d199e7d7a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a1967a12197ce45e745530ca86b2bf2') in 0.008212 seconds
+  Import took 0.010576 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/DECKSON/D11.png
+  artifactKey: Guid(a4e62851d1d74c049a6a12a7b3fb7283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D11.png using Guid(a4e62851d1d74c049a6a12a7b3fb7283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09cd3006fb10ddb257a03f8df2599a21') in 0.008240 seconds
+  Import took 0.010723 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/DECKSON/D8.png
+  artifactKey: Guid(de737c47e6beba84da15e023dfa9f61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D8.png using Guid(de737c47e6beba84da15e023dfa9f61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c91fe2884b6ac76bebf7521794a6908b') in 0.008381 seconds
+  Import took 0.010855 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000378 seconds.
+  path: Assets/DECKSON/S13.png
+  artifactKey: Guid(2184b86480500584d9cf104c530bca95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S13.png using Guid(2184b86480500584d9cf104c530bca95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '990696cc6d437082e24c5e9b7a7f826b') in 0.007912 seconds
+  Import took 0.010302 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/DECKSON/C8.png
+  artifactKey: Guid(2a67d3738c22f4a49b71fb27f3860532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C8.png using Guid(2a67d3738c22f4a49b71fb27f3860532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a773fb9801881e0d443edd424972e3b2') in 0.007981 seconds
+  Import took 0.010400 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/DECKSON/H9.png
+  artifactKey: Guid(de88820863d31e9478860de628f5515e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H9.png using Guid(de88820863d31e9478860de628f5515e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd95a7802c462d39199db7ce9b71c503f') in 0.007480 seconds
+  Import took 0.009980 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/DECKSON/D2.png
+  artifactKey: Guid(2e3f175e66607934bad7d42b20ac719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D2.png using Guid(2e3f175e66607934bad7d42b20ac719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2077826bd511f3ad344e1ad7981e123') in 0.009949 seconds
+  Import took 0.012436 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/DECKSON/S8.png
+  artifactKey: Guid(7feaa5b6ef4a8cd4088fe05ef66e74e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S8.png using Guid(7feaa5b6ef4a8cd4088fe05ef66e74e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2e75c32039928f3ce4ba321a6eab428') in 0.008223 seconds
+  Import took 0.010643 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/DECKSON/D13.png
+  artifactKey: Guid(5f49b41ea87ed5143872b64eb34c953d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D13.png using Guid(5f49b41ea87ed5143872b64eb34c953d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db348bf41072b2c6570f4af7675aaac2') in 0.008425 seconds
+  Import took 0.010734 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000146 seconds.
+  path: Assets/DECKSON/D3.png
+  artifactKey: Guid(3dc5fd460261a44478ba84aadc37d650) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D3.png using Guid(3dc5fd460261a44478ba84aadc37d650) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d2ec2792f332cb165289144f5460486') in 0.008039 seconds
+  Import took 0.010451 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/DECKSON/C7.png
+  artifactKey: Guid(6d7129fbbc2abe64ca96145cc7e02673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C7.png using Guid(6d7129fbbc2abe64ca96145cc7e02673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '048bbbb305a076651feaaa8134a545fc') in 0.008255 seconds
+  Import took 0.010604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/DECKSON/D4.png
+  artifactKey: Guid(c81cf1f772100b64b970ae7eadec43f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D4.png using Guid(c81cf1f772100b64b970ae7eadec43f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d1cb22e0a4ae05f7832e9b89a0d303c') in 0.007686 seconds
+  Import took 0.010153 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/DECKSON/C12.png
+  artifactKey: Guid(bcc3cfd0ca1e7a5438daeb8fde3fddc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C12.png using Guid(bcc3cfd0ca1e7a5438daeb8fde3fddc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4318261fa938cdc5c8cdd514633a286') in 0.007742 seconds
+  Import took 0.010094 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/DECKSON/H5.png
+  artifactKey: Guid(9dad1180391d5c64fbc9613f59164974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H5.png using Guid(9dad1180391d5c64fbc9613f59164974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fd4c5b160e4d1ae0f22062c168dfdb5') in 0.008062 seconds
+  Import took 0.010561 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/DECKSON/C4.png
+  artifactKey: Guid(9d482205943153846bcde5e924149b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C4.png using Guid(9d482205943153846bcde5e924149b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f3a2b9e970842b8645071747f892685') in 0.008255 seconds
+  Import took 0.010672 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000119 seconds.
+  path: Assets/DECKSON/H4.png
+  artifactKey: Guid(0ff38e874dfba92469cd4c4c544a1865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H4.png using Guid(0ff38e874dfba92469cd4c4c544a1865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f47a1e937c9581c051fa95a00975689') in 0.007876 seconds
+  Import took 0.010430 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000207 seconds.
+  path: Assets/DECKSON/C9.png
+  artifactKey: Guid(b319f874059b63a4fb65e25acb33c785) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C9.png using Guid(b319f874059b63a4fb65e25acb33c785) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '284f77180b1fe9d3072bc7a5e00e89c6') in 0.009425 seconds
+  Import took 0.011832 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/DECKSON/C13.png
+  artifactKey: Guid(fc2039a3f9e07e74893ec69d650f75f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C13.png using Guid(fc2039a3f9e07e74893ec69d650f75f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f026b4b19eaa84baa96fff1296f5ddac') in 0.009410 seconds
+  Import took 0.012065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/DECKSON/H12.png
+  artifactKey: Guid(b3c418279be45d14e80a17b01842ba3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H12.png using Guid(b3c418279be45d14e80a17b01842ba3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40282199fa98f91dc002fc9eca4ba3ea') in 0.007759 seconds
+  Import took 0.010276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000140 seconds.
+  path: Assets/DECKSON/D7.png
+  artifactKey: Guid(0f93d90a6855f994cada6d002592658c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D7.png using Guid(0f93d90a6855f994cada6d002592658c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0b325163829c131b1b9ab13e3209fa3') in 0.008371 seconds
+  Import took 0.010738 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/DECKSON/C6.png
+  artifactKey: Guid(02cfc61480424dd40aa0e041dd39ecbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C6.png using Guid(02cfc61480424dd40aa0e041dd39ecbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33265971107f44dd3ce7ebbb9d4bc8e3') in 0.008166 seconds
+  Import took 0.010580 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000147 seconds.
+  path: Assets/DECKSON/C5.png
+  artifactKey: Guid(3c46bf05ea5c0a544b57db7d71eb5d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C5.png using Guid(3c46bf05ea5c0a544b57db7d71eb5d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ea1cf5087a68dd320bb2ddc44f80626') in 0.008250 seconds
+  Import took 0.010632 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/DECKSON/H1.png
+  artifactKey: Guid(561522b5f66968949b6b995a81c5c6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H1.png using Guid(561522b5f66968949b6b995a81c5c6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f81a8dcfe0456aaed04c06b9b195a89') in 0.008526 seconds
+  Import took 0.010935 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/DECKSON/H11.png
+  artifactKey: Guid(d9268971f8673b54fa94be2a3f3a8751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H11.png using Guid(d9268971f8673b54fa94be2a3f3a8751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1ceb61801b8c1392d4835a76b047737') in 0.007766 seconds
+  Import took 0.010349 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/DECKSON/S6.png
+  artifactKey: Guid(616cb93a407f1b04d9e6c462ff9f9445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S6.png using Guid(616cb93a407f1b04d9e6c462ff9f9445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0895568803866ede88c6a4d998b62446') in 0.007830 seconds
+  Import took 0.010383 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/DECKSON/C10.png
+  artifactKey: Guid(70eb9d0a90210014b96cc59065bf849e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C10.png using Guid(70eb9d0a90210014b96cc59065bf849e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f59d8e60be7407ca11ba4874d9f6833f') in 0.008089 seconds
+  Import took 0.010721 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/DECKSON/H6.png
+  artifactKey: Guid(db8c3e37b4345cb4a81d97ced13aa25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H6.png using Guid(db8c3e37b4345cb4a81d97ced13aa25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74da9d4547cd0217799be2b2b985c827') in 0.007508 seconds
+  Import took 0.009968 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/DECKSON/H10.png
+  artifactKey: Guid(6b2687da8c1fc6f4eb86cfdaab7083d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H10.png using Guid(6b2687da8c1fc6f4eb86cfdaab7083d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83a08afb21ef4a5f0404748a6447d9dc') in 0.007709 seconds
+  Import took 0.010138 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/DECKSON/H7.png
+  artifactKey: Guid(3789efca8fcdbed41b00858bb0287e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H7.png using Guid(3789efca8fcdbed41b00858bb0287e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98beb6ea063fffeca29bbe89c56887bb') in 0.008605 seconds
+  Import took 0.011015 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/DECKSON/H3.png
+  artifactKey: Guid(58c912483c257884ab278d4346a87c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H3.png using Guid(58c912483c257884ab278d4346a87c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9268d53ec793eeaea700a87f777bcfba') in 0.007570 seconds
+  Import took 0.009996 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/DECKSON/D1.png
+  artifactKey: Guid(34206a1ec724f5b4f9dce0cd52a90fa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D1.png using Guid(34206a1ec724f5b4f9dce0cd52a90fa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '695412dd7dc1f7670dc3d3f7f8f5830f') in 0.007980 seconds
+  Import took 0.010383 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/DECKSON/S2.png
+  artifactKey: Guid(fe5a60d96577cda45aae3c4a1d633864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S2.png using Guid(fe5a60d96577cda45aae3c4a1d633864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ad79d7c3ad42ecba02ca4a06a59c965') in 0.007600 seconds
+  Import took 0.009953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/DECKSON/D12.png
+  artifactKey: Guid(0703d63584f543d41a740ba3377ef68d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D12.png using Guid(0703d63584f543d41a740ba3377ef68d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbc131482df8aa9385cae568850c080d') in 0.008433 seconds
+  Import took 0.010901 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/DECKSON/S3.png
+  artifactKey: Guid(7f11c53f2f7cffb4ca846525a6cb5db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S3.png using Guid(7f11c53f2f7cffb4ca846525a6cb5db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21d63e6f8db7b309ec3626a9dd2d7b5b') in 0.007770 seconds
+  Import took 0.010098 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/DECKSON/S10.png
+  artifactKey: Guid(40b5456433740ac4fb7b1ec50f388bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S10.png using Guid(40b5456433740ac4fb7b1ec50f388bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3327e1c20e9a4d7358f29fb85e169b1a') in 0.007971 seconds
+  Import took 0.010464 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/DECKSON/S1.png
+  artifactKey: Guid(cbec3ed123068ef4b85ba7d6f602ca22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S1.png using Guid(cbec3ed123068ef4b85ba7d6f602ca22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35be7e4b0b32c3b37b914ddf9dc6707e') in 0.007941 seconds
+  Import took 0.010336 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/DECKSON/S4.png
+  artifactKey: Guid(d985d91c85e0cae4b8375b6242aef5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S4.png using Guid(d985d91c85e0cae4b8375b6242aef5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b91756c017565a64d18e0db0e5a5001') in 0.007755 seconds
+  Import took 0.010246 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/DECKSON/S5.png
+  artifactKey: Guid(a9a971d8b7c7a7a4eb23ad5152892fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S5.png using Guid(a9a971d8b7c7a7a4eb23ad5152892fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e29b0e0295e6574f7cd533cdd5ef1ea3') in 0.008009 seconds
+  Import took 0.010455 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000159 seconds.
+  path: Assets/DECKSON/D10.png
+  artifactKey: Guid(7d394b69b29b04d4f8fa13f212f32625) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D10.png using Guid(7d394b69b29b04d4f8fa13f212f32625) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '781cd73048da193d843a8cb6222633a2') in 0.008296 seconds
+  Import took 0.010675 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/DECKSON/D5.png
+  artifactKey: Guid(21c0c44a71385f24399a621ff4da3a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D5.png using Guid(21c0c44a71385f24399a621ff4da3a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '547c6d6c19169ee0cc2bc40ba9d1ef78') in 0.007933 seconds
+  Import took 0.010458 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/DECKSON/H8.png
+  artifactKey: Guid(08ac7c570680028478c50fe7897385e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/H8.png using Guid(08ac7c570680028478c50fe7897385e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f029f767eca3461049c371eb8759d1a9') in 0.008635 seconds
+  Import took 0.011000 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/DECKSON/S11.png
+  artifactKey: Guid(0e90e196e6255c14fa1a85144ed68a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S11.png using Guid(0e90e196e6255c14fa1a85144ed68a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c3f2b62a885d7ce0dddc5ccfbeaefba') in 0.009271 seconds
+  Import took 0.011726 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/DECKSON/S12.png
+  artifactKey: Guid(e2facbb1df7d3df41acdc7b264dc3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/S12.png using Guid(e2facbb1df7d3df41acdc7b264dc3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '645bcd494783bc7e31d915ed1f1adf18') in 0.008139 seconds
+  Import took 0.010435 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/DECKSON/C11.png
+  artifactKey: Guid(a02fe2cb047722f45b6be07e670fe910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C11.png using Guid(a02fe2cb047722f45b6be07e670fe910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bca9b81986fbd5e0adcce8dae1113ba') in 0.008658 seconds
+  Import took 0.011026 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/DECKSON/D6.png
+  artifactKey: Guid(fe4ff7d944662a74eaff8d0dd1ac86d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D6.png using Guid(fe4ff7d944662a74eaff8d0dd1ac86d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29ed2b93396f4e948e6f95c20a84b298') in 0.010697 seconds
+  Import took 0.012999 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/DECKSON/D9.png
+  artifactKey: Guid(3260cd05b0013164d83bfebab0520f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/D9.png using Guid(3260cd05b0013164d83bfebab0520f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9506396e09572e63fbc2aee3d9798b6') in 0.008683 seconds
+  Import took 0.011052 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/DECKSON/C3.png
+  artifactKey: Guid(3112f3c7ea603b54ab3b67ce9e601c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DECKSON/C3.png using Guid(3112f3c7ea603b54ab3b67ce9e601c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5c9a95ff1156b22e57d56ca45d4f692') in 0.008023 seconds
+  Import took 0.010429 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.008527 seconds.
+Registered in 0.002464 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.63 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.36 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.965 seconds
+- Completed reload, in  0.847 seconds
 Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.34 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 115.1 MB.
+System memory in use after: 115.3 MB.
 
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2604.
-Total: 3.862500 ms (FindLiveObjects: 0.351300 ms CreateObjectMapping: 0.234400 ms MarkObjects: 3.245100 ms  DeleteObjects: 0.029500 ms)
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2565.
+Total: 1.683400 ms (FindLiveObjects: 0.147100 ms CreateObjectMapping: 0.057900 ms MarkObjects: 1.464300 ms  DeleteObjects: 0.013500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007648 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.831 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.73 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2608.
-Total: 4.281600 ms (FindLiveObjects: 0.340000 ms CreateObjectMapping: 0.237900 ms MarkObjects: 3.656100 ms  DeleteObjects: 0.045100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009888 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.30 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.497 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.16 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2612.
-Total: 6.931500 ms (FindLiveObjects: 0.400700 ms CreateObjectMapping: 0.333400 ms MarkObjects: 6.137200 ms  DeleteObjects: 0.057300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007082 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.513 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.2 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2616.
-Total: 6.729500 ms (FindLiveObjects: 1.090400 ms CreateObjectMapping: 0.353500 ms MarkObjects: 5.238100 ms  DeleteObjects: 0.044500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006586 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.777 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.25 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2620.
-Total: 4.014900 ms (FindLiveObjects: 0.352100 ms CreateObjectMapping: 0.241000 ms MarkObjects: 3.374700 ms  DeleteObjects: 0.044400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.014046 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.367 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.43 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2624.
-Total: 6.360100 ms (FindLiveObjects: 0.422800 ms CreateObjectMapping: 0.252300 ms MarkObjects: 5.622700 ms  DeleteObjects: 0.059500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009956 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.20 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.651 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.30 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2628.
-Total: 6.542600 ms (FindLiveObjects: 0.632400 ms CreateObjectMapping: 0.294900 ms MarkObjects: 5.565100 ms  DeleteObjects: 0.046700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007782 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.90 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.249 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.14 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2632.
-Total: 5.048800 ms (FindLiveObjects: 0.412600 ms CreateObjectMapping: 0.244000 ms MarkObjects: 4.341100 ms  DeleteObjects: 0.048300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007309 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.212 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2636.
-Total: 6.952700 ms (FindLiveObjects: 0.606800 ms CreateObjectMapping: 0.193400 ms MarkObjects: 6.090200 ms  DeleteObjects: 0.059200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010275 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.303 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.13 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2640.
-Total: 6.288200 ms (FindLiveObjects: 0.668100 ms CreateObjectMapping: 0.330900 ms MarkObjects: 5.230900 ms  DeleteObjects: 0.055200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013225 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.45 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.876 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2644.
-Total: 5.576700 ms (FindLiveObjects: 0.369900 ms CreateObjectMapping: 0.266400 ms MarkObjects: 4.884400 ms  DeleteObjects: 0.053100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 687.765843 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a2f4979821393c1d2edc8f2a12e42e1') in 0.071124 seconds
-  Import took 0.076026 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.994543 seconds.
-  path: ProjectSettings/TagManager.asset
-  artifactKey: Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing ProjectSettings/TagManager.asset using Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8a8158601b76e8baa904c0036fcb9bf') in 0.017255 seconds
-  Import took 0.023035 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.008372 seconds.
-  path: ProjectSettings/TagManager.asset
-  artifactKey: Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing ProjectSettings/TagManager.asset using Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8a8158601b76e8baa904c0036fcb9bf') in 0.007301 seconds
-  Import took 0.012844 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.401143 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '612ad014212e29c829d4cb5288c75032') in 0.014978 seconds
-  Import took 0.022497 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010475 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.833 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.80 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2648.
-Total: 5.366900 ms (FindLiveObjects: 0.511000 ms CreateObjectMapping: 0.244500 ms MarkObjects: 4.517500 ms  DeleteObjects: 0.090200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009396 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.976 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.4 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2652.
-Total: 3.918300 ms (FindLiveObjects: 0.345400 ms CreateObjectMapping: 0.236000 ms MarkObjects: 3.300400 ms  DeleteObjects: 0.034400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007808 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.52 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.577 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.39 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2656.
-Total: 6.677700 ms (FindLiveObjects: 1.050600 ms CreateObjectMapping: 0.574300 ms MarkObjects: 4.961600 ms  DeleteObjects: 0.087400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006910 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.037 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.01 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.3 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2660.
-Total: 3.418000 ms (FindLiveObjects: 0.318300 ms CreateObjectMapping: 0.205800 ms MarkObjects: 2.866800 ms  DeleteObjects: 0.025200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006727 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.029 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.79 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.4 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2664.
-Total: 3.439300 ms (FindLiveObjects: 0.335000 ms CreateObjectMapping: 0.217900 ms MarkObjects: 2.856000 ms  DeleteObjects: 0.028500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 512.516815 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '963976bdf6ee45b36d2eeccd0d097c3e') in 0.145849 seconds
-  Import took 0.150682 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.511704 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9803c46b19bdfff57fd140c48c9a61c4') in 0.038949 seconds
-  Import took 0.045943 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 200.541227 seconds.
-  path: Assets/UI/stick.png
-  artifactKey: Guid(1263750c5231d834cbc2b2d54adcca7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/stick.png using Guid(1263750c5231d834cbc2b2d54adcca7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0bedf8a1cbfada225462a98854dd782') in 0.056271 seconds
-  Import took 0.065044 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007280 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.522 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.68 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.4 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2675.
-Total: 3.848000 ms (FindLiveObjects: 0.368100 ms CreateObjectMapping: 0.237600 ms MarkObjects: 3.193300 ms  DeleteObjects: 0.046900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.016713 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.13 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.058 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.30 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.4 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2679.
-Total: 5.729300 ms (FindLiveObjects: 0.681700 ms CreateObjectMapping: 0.218500 ms MarkObjects: 4.765500 ms  DeleteObjects: 0.060000 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 259.426372 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1cbe753750ce8940400ca8c56135253') in 0.099355 seconds
-  Import took 0.105688 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 59.620975 seconds.
-  path: Assets/UI/stick.png
-  artifactKey: Guid(1263750c5231d834cbc2b2d54adcca7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/stick.png using Guid(1263750c5231d834cbc2b2d54adcca7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23360308f9f1b9bc6c23a766ca41fe92') in 0.077604 seconds
-  Import took 0.084842 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007896 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.308 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.45 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.4 MB.
-System memory in use after: 96.5 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2684.
-Total: 5.487000 ms (FindLiveObjects: 0.517900 ms CreateObjectMapping: 0.256500 ms MarkObjects: 4.670100 ms  DeleteObjects: 0.039900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 406.444537 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '457301c09792e3297ea69fa364fe0b7a') in 0.071971 seconds
-  Import took 0.077988 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.646904 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97de1c08e3f5bcb3e4d9fb1f519bec2d') in 0.015708 seconds
-  Import took 0.022553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.811403 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '635e8670d4559aaaf05a4cba877edae4') in 0.016639 seconds
-  Import took 0.026022 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.953642 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '132b44d8beac5adac0d6c9294adf5ee9') in 0.011138 seconds
-  Import took 0.017521 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.180826 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b03eb7bc3434c8a93796a4e1d0b9cfe') in 0.013443 seconds
-  Import took 0.021122 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.550774 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb80e29ce3f288666015153ca8e54232') in 0.015414 seconds
-  Import took 0.024146 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.439207 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be5e8beab568b92724678f45d844ffd0') in 0.016308 seconds
-  Import took 0.024698 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.065719 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08879a01319532ad18af467076722586') in 0.014339 seconds
-  Import took 0.021453 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.617195 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c8b52f14a5eee9df1942eb17a762bfd') in 0.014301 seconds
-  Import took 0.022802 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.124925 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dff45b455e2d2c55634e8224ff7d216a') in 0.019412 seconds
-  Import took 0.025770 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.278782 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77a35cc188ff183a6361b54ebe45e8e8') in 0.019433 seconds
-  Import took 0.027595 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.148693 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '612b90a8606ecb86f989c6e8f699d962') in 0.013702 seconds
-  Import took 0.021217 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 16.112913 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcfe7f7b3d8baa75f5f94db4c11392c8') in 0.016683 seconds
-  Import took 0.026638 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.803660 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bd197db01a11eaf540c9a0519ff587e') in 0.014770 seconds
-  Import took 0.020969 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.425410 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e84945bb3ad31c85421f8422a7b0f2c') in 0.015653 seconds
-  Import took 0.022377 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.921123 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb71c98aed23619ca085721384890df9') in 0.015778 seconds
-  Import took 0.023776 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.454312 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6e2a222d4fc61076110561de0b0583b') in 0.015098 seconds
-  Import took 0.022068 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.676375 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9092772821caed4df6c814e3a8cb870') in 0.014573 seconds
-  Import took 0.021860 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.052311 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d6b321123491e7265c49501ff59dd7a') in 0.011770 seconds
-  Import took 0.018847 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.633474 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '149f5918c66b69b5d41af59f6e9998ec') in 0.013146 seconds
-  Import took 0.019447 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.558775 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8e5cf197e98ab9cbf3180275bee7392') in 0.020565 seconds
-  Import took 0.028155 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.426242 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97aaf33f46aa34c1fdd030ca71a9b685') in 0.013945 seconds
-  Import took 0.019346 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.857572 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea08c98ad70cc95487fa1ece5d2dfdcb') in 0.015359 seconds
-  Import took 0.022963 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.221840 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '894005cd0613e1805720ff96e9c162e1') in 0.013604 seconds
-  Import took 0.020287 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.502057 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd07e5e60d6f7c9192cf90e6b16e33416') in 0.013519 seconds
-  Import took 0.024242 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.039868 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1e4ae088fe44923f4a64be7626e3fce') in 0.018316 seconds
-  Import took 0.026647 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.475820 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7652676d0bda0f04a4378394770c3477') in 0.014256 seconds
-  Import took 0.022771 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.412277 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd366f4fd71469dad72c5fb5121181f34') in 0.014918 seconds
-  Import took 0.021981 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.074458 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4f99ab392b20aad9665c545ac03d22f') in 0.018134 seconds
-  Import took 0.025712 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.975269 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6a0a65ae47bf154c14910a90db42773') in 0.018079 seconds
-  Import took 0.065985 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.312186 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c40d03981ef70ee222cb5685ac11294') in 0.017091 seconds
-  Import took 0.024983 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.894257 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '188f80cf5b8af5d53cb138cf36987224') in 0.014106 seconds
-  Import took 0.021557 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.907778 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3add8e92f5a206a57157fa87a7c5e978') in 0.017157 seconds
-  Import took 0.025639 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.967355 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66658b00a4dccdc819d6806a01e1fc1a') in 0.013760 seconds
-  Import took 0.020799 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.232383 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acb6dde1847737debf5c063e17995ff7') in 0.015626 seconds
-  Import took 0.023324 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.237999 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9bbb04853c812d4bdacb9c1ad6cb1d5c') in 0.020536 seconds
-  Import took 0.029150 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.022963 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b25cd04ec1bce3b032aa6b5b84edacc') in 0.016188 seconds
-  Import took 0.024831 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.971473 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdee0cc9a93c34ab2490a934c175efeb') in 0.015251 seconds
-  Import took 0.024406 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.923699 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45c16eba18de78c4b980fb80adb8bb3b') in 0.015207 seconds
-  Import took 0.023096 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.045253 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6ba4fea1410ae7b6dbc47f346bdcacb') in 0.016535 seconds
-  Import took 0.024373 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.299553 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5e22ff4e2aeca11af620ed3645baab0') in 0.020980 seconds
-  Import took 0.027702 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.974331 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b50fdfc025fc2a59759bc4add54e862e') in 0.019979 seconds
-  Import took 0.027727 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.303353 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d56752620cc788c3cc6eb9f6e7e32d0') in 0.014591 seconds
-  Import took 0.022284 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.096692 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c856ef832d6857d3ed478905cfba648') in 0.014441 seconds
-  Import took 0.021889 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.093214 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '770a6832ff9f9117664632db8b6f3f37') in 0.014657 seconds
-  Import took 0.021522 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.255641 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cee39157685405f8058d9c0f3d16a70') in 0.014730 seconds
-  Import took 0.020220 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.401406 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '457ffda639c5bd90f7feea29159a5fb2') in 0.012909 seconds
-  Import took 0.018313 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.002010 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffb6943eee67cf143c08336dfb182e85') in 0.012370 seconds
-  Import took 0.022263 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.666179 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e208fc1297378242796f6a20df3c2978') in 0.013580 seconds
-  Import took 0.020747 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.683702 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c2fbb4639c311906d43cc7c2fb5f968') in 0.013913 seconds
-  Import took 0.020581 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.647130 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a3042512ff3a030925f6d318e617ba9') in 0.014403 seconds
-  Import took 0.021652 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 25.427565 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '937f39b16855bf1f14064db08d8d0073') in 0.015887 seconds
-  Import took 0.023935 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.916833 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a37274cd652cf0351d742737827f93c9') in 0.012163 seconds
-  Import took 0.017975 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.138867 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5e6b09f34d47f7ff1ec20c4bfee0034') in 0.028282 seconds
-  Import took 0.034663 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.116789 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '256e4db152cea2797f02d600b0a75398') in 0.027361 seconds
-  Import took 0.034649 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.404378 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f75fc65693097b7cfd3f056c7eb9abc6') in 0.016752 seconds
-  Import took 0.024488 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.865683 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '552055bacda4f8f96b12fe7b09e44ee4') in 0.015121 seconds
-  Import took 0.023553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.893065 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c43fa737511a05b93507831d85cfe892') in 0.015344 seconds
-  Import took 0.023682 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.057630 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '261f82411e00b0321a5a29a40ca4c609') in 0.015734 seconds
-  Import took 0.024767 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.524669 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c780f7fd88ab9df95f44b3bc21d1a1c') in 0.012265 seconds
-  Import took 0.018243 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 12.253082 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc3ee83ff1aeae76aa86c46fd8460296') in 0.027486 seconds
-  Import took 0.036092 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.761909 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59c4cc7e17926d05aa731cd218097412') in 0.018981 seconds
-  Import took 0.025082 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.303933 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9c4029a8ab81e867ac61325cdcbc2eb') in 0.015648 seconds
-  Import took 0.023809 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.653682 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b539a0a754dc8f94e434937f8e0172e2') in 0.013051 seconds
-  Import took 0.018628 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.476290 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ff0d7377099b13efaab7e1d8c4c744b') in 0.012406 seconds
-  Import took 0.018458 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.076859 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3541f38ef2eff33004161f979b6a63e9') in 0.027529 seconds
-  Import took 0.034047 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.244119 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06bf6d07cbdc232bc724fb2e58cec676') in 0.016388 seconds
-  Import took 0.028509 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.576392 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '165f2ad8a27907b044a31d40715c8159') in 0.017517 seconds
-  Import took 0.024324 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.485172 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7963d147168fbbc0a418c6610c277d21') in 0.011867 seconds
-  Import took 0.023125 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.842078 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab28201ad6143c8f97953467f783b595') in 0.015039 seconds
-  Import took 0.022422 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.623121 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03fc80138da6ef01def9bf29b6f72fc9') in 0.015097 seconds
-  Import took 0.023125 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.225213 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45de444fb4c58d1735e5e0bf598d8ef3') in 0.015471 seconds
-  Import took 0.022211 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.848020 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25783dc2a86f41fa4cee3f98e9362513') in 0.012973 seconds
-  Import took 0.018544 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.941348 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8107e6bfb49d98e1149760c5de48521d') in 0.011822 seconds
-  Import took 0.018051 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.250738 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d28f9e89687861f5891a9638109452c') in 0.014259 seconds
-  Import took 0.021687 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.330597 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88cb650051e0b864b9fa95a5b40bd1db') in 0.018106 seconds
-  Import took 0.024231 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.957063 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bc468088a35abfe0b6267eacbd5e38a') in 0.021373 seconds
-  Import took 0.028625 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.017732 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.678 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.5 MB.
-System memory in use after: 96.6 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2688.
-Total: 5.251100 ms (FindLiveObjects: 0.292600 ms CreateObjectMapping: 0.150000 ms MarkObjects: 4.743000 ms  DeleteObjects: 0.062900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 391.916077 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '070ad44ea9a29ce695e18b077869220c') in 0.111158 seconds
-  Import took 0.118641 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 17.638435 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63d1ecfbb0f9c6f6f7304852f9066687') in 0.014587 seconds
-  Import took 0.023114 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.014273 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.188 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.17 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.5 MB.
-System memory in use after: 96.6 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2692.
-Total: 9.387100 ms (FindLiveObjects: 2.308700 ms CreateObjectMapping: 0.389200 ms MarkObjects: 6.606100 ms  DeleteObjects: 0.079000 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010431 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.541 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.17 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.5 MB.
-System memory in use after: 96.6 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2696.
-Total: 4.171800 ms (FindLiveObjects: 0.504000 ms CreateObjectMapping: 0.251500 ms MarkObjects: 3.377700 ms  DeleteObjects: 0.035300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.016484 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.70 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  8.972 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.31 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.5 MB.
-System memory in use after: 96.6 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2700.
-Total: 6.987500 ms (FindLiveObjects: 0.553400 ms CreateObjectMapping: 0.239800 ms MarkObjects: 6.149600 ms  DeleteObjects: 0.041300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 1080.164235 seconds.
-  path: Assets/Prefabs/LoseWinMenu.prefab
-  artifactKey: Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/LoseWinMenu.prefab using Guid(55cd02aaf7886ea4fa32698f04a78174) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c3c4ea8f3e0c6dd690313e6a76e8af2') in 0.108800 seconds
-  Import took 0.115871 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010764 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.069 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 2.23 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.5 MB.
-System memory in use after: 96.6 MB.
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2704.
-Total: 5.294600 ms (FindLiveObjects: 0.483600 ms CreateObjectMapping: 0.206500 ms MarkObjects: 4.543200 ms  DeleteObjects: 0.058400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007229 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.791 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.6 MB.
-System memory in use after: 96.7 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2708.
-Total: 3.425000 ms (FindLiveObjects: 0.351100 ms CreateObjectMapping: 0.208700 ms MarkObjects: 2.837600 ms  DeleteObjects: 0.025400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
