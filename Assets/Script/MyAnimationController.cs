@@ -163,8 +163,8 @@ namespace Assets.Script
             positionDummy.tag = "dummy";
             positionDummy.GetComponent<Image>().color = new Color(0, 0, 0, 0);
 
-            if (targetParent.parent.name.Contains("Panel"))
-                targetParent.transform.GetComponent<VerticalLayoutGroup>().spacing = GameControl.CalculateSpacing(targetParent, 1);
+            //if (targetParent.parent.name.Contains("Panel"))
+            //    targetParent.transform.GetComponent<VerticalLayoutGroup>().spacing = GameControl.CalculateSpacing(targetParent, 1);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(targetParent.GetComponent<RectTransform>());
 
@@ -191,8 +191,8 @@ namespace Assets.Script
                 posDummies.Add(positionDummy);
             }
 
-            if (targetParent.parent.name.Contains("Panel"))
-                targetParent.transform.GetComponent<VerticalLayoutGroup>().spacing = GameControl.CalculateSpacing(targetParent, 1);
+            //if (targetParent.parent.name.Contains("Panel"))
+            //    targetParent.transform.GetComponent<VerticalLayoutGroup>().spacing = GameControl.CalculateSpacing(targetParent, 1);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(targetParent.GetComponent<RectTransform>());
 
@@ -254,6 +254,7 @@ namespace Assets.Script
             float t = 0f;
             var v = new Vector3(0, 90f, 0);
             var q = Quaternion.Euler(v);
+
             while (t <= 1.0)
             {
                 t += Time.deltaTime / seconds;
