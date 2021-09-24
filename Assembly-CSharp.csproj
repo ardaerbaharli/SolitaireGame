@@ -56,6 +56,8 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Foreseer.cs" />
+    <Compile Include="Assets\Script\Helpers.cs" />
     <Compile Include="Assets\Script\GameUI.cs" />
     <Compile Include="Assets\Script\CardController.cs" />
     <Compile Include="Assets\Script\QuestionPanel.cs" />
@@ -66,10 +68,9 @@
     <Compile Include="Assets\Script\LoseWinMenu.cs" />
     <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\PlayerPrefsx.cs" />
-    <Compile Include="Assets\Script\GameControl.cs" />
-    <Compile Include="Assets\Script\Helpers.cs" />
-    <Compile Include="Assets\Script\Foreseer.cs" />
     <Compile Include="Assets\Script\MyAnimationController.cs" />
+    <Compile Include="Assets\Script\GameControl.cs" />
+    <Compile Include="Assets\Script\Screenshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.11f1 (99c7afb366b3) revision 10078127'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Pro; OS build 19042.1110; Version 2009; 64bit' Language: 'tr' Physical Memory: 16322 MB
+OS: 'Windows 10 Pro; OS build 19042.1237; Version 2009; 64bit' Language: 'tr' Physical Memory: 16322 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ D:/UnityRepos/SolitaireGame-main
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51918
+51372
 Successfully changed project path to: D:/UnityRepos/SolitaireGame-main
 D:/UnityRepos/SolitaireGame-main
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 32.31 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 98.57 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.11f1 (99c7afb366b3)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
@@ -35,490 +35,43 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56540
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56784
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001622 seconds.
+Registered in 0.004791 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 31.62 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 74.48 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.781 seconds
+- Completed reload, in  4.789 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002329 seconds.
+Registered in 0.005238 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 30.65 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 73.37 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.902 seconds
+- Completed reload, in  2.185 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.34 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
+Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2095 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 113.0 MB.
-System memory in use after: 113.1 MB.
+Unloading 2096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 112.9 MB.
+System memory in use after: 113.0 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2555.
-Total: 1.680700 ms (FindLiveObjects: 0.130200 ms CreateObjectMapping: 0.057100 ms MarkObjects: 1.475000 ms  DeleteObjects: 0.017700 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2556.
+Total: 3.158000 ms (FindLiveObjects: 0.262300 ms CreateObjectMapping: 0.155900 ms MarkObjects: 2.704600 ms  DeleteObjects: 0.033500 ms)
 
 ========================================================================
 Received Import Request.
   path: Assets/Scenes/Main.unity
   artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Main.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c4fb084c1f38534bb17eaf53824533a') in 0.013248 seconds
-  Import took 0.015686 seconds .
+Start importing Assets/Scenes/Main.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13c56741dae29ee119f952f141f4e20c') in 0.029347 seconds
+  Import took 0.059071 seconds .
 
-========================================================================
-Received Import Request.
-  Time since last request: 476.675891 seconds.
-  path: Assets/Scenes/Game.unity
-  artifactKey: Guid(cff7ea7e5d3bd4c4c9f0d09fa913accd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Game.unity using Guid(cff7ea7e5d3bd4c4c9f0d09fa913accd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aa72bc7d40af9c9e5d3eedaf6ecba03') in 0.005256 seconds
-  Import took 0.008483 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.104828 seconds.
-  path: Assets/DECKSON/C1.png
-  artifactKey: Guid(c164a73006790334f98e67d54f62afe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C1.png using Guid(c164a73006790334f98e67d54f62afe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0ab5ea64bba66ad1134e35110de5087') in 0.099513 seconds
-  Import took 0.101967 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000199 seconds.
-  path: Assets/DECKSON/H2.png
-  artifactKey: Guid(8bb11f29d37aaf54f99053b5cd30beb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H2.png using Guid(8bb11f29d37aaf54f99053b5cd30beb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dcdd2c026624cf8a260132c71a060c3') in 0.009578 seconds
-  Import took 0.011862 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000187 seconds.
-  path: Assets/DECKSON/S7.png
-  artifactKey: Guid(cc78d04913d5b6c4999e062af5435915) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S7.png using Guid(cc78d04913d5b6c4999e062af5435915) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5f085f70ff5ad97887174735acbdda6') in 0.007845 seconds
-  Import took 0.010219 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000182 seconds.
-  path: Assets/DECKSON/C2.png
-  artifactKey: Guid(d3828b39623397f489cc52d5091b95fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C2.png using Guid(d3828b39623397f489cc52d5091b95fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '861f17b56f13888d93a31a303e1e62b0') in 0.010173 seconds
-  Import took 0.012761 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000239 seconds.
-  path: Assets/DECKSON/H13.png
-  artifactKey: Guid(c35739bbf0d0f1f46b0e2855e1afcdb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H13.png using Guid(c35739bbf0d0f1f46b0e2855e1afcdb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25162bd8171247a8b9b98ab2c9ea1f69') in 0.008243 seconds
-  Import took 0.010709 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000172 seconds.
-  path: Assets/DECKSON/S9.png
-  artifactKey: Guid(b6c64ffbc33aefc4abc37d199e7d7a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S9.png using Guid(b6c64ffbc33aefc4abc37d199e7d7a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a1967a12197ce45e745530ca86b2bf2') in 0.008212 seconds
-  Import took 0.010576 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000217 seconds.
-  path: Assets/DECKSON/D11.png
-  artifactKey: Guid(a4e62851d1d74c049a6a12a7b3fb7283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D11.png using Guid(a4e62851d1d74c049a6a12a7b3fb7283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09cd3006fb10ddb257a03f8df2599a21') in 0.008240 seconds
-  Import took 0.010723 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000226 seconds.
-  path: Assets/DECKSON/D8.png
-  artifactKey: Guid(de737c47e6beba84da15e023dfa9f61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D8.png using Guid(de737c47e6beba84da15e023dfa9f61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c91fe2884b6ac76bebf7521794a6908b') in 0.008381 seconds
-  Import took 0.010855 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000378 seconds.
-  path: Assets/DECKSON/S13.png
-  artifactKey: Guid(2184b86480500584d9cf104c530bca95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S13.png using Guid(2184b86480500584d9cf104c530bca95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '990696cc6d437082e24c5e9b7a7f826b') in 0.007912 seconds
-  Import took 0.010302 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000181 seconds.
-  path: Assets/DECKSON/C8.png
-  artifactKey: Guid(2a67d3738c22f4a49b71fb27f3860532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C8.png using Guid(2a67d3738c22f4a49b71fb27f3860532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a773fb9801881e0d443edd424972e3b2') in 0.007981 seconds
-  Import took 0.010400 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000175 seconds.
-  path: Assets/DECKSON/H9.png
-  artifactKey: Guid(de88820863d31e9478860de628f5515e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H9.png using Guid(de88820863d31e9478860de628f5515e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd95a7802c462d39199db7ce9b71c503f') in 0.007480 seconds
-  Import took 0.009980 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000157 seconds.
-  path: Assets/DECKSON/D2.png
-  artifactKey: Guid(2e3f175e66607934bad7d42b20ac719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D2.png using Guid(2e3f175e66607934bad7d42b20ac719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2077826bd511f3ad344e1ad7981e123') in 0.009949 seconds
-  Import took 0.012436 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000184 seconds.
-  path: Assets/DECKSON/S8.png
-  artifactKey: Guid(7feaa5b6ef4a8cd4088fe05ef66e74e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S8.png using Guid(7feaa5b6ef4a8cd4088fe05ef66e74e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2e75c32039928f3ce4ba321a6eab428') in 0.008223 seconds
-  Import took 0.010643 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000193 seconds.
-  path: Assets/DECKSON/D13.png
-  artifactKey: Guid(5f49b41ea87ed5143872b64eb34c953d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D13.png using Guid(5f49b41ea87ed5143872b64eb34c953d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db348bf41072b2c6570f4af7675aaac2') in 0.008425 seconds
-  Import took 0.010734 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000146 seconds.
-  path: Assets/DECKSON/D3.png
-  artifactKey: Guid(3dc5fd460261a44478ba84aadc37d650) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D3.png using Guid(3dc5fd460261a44478ba84aadc37d650) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d2ec2792f332cb165289144f5460486') in 0.008039 seconds
-  Import took 0.010451 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000234 seconds.
-  path: Assets/DECKSON/C7.png
-  artifactKey: Guid(6d7129fbbc2abe64ca96145cc7e02673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C7.png using Guid(6d7129fbbc2abe64ca96145cc7e02673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '048bbbb305a076651feaaa8134a545fc') in 0.008255 seconds
-  Import took 0.010604 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000181 seconds.
-  path: Assets/DECKSON/D4.png
-  artifactKey: Guid(c81cf1f772100b64b970ae7eadec43f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D4.png using Guid(c81cf1f772100b64b970ae7eadec43f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d1cb22e0a4ae05f7832e9b89a0d303c') in 0.007686 seconds
-  Import took 0.010153 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000166 seconds.
-  path: Assets/DECKSON/C12.png
-  artifactKey: Guid(bcc3cfd0ca1e7a5438daeb8fde3fddc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C12.png using Guid(bcc3cfd0ca1e7a5438daeb8fde3fddc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4318261fa938cdc5c8cdd514633a286') in 0.007742 seconds
-  Import took 0.010094 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000197 seconds.
-  path: Assets/DECKSON/H5.png
-  artifactKey: Guid(9dad1180391d5c64fbc9613f59164974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H5.png using Guid(9dad1180391d5c64fbc9613f59164974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fd4c5b160e4d1ae0f22062c168dfdb5') in 0.008062 seconds
-  Import took 0.010561 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000188 seconds.
-  path: Assets/DECKSON/C4.png
-  artifactKey: Guid(9d482205943153846bcde5e924149b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C4.png using Guid(9d482205943153846bcde5e924149b6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f3a2b9e970842b8645071747f892685') in 0.008255 seconds
-  Import took 0.010672 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/DECKSON/H4.png
-  artifactKey: Guid(0ff38e874dfba92469cd4c4c544a1865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H4.png using Guid(0ff38e874dfba92469cd4c4c544a1865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f47a1e937c9581c051fa95a00975689') in 0.007876 seconds
-  Import took 0.010430 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000207 seconds.
-  path: Assets/DECKSON/C9.png
-  artifactKey: Guid(b319f874059b63a4fb65e25acb33c785) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C9.png using Guid(b319f874059b63a4fb65e25acb33c785) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '284f77180b1fe9d3072bc7a5e00e89c6') in 0.009425 seconds
-  Import took 0.011832 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000190 seconds.
-  path: Assets/DECKSON/C13.png
-  artifactKey: Guid(fc2039a3f9e07e74893ec69d650f75f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C13.png using Guid(fc2039a3f9e07e74893ec69d650f75f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f026b4b19eaa84baa96fff1296f5ddac') in 0.009410 seconds
-  Import took 0.012065 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000142 seconds.
-  path: Assets/DECKSON/H12.png
-  artifactKey: Guid(b3c418279be45d14e80a17b01842ba3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H12.png using Guid(b3c418279be45d14e80a17b01842ba3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40282199fa98f91dc002fc9eca4ba3ea') in 0.007759 seconds
-  Import took 0.010276 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/DECKSON/D7.png
-  artifactKey: Guid(0f93d90a6855f994cada6d002592658c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D7.png using Guid(0f93d90a6855f994cada6d002592658c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0b325163829c131b1b9ab13e3209fa3') in 0.008371 seconds
-  Import took 0.010738 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000223 seconds.
-  path: Assets/DECKSON/C6.png
-  artifactKey: Guid(02cfc61480424dd40aa0e041dd39ecbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C6.png using Guid(02cfc61480424dd40aa0e041dd39ecbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33265971107f44dd3ce7ebbb9d4bc8e3') in 0.008166 seconds
-  Import took 0.010580 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000147 seconds.
-  path: Assets/DECKSON/C5.png
-  artifactKey: Guid(3c46bf05ea5c0a544b57db7d71eb5d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C5.png using Guid(3c46bf05ea5c0a544b57db7d71eb5d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ea1cf5087a68dd320bb2ddc44f80626') in 0.008250 seconds
-  Import took 0.010632 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000180 seconds.
-  path: Assets/DECKSON/H1.png
-  artifactKey: Guid(561522b5f66968949b6b995a81c5c6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H1.png using Guid(561522b5f66968949b6b995a81c5c6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f81a8dcfe0456aaed04c06b9b195a89') in 0.008526 seconds
-  Import took 0.010935 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000199 seconds.
-  path: Assets/DECKSON/H11.png
-  artifactKey: Guid(d9268971f8673b54fa94be2a3f3a8751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H11.png using Guid(d9268971f8673b54fa94be2a3f3a8751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1ceb61801b8c1392d4835a76b047737') in 0.007766 seconds
-  Import took 0.010349 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000205 seconds.
-  path: Assets/DECKSON/S6.png
-  artifactKey: Guid(616cb93a407f1b04d9e6c462ff9f9445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S6.png using Guid(616cb93a407f1b04d9e6c462ff9f9445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0895568803866ede88c6a4d998b62446') in 0.007830 seconds
-  Import took 0.010383 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000246 seconds.
-  path: Assets/DECKSON/C10.png
-  artifactKey: Guid(70eb9d0a90210014b96cc59065bf849e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C10.png using Guid(70eb9d0a90210014b96cc59065bf849e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f59d8e60be7407ca11ba4874d9f6833f') in 0.008089 seconds
-  Import took 0.010721 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000175 seconds.
-  path: Assets/DECKSON/H6.png
-  artifactKey: Guid(db8c3e37b4345cb4a81d97ced13aa25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H6.png using Guid(db8c3e37b4345cb4a81d97ced13aa25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74da9d4547cd0217799be2b2b985c827') in 0.007508 seconds
-  Import took 0.009968 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000179 seconds.
-  path: Assets/DECKSON/H10.png
-  artifactKey: Guid(6b2687da8c1fc6f4eb86cfdaab7083d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H10.png using Guid(6b2687da8c1fc6f4eb86cfdaab7083d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83a08afb21ef4a5f0404748a6447d9dc') in 0.007709 seconds
-  Import took 0.010138 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000174 seconds.
-  path: Assets/DECKSON/H7.png
-  artifactKey: Guid(3789efca8fcdbed41b00858bb0287e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H7.png using Guid(3789efca8fcdbed41b00858bb0287e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98beb6ea063fffeca29bbe89c56887bb') in 0.008605 seconds
-  Import took 0.011015 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000194 seconds.
-  path: Assets/DECKSON/H3.png
-  artifactKey: Guid(58c912483c257884ab278d4346a87c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H3.png using Guid(58c912483c257884ab278d4346a87c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9268d53ec793eeaea700a87f777bcfba') in 0.007570 seconds
-  Import took 0.009996 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000228 seconds.
-  path: Assets/DECKSON/D1.png
-  artifactKey: Guid(34206a1ec724f5b4f9dce0cd52a90fa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D1.png using Guid(34206a1ec724f5b4f9dce0cd52a90fa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '695412dd7dc1f7670dc3d3f7f8f5830f') in 0.007980 seconds
-  Import took 0.010383 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000199 seconds.
-  path: Assets/DECKSON/S2.png
-  artifactKey: Guid(fe5a60d96577cda45aae3c4a1d633864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S2.png using Guid(fe5a60d96577cda45aae3c4a1d633864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ad79d7c3ad42ecba02ca4a06a59c965') in 0.007600 seconds
-  Import took 0.009953 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000189 seconds.
-  path: Assets/DECKSON/D12.png
-  artifactKey: Guid(0703d63584f543d41a740ba3377ef68d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D12.png using Guid(0703d63584f543d41a740ba3377ef68d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbc131482df8aa9385cae568850c080d') in 0.008433 seconds
-  Import took 0.010901 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000142 seconds.
-  path: Assets/DECKSON/S3.png
-  artifactKey: Guid(7f11c53f2f7cffb4ca846525a6cb5db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S3.png using Guid(7f11c53f2f7cffb4ca846525a6cb5db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21d63e6f8db7b309ec3626a9dd2d7b5b') in 0.007770 seconds
-  Import took 0.010098 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000194 seconds.
-  path: Assets/DECKSON/S10.png
-  artifactKey: Guid(40b5456433740ac4fb7b1ec50f388bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S10.png using Guid(40b5456433740ac4fb7b1ec50f388bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3327e1c20e9a4d7358f29fb85e169b1a') in 0.007971 seconds
-  Import took 0.010464 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000208 seconds.
-  path: Assets/DECKSON/S1.png
-  artifactKey: Guid(cbec3ed123068ef4b85ba7d6f602ca22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S1.png using Guid(cbec3ed123068ef4b85ba7d6f602ca22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35be7e4b0b32c3b37b914ddf9dc6707e') in 0.007941 seconds
-  Import took 0.010336 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000175 seconds.
-  path: Assets/DECKSON/S4.png
-  artifactKey: Guid(d985d91c85e0cae4b8375b6242aef5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S4.png using Guid(d985d91c85e0cae4b8375b6242aef5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b91756c017565a64d18e0db0e5a5001') in 0.007755 seconds
-  Import took 0.010246 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/DECKSON/S5.png
-  artifactKey: Guid(a9a971d8b7c7a7a4eb23ad5152892fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S5.png using Guid(a9a971d8b7c7a7a4eb23ad5152892fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e29b0e0295e6574f7cd533cdd5ef1ea3') in 0.008009 seconds
-  Import took 0.010455 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000159 seconds.
-  path: Assets/DECKSON/D10.png
-  artifactKey: Guid(7d394b69b29b04d4f8fa13f212f32625) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D10.png using Guid(7d394b69b29b04d4f8fa13f212f32625) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '781cd73048da193d843a8cb6222633a2') in 0.008296 seconds
-  Import took 0.010675 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000183 seconds.
-  path: Assets/DECKSON/D5.png
-  artifactKey: Guid(21c0c44a71385f24399a621ff4da3a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D5.png using Guid(21c0c44a71385f24399a621ff4da3a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '547c6d6c19169ee0cc2bc40ba9d1ef78') in 0.007933 seconds
-  Import took 0.010458 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000176 seconds.
-  path: Assets/DECKSON/H8.png
-  artifactKey: Guid(08ac7c570680028478c50fe7897385e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/H8.png using Guid(08ac7c570680028478c50fe7897385e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f029f767eca3461049c371eb8759d1a9') in 0.008635 seconds
-  Import took 0.011000 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000176 seconds.
-  path: Assets/DECKSON/S11.png
-  artifactKey: Guid(0e90e196e6255c14fa1a85144ed68a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S11.png using Guid(0e90e196e6255c14fa1a85144ed68a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c3f2b62a885d7ce0dddc5ccfbeaefba') in 0.009271 seconds
-  Import took 0.011726 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000208 seconds.
-  path: Assets/DECKSON/S12.png
-  artifactKey: Guid(e2facbb1df7d3df41acdc7b264dc3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/S12.png using Guid(e2facbb1df7d3df41acdc7b264dc3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '645bcd494783bc7e31d915ed1f1adf18') in 0.008139 seconds
-  Import took 0.010435 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000195 seconds.
-  path: Assets/DECKSON/C11.png
-  artifactKey: Guid(a02fe2cb047722f45b6be07e670fe910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C11.png using Guid(a02fe2cb047722f45b6be07e670fe910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bca9b81986fbd5e0adcce8dae1113ba') in 0.008658 seconds
-  Import took 0.011026 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000145 seconds.
-  path: Assets/DECKSON/D6.png
-  artifactKey: Guid(fe4ff7d944662a74eaff8d0dd1ac86d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D6.png using Guid(fe4ff7d944662a74eaff8d0dd1ac86d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29ed2b93396f4e948e6f95c20a84b298') in 0.010697 seconds
-  Import took 0.012999 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000211 seconds.
-  path: Assets/DECKSON/D9.png
-  artifactKey: Guid(3260cd05b0013164d83bfebab0520f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/D9.png using Guid(3260cd05b0013164d83bfebab0520f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9506396e09572e63fbc2aee3d9798b6') in 0.008683 seconds
-  Import took 0.011052 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000266 seconds.
-  path: Assets/DECKSON/C3.png
-  artifactKey: Guid(3112f3c7ea603b54ab3b67ce9e601c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DECKSON/C3.png using Guid(3112f3c7ea603b54ab3b67ce9e601c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5c9a95ff1156b22e57d56ca45d4f692') in 0.008023 seconds
-  Import took 0.010429 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002464 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.36 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.847 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 0.34 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 115.1 MB.
-System memory in use after: 115.3 MB.
-
-Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2565.
-Total: 1.683400 ms (FindLiveObjects: 0.147100 ms CreateObjectMapping: 0.057900 ms MarkObjects: 1.464300 ms  DeleteObjects: 0.013500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
