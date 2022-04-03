@@ -1496,7 +1496,7 @@ MonoBehaviour:
   _directoryName: Screenshots
   _filePrefix: screenshot_
   _fileType: .png
-  screenshotKey: 291
+  screenshotKey: 97
 --- !u!4 &1089399174
 Transform:
   m_ObjectHideFlags: 0
