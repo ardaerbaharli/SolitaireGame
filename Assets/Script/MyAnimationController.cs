@@ -262,7 +262,7 @@ namespace Assets.Script
                 yield return null;
             }
 
-            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(GameControl.BACK_OF_A_CARD_SPRITE_NAME);
+            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(GameConfig.BACK_OF_A_CARD_SPRITE_NAME);
             card.GetComponent<CardController>().isFacingUp = false;
             seconds = time;
             t = 0f;

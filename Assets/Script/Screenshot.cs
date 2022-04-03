@@ -1,31 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.IO;
 using UnityEngine;
 
-public class Screenshot : MonoBehaviour
+namespace ardaerbaharli
 {
-    private int ssIndex;
-    //here you can set the folder you want to use, 
-    //IMPORTANT - use "@" before the string, because this is a verbatim string
-    //IMPORTANT - the folder must exists
-    string pathToYourFile = @"D:\Solitaire\";
-    //this is the name of the file
-    string fileName = "ss_";
-    //this is the file type
-    string fileType = ".png";
-
-
-    private void Awake()
-    {        
-        ssIndex = 0;
-    }
-
-    private void Update()
+    public class Screenshot : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.F10))
+        private int _index;
+        [SerializeField] private string _directoryName = "Screenshots";
+        [SerializeField] private string _filePrefix = "screenshot_";
+        [SerializeField] private string _fileType = ".png";
+        [SerializeField] private KeyCode screenshotKey = KeyCode.F10;
+        private string path;
+        private void Awake()
         {
-            UnityEngine.ScreenCapture.CaptureScreenshot(pathToYourFile + fileName + ssIndex + fileType);
-            ssIndex++;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start()
+        {
+            _index = 0;
+            path = Path.Combine(Application.dataPath, _directoryName);
+            print(path);
+            Directory.CreateDirectory(path);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(screenshotKey))
+            {
+                ScreenCapture.CaptureScreenshot(path + "/" + _filePrefix + _index + _fileType);
+                _index++;
+            }
         }
     }
 }

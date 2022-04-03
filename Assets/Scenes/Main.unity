@@ -1475,7 +1475,7 @@ GameObject:
   - component: {fileID: 1089399174}
   - component: {fileID: 1089399173}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1493,6 +1493,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6122df6ea56d4924ba70a29abe7b46e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _directoryName: Screenshots
+  _filePrefix: screenshot_
+  _fileType: .png
+  screenshotKey: 291
 --- !u!4 &1089399174
 Transform:
   m_ObjectHideFlags: 0
